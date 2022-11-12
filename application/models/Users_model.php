@@ -17,6 +17,7 @@ class Users_model extends CI_Model{
         }
     }
 
+    // main login
     public function login(){
         $tmp_user = $this->get_user();
 
@@ -37,5 +38,21 @@ class Users_model extends CI_Model{
             return FALSE;
         
         }
+    }
+
+    public function add_employee(){
+
+    }
+
+    // add employee to users table
+    private function add_emp_acc(){
+        $data = array();
+        $this->db->insert('', $data);
+    }
+
+    // add employee details to emp_details table
+    private function add_emp_details(){
+        $data = array();
+        $this->db->insert('', $data);
     }
 }
