@@ -1,7 +1,16 @@
 <?php 
-defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pages extends CI_Controller{
+    public function date(){
+        $date = $this->input->post('date');
+
+        $pieces = explode(",", $date);
+        print_r($pieces);
+    }
+
+    public function demo(){
+        $this->load->view('demo');
+    }
     public function index(){
         // check session
         if($this->session->id){
@@ -70,7 +79,7 @@ class Pages extends CI_Controller{
 
     // employees' pages
     public function my_profile(){
-        if((!empty($this->session->id)) && ($this->session->id!== 'emp')){
+        if((!empty($this->session->id)) && ($this->session->id !== 'admin')){
             $this->load->view('components/header');
             $this->load->view('pages/profile');
             $this->load->view('components/footer');
@@ -79,8 +88,9 @@ class Pages extends CI_Controller{
             redirect('login');
         }
     }
+
     public function my_leaves(){
-        if((!empty($this->session->id)) && ($this->session->id!== 'emp')){
+        if((!empty($this->session->id)) && ($this->session->id !== 'admin')){
             $this->load->view('components/header');
             $this->load->view('pages/leaves');
             $this->load->view('components/footer');
@@ -89,8 +99,9 @@ class Pages extends CI_Controller{
             redirect('login');
         }
     }
+
     public function my_tardy(){
-        if((!empty($this->session->id)) && ($this->session->id!== 'emp')){
+        if((!empty($this->session->id)) && ($this->session->id !== 'admin')){
             $this->load->view('components/header');
             $this->load->view('pages/tardy');
             $this->load->view('components/footer');
