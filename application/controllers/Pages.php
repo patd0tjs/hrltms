@@ -46,8 +46,14 @@ class Pages extends CI_Controller{
 
     public function employees(){
         if($this->session->id == 'admin'){
+            $data = array(
+                'departments'  => $this->Users_model->get_departments(),
+                'designations' => $this->Users_model->get_designations(),
+                'employees'    => $this->Users_model->get_employees()
+            );
+
             $this->load->view('components/header');
-            $this->load->view('pages/admin/dashboard');
+            $this->load->view('pages/admin/employees', $data);
             $this->load->view('components/footer');
         } else {
             $this->session->set_flashdata('error', 'You are not allowed to visit this page');

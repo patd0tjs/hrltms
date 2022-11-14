@@ -5,12 +5,21 @@ class Users extends CI_Controller{
         redirect('');
     }
 
+    // admin functions
     public function add_emp(){
-        if ($this->session->id){
-            echo 'ok';
+        if($this->session->id){
+
+            if ($this->session->id == 'admin'){
+                $this->Users_model->add_employee();
+                redirect('admin/employees');
+            } else {
+                $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+                redirect('login');
+            }
+
         } else {
-            echo 'no';
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
         }
-        echo $this->session->id;
     }
 }
