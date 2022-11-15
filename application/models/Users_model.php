@@ -68,6 +68,7 @@ class Users_model extends CI_Model{
         }
     }
 
+    // get data
     public function get_departments(){
         return $this->db->get('departments')->result_array();
     }
@@ -79,7 +80,23 @@ class Users_model extends CI_Model{
     public function get_employees(){
         return $this->db->get('employees')->result_array();
     }
+    
+    public function get_schedules(){
+        return $this->db->select('schedule.emp_id as emp_id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('schedule.date as date')
+                        ->select('schedule.time_in as time_in')
+                        ->select('schedule.time_out as time_out')
+                        ->from('schedule')
+                        ->join('employees', 'schedule.emp_id=employees.id')
+                        ->get()
+                        ->result_array();
+    }
 
+
+    // add employee main function
     public function add_employee(){
         if($this->add_emp_acc()){
             $data = array(
@@ -120,9 +137,11 @@ class Users_model extends CI_Model{
     private function add_emp_details(){
         if($this->input->post('id_pic')){
             $id_pic = $this->uploadPhoto();
+
         } else {
             $id_pic = base_url() . 'assets/img/null_pic.jpg';
         }
+        
         $data = array(
             'id'             => $this->input->post('id'),
             'id_pic'         => $id_pic,
@@ -158,5 +177,23 @@ class Users_model extends CI_Model{
 
         );
         $this->db->insert('employee_details', $data);
+    }
+
+
+    public function add_schedule(){
+        $dates = $this->input->post('date');
+        $date = explode(",", $dates);
+
+        for($i = 0; $i < count($date); $i++){
+            $data = array();
+
+            $data = array(
+                'emp_id'   => $this->input->post('employee'),
+                'date'     => $date[$i],
+                'time_in'  => $this->input->post('time_in'),
+                'time_out' => $this->input->post('time_out')
+            );
+            $this->db->insert('schedule', $data);
+        }
     }
 }

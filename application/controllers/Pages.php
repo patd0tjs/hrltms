@@ -1,16 +1,6 @@
 <?php 
 
 class Pages extends CI_Controller{
-    public function date(){
-        $date = $this->input->post('date');
-
-        $pieces = explode(",", $date);
-        print_r($pieces);
-    }
-
-    public function demo(){
-        $this->load->view('demo');
-    }
     public function index(){
         // check session
         if($this->session->id){
@@ -77,6 +67,23 @@ class Pages extends CI_Controller{
             $this->load->view('components/header');
             $this->load->view('pages/admin/dashboard');
             $this->load->view('components/footer');
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
+
+    public function schedules(){
+        if($this->session->id == 'admin'){
+            $data = array(
+                'employees' => $this->Users_model->get_employees(),
+                'schedules' => $this->Users_model->get_schedules(),
+            );
+
+            $this->load->view('components/header');
+            $this->load->view('pages/admin/schedules', $data);
+            $this->load->view('components/footer');
+
         } else {
             $this->session->set_flashdata('error', 'You are not allowed to visit this page');
             redirect('login');
