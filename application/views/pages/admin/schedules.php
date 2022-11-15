@@ -26,7 +26,7 @@
       </div>
 
       <!-- main submit form -->
-      <form action="<?= base_url();?>users/add_schedule" method="post">
+      <form action="<?= base_url();?>dateandtime/add_schedule" method="post">
         <div class="modal-body">
 
         <!-- select employee -->
@@ -58,7 +58,7 @@
 </div>
 
 
- <table id='schedules'>
+ <table id='schedules' style="width: 100%">
   <thead>
     <tr>
       <th>Employee ID</th>
@@ -74,8 +74,8 @@
         <td><?= $schedule['emp_id']?></td>
         <td><?= $schedule['l_name'] . ', ' . $schedule['f_name'] . ' ' . $schedule['m_name']?></td>
         <td><?= $schedule['date']?></td>
-        <td><?= $schedule['time_in']?></td>
-        <td><?= $schedule['time_out']?></td>
+        <td><?= date('g:i a', strtotime($schedule['time_in']))?></td>
+        <td><?= date('g:i a', strtotime($schedule['time_out']))?></td>
       </tr>
     <?php endforeach ?>
   </tbody>

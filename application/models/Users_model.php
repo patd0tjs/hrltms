@@ -91,10 +91,10 @@ class Users_model extends CI_Model{
                         ->select('schedule.time_out as time_out')
                         ->from('schedule')
                         ->join('employees', 'schedule.emp_id=employees.id')
+                        // ->where('date >= CURDATE()')
                         ->get()
                         ->result_array();
     }
-
 
     // add employee main function
     public function add_employee(){
@@ -179,21 +179,4 @@ class Users_model extends CI_Model{
         $this->db->insert('employee_details', $data);
     }
 
-
-    public function add_schedule(){
-        $dates = $this->input->post('date');
-        $date = explode(",", $dates);
-
-        for($i = 0; $i < count($date); $i++){
-            $data = array();
-
-            $data = array(
-                'emp_id'   => $this->input->post('employee'),
-                'date'     => $date[$i],
-                'time_in'  => $this->input->post('time_in'),
-                'time_out' => $this->input->post('time_out')
-            );
-            $this->db->insert('schedule', $data);
-        }
-    }
 }
