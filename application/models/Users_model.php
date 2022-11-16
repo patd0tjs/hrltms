@@ -80,21 +80,6 @@ class Users_model extends CI_Model{
     public function get_employees(){
         return $this->db->get('employees')->result_array();
     }
-    
-    public function get_schedules(){
-        return $this->db->select('schedule.emp_id as emp_id')
-                        ->select('employees.l_name as l_name')
-                        ->select('employees.f_name as f_name')
-                        ->select('employees.m_name as m_name')
-                        ->select('schedule.date as date')
-                        ->select('schedule.time_in as time_in')
-                        ->select('schedule.time_out as time_out')
-                        ->from('schedule')
-                        ->join('employees', 'schedule.emp_id=employees.id')
-                        // ->where('date >= CURDATE()')
-                        ->get()
-                        ->result_array();
-    }
 
     // add employee main function
     public function add_employee(){

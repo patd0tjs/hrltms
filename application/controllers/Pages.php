@@ -77,11 +77,28 @@ class Pages extends CI_Controller{
         if($this->session->id == 'admin'){
             $data = array(
                 'employees' => $this->Users_model->get_employees(),
-                'schedules' => $this->Users_model->get_schedules(),
+                'schedules' => $this->DateAndTime_model->get_schedules(),
             );
 
             $this->load->view('components/header');
             $this->load->view('pages/admin/schedules', $data);
+            $this->load->view('components/footer');
+
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
+
+    public function dtr(){
+        if($this->session->id == 'admin'){
+            $data = array(
+                'employees' => $this->Users_model->get_employees(),
+                'dtr'       => $this->DateAndTime_model->get_dtr(),
+            );
+
+            $this->load->view('components/header');
+            $this->load->view('pages/admin/dtr', $data);
             $this->load->view('components/footer');
 
         } else {
