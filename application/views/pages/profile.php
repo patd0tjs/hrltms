@@ -53,8 +53,15 @@
         <input type="text" value="<?= $my_info['date_hired']?>" disabled>
     </div>
     <div class="col">
+        
         <label for="">Tenure: </label>
-        <input type="text" value="" disabled>
+        <?php 
+            $hired = new DateTime($my_info['date_hired']);
+            $curr_date =new DateTime();
+            $difference = date_diff($hired, $curr_date);
+            $tenure = $difference->format('%y years, %m months %d days');
+        ?>
+        <input type="text" value="<?= $tenure?>" disabled>
     </div>
     <div class="col">
         <label for="">Plantilla: </label>
