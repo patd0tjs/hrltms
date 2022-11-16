@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 01:24 AM
+-- Generation Time: Nov 16, 2022 at 02:09 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -131,7 +131,7 @@ CREATE TABLE `dtr` (
 --
 
 INSERT INTO `dtr` (`id`, `emp_id`, `am_in`, `am_out`, `pm_in`, `pm_out`, `date`) VALUES
-(1, 'unika iha', '07:00:00', '11:00:00', '12:00:00', '18:00:00', '2022-11-07');
+(2, 'emp1', '08:30:00', '00:00:00', '00:00:00', '00:00:00', '2022-11-04');
 
 -- --------------------------------------------------------
 
@@ -250,6 +250,26 @@ INSERT INTO `schedule` (`id`, `emp_id`, `date`, `time_in`, `time_out`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tardy`
+--
+
+CREATE TABLE `tardy` (
+  `id` int(11) NOT NULL,
+  `emp_id` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `diff` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tardy`
+--
+
+INSERT INTO `tardy` (`id`, `emp_id`, `date`, `diff`) VALUES
+(1, 'emp1', '2022-11-04', '01:30:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -319,6 +339,13 @@ ALTER TABLE `schedule`
   ADD KEY `emp_id` (`emp_id`);
 
 --
+-- Indexes for table `tardy`
+--
+ALTER TABLE `tardy`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `emp_id` (`emp_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -344,13 +371,19 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `tardy`
+--
+ALTER TABLE `tardy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -381,6 +414,12 @@ ALTER TABLE `employee_details`
 --
 ALTER TABLE `schedule`
   ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`id`);
+
+--
+-- Constraints for table `tardy`
+--
+ALTER TABLE `tardy`
+  ADD CONSTRAINT `tardy_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
