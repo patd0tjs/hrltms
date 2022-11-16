@@ -27,10 +27,15 @@ class Pages extends CI_Controller{
     // admin's pages
     public function dashboard(){
         if($this->session->id == 'admin'){
-            $data['title'] = "Dashboard";
+            $data = array(
+                'title'      => "Dashboard",
+                'employees'  => $this->Users_model->get_employees(),
+                'tardies'    => $this->DateAndTime_model->get_tardy(),
+                'undertimes' => $this->DateAndTime_model->get_undertime(),
+            );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);
-            $this->load->view('pages/admin/dashboard');
+            $this->load->view('pages/admin/dashboard', $data);
             $this->load->view('components/footer');
         } else {
             $this->session->set_flashdata('error', 'You are not allowed to visit this page');

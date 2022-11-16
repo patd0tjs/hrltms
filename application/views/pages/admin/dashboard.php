@@ -1,5 +1,5 @@
-employee count: 
+employee count: <a href="<?= base_url()?>admin/employees"><?= count($employees)?></a>
 <br>
-leave count:
+leave count: 
 <br>
-tardy count:
+tardy count: <a href="<?= base_url()?>admin/tardy"><?= count($tardies)?></a>
