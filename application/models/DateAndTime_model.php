@@ -193,8 +193,9 @@ class DateAndTime_model extends CI_Model{
             $data = array();
 
             $data = array(
-                'emp_id'   => $this->session->id,
-                'date'     => $date[$i],
+                'emp_id' => $this->session->id,
+                'date'   => $date[$i],
+                'reason' => $this->input->post('reason')
             );
             $this->db->insert('leaves', $data);
         }
@@ -212,5 +213,40 @@ class DateAndTime_model extends CI_Model{
                         ->where('status', 'approved')
                         ->get('leaves')
                         ->result_array();
+    }
+
+    public function get_pending_leaves(){
+        return $this->db->select('leaves.emp_id as emp_id')
+                        ->select('leaves.id as id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('leaves.date as date')
+                        ->select('leaves.reason as reason')
+                        ->from('leaves')
+                        ->join('employees', 'leaves.emp_id=employees.id')
+                        ->where('status', 'pending')
+                        ->get()
+                        ->result_array();
+    }
+
+    public function get_approved_leaves(){
+        return $this->db->select('leaves.emp_id as emp_id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('leaves.date as date')
+                        ->select('leaves.reason as reason')
+                        ->from('leaves')
+                        ->join('employees', 'leaves.emp_id=employees.id')
+                        ->where('status', 'approved')
+                        ->get()
+                        ->result_array();
+    }
+
+    public function approve_leave(){
+        $this->db->set('status', 'approved');
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('leaves');
     }
 }

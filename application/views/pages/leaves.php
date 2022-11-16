@@ -15,6 +15,9 @@
         <div class="modal-body">
             <label for="datePick">Select Date(s): </label>
             <input type="text" id="datePick" name="date" required/>
+
+            <label for="reason">Select Date(s): </label>
+            <textarea name="reason" id="reason" cols="30" rows="10" required></textarea>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -30,32 +33,32 @@
     <thead>
         <tr>
         <th>Date</th>
-        <th>Status</th>
+        <th>Reason</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach($pending as $request):?>
         <tr>
             <td><?= $request['date']?></td>
-            <td><?= $request['status']?></td>
+            <td><?= $request['reason']?></td>
         </tr>
         <?php endforeach ?>
     </tbody>
  </table>
 
  <h3>Approved</h3>
- <table id='pending' class="table table-striped" style="width: 100%">
+ <table id='approved' class="table table-striped" style="width: 100%">
     <thead>
         <tr>
         <th>Date</th>
-        <th>Status</th>
+        <th>Reason</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach($approved as $leave):?>
         <tr>
             <td><?= $leave['date']?></td>
-            <td><?= $leave['status']?></td>
+            <td><?= $leave['reason']?></td>
         </tr>
         <?php endforeach ?>
     </tbody>
@@ -69,5 +72,9 @@
 
     $(document).ready(function () {
     $('#pending').DataTable();
+});
+
+$(document).ready(function () {
+    $('#approved').DataTable();
 });
   </script>

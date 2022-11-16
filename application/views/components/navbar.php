@@ -41,6 +41,11 @@
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Undertime</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?= base_url()?>admin/leaves" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Leaves</span>
+                        </a>
+                    </li>
                 <?php } else {?>
                     <li class="nav-item">
                         <a href="<?= base_url()?>profile" class="nav-link align-middle px-0">

@@ -64,9 +64,15 @@ class Pages extends CI_Controller{
 
     public function leaves(){
         if($this->session->id == 'admin'){
+
+            $data = array(
+                'title'    => 'Employee Leave Requests',
+                'pending'  => $this->DateAndTime_model->get_pending_leaves(),
+                'approved' => $this->DateAndTime_model->get_approved_leaves(),
+            );
             $this->load->view('components/header');
-            $this->load->view('components/navbar');
-            $this->load->view('pages/admin/dashboard');
+            $this->load->view('components/navbar', $data);
+            $this->load->view('pages/admin/leaves', $data);
             $this->load->view('components/footer');
         } else {
             $this->session->set_flashdata('error', 'You are not allowed to visit this page');
