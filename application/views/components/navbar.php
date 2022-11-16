@@ -52,6 +52,11 @@
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Deficiencies</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?= base_url()?>leaves" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Leaves</span>
+                        </a>
+                    </li>
                 <?php } ?>
                 </ul>
                 <hr>

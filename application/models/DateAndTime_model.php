@@ -184,4 +184,33 @@ class DateAndTime_model extends CI_Model{
 
         $this->db->insert('undertime', $data);
     }
+
+    public function request_leave(){
+        $dates = $this->input->post('date');
+        $date = explode(",", $dates);
+
+        for($i = 0; $i < count($date); $i++){
+            $data = array();
+
+            $data = array(
+                'emp_id'   => $this->session->id,
+                'date'     => $date[$i],
+            );
+            $this->db->insert('leaves', $data);
+        }
+    }
+
+    public function my_pending_leaves(){
+        return $this->db->where('emp_id', $this->session->id)
+                        ->where('status', 'pending')
+                        ->get('leaves')
+                        ->result_array();
+    }
+
+    public function my_approved_leaves(){
+        return $this->db->where('emp_id', $this->session->id)
+                        ->where('status', 'approved')
+                        ->get('leaves')
+                        ->result_array();
+    }
 }

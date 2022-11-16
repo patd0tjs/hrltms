@@ -167,6 +167,12 @@ class Pages extends CI_Controller{
 
     public function my_leaves(){
         if((!empty($this->session->id)) && ($this->session->id !== 'admin')){
+            
+            $data = array(
+                'title' => 'My Leaves',
+                'pending' => $this->DateAndTime_model->my_pending_leaves(),
+                'approved' => $this->DateAndTime_model->my_approved_leaves(),
+            );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);
             $this->load->view('pages/leaves');

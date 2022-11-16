@@ -33,4 +33,22 @@ class DateAndTime extends CI_Controller{
             redirect('login');
         }
     }
+
+    public function request_leave(){
+        if($this->session->id){
+
+            if ($this->session->id == 'admin'){
+                $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+                redirect('login');
+
+            } else {
+                $this->DateAndTime_model->request_leave();
+                redirect('leaves');
+            }
+
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
 }
