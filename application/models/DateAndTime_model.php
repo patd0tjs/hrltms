@@ -37,7 +37,8 @@ class DateAndTime_model extends CI_Model{
             $this->db->insert('schedule', $data);
         }
     }
-    
+
+    // get all dtr
     public function get_dtr(){
         return $this->db->select('dtr.emp_id as emp_id')
                         ->select('employees.l_name as l_name')
@@ -53,6 +54,7 @@ class DateAndTime_model extends CI_Model{
                         ->result_array();
     }
 
+    // add dtr
     public function add_dtr(){
         $data = array(
             'emp_id'   => $this->input->post('employee'),
@@ -62,6 +64,47 @@ class DateAndTime_model extends CI_Model{
             'pm_in'    => $this->input->post('pm_in'),
             'pm_out'   => $this->input->post('pm_out')
         );
+
         $this->db->insert('dtr', $data);
+
+        if($this->compute_tardy()){
+            $diff = $this->compute_tardy();
+            $this->add_tardy($diff);
+        };
+    }
+
+    // compute tardy main logic
+    private function compute_tardy(){
+        $time_in = $this->input->post('am_in');
+
+        $employee = $this->db->select('time_in')
+                             ->select('date')
+                             ->select('time_in')
+                             ->where('emp_id', $this->input->post('employee'))
+                             ->where('date', $this->input->post('date'))
+                             ->get('schedule')
+                             ->row_array();
+
+        if($time_in > $employee['time_in']){
+            $schedule = new DateTime($employee['time_in']);
+            $dtr = new DateTime($time_in);
+            $difference = $schedule ->diff($dtr );
+            $tardy = $difference ->format('%H:%I:%S');
+
+            return $tardy;
+        } else {
+            return FALSE;
+        }
+    }
+
+    // add tardy to db
+    private function add_tardy($diff){
+        $data = array(
+            'emp_id' => $this->input->post('employee'),
+            'date'   => $this->input->post('date'),
+            'diff'   => $diff
+        );
+
+        $this->db->insert('tardy', $data);
     }
 }
