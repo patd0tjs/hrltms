@@ -20,6 +20,14 @@ class DateAndTime_model extends CI_Model{
                         ->result_array();
     }
 
+    public function get_tardy(){
+        return $this->db->get('tardy')->result_array();
+    }
+
+    public function get_undertime(){
+        return $this->db->get('undertime')->result_array();
+    }
+
     // add schedule
     public function add_schedule(){
         $dates = $this->input->post('date');

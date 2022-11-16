@@ -107,12 +107,12 @@ class Users_model extends CI_Model{
                 return TRUE;
 
             } else {
-                $this->session->set_flashdata('error', 'invalid password');
+                $this->session->set_flashdata('error', "username or password doesn't match");
                 return FALSE;    
             }
 
         } else {
-            $this->session->set_flashdata('error', 'invalid username');
+            $this->session->set_flashdata('error', "username or password doesn't match");
             return FALSE;
         
         }

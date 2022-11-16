@@ -2,6 +2,7 @@
 
 class Pages extends CI_Controller{
     public function index(){
+        $this->session->keep_flashdata('error');
         // check session
         if($this->session->id){
 
@@ -19,7 +20,8 @@ class Pages extends CI_Controller{
 
     public function login(){
         $this->session->unset_userdata('id');
-        $this->load->view('pages/login');
+        $this->load->view('components/header');
+        $this->load->view('pages/login');;
     }
 
     // admin's pages
