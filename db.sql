@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2022 at 12:53 PM
+-- Generation Time: Nov 16, 2022 at 01:24 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -109,6 +109,29 @@ INSERT INTO `designations` (`id`, `name`) VALUES
 (30, 'Cook II'),
 (31, 'Laundry Worker I'),
 (32, 'Medical Equipment Technician I');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dtr`
+--
+
+CREATE TABLE `dtr` (
+  `id` int(11) NOT NULL,
+  `emp_id` varchar(255) NOT NULL,
+  `am_in` time DEFAULT NULL,
+  `am_out` time DEFAULT NULL,
+  `pm_in` time DEFAULT NULL,
+  `pm_out` time DEFAULT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `dtr`
+--
+
+INSERT INTO `dtr` (`id`, `emp_id`, `am_in`, `am_out`, `pm_in`, `pm_out`, `date`) VALUES
+(1, 'unika iha', '07:00:00', '11:00:00', '12:00:00', '18:00:00', '2022-11-07');
 
 -- --------------------------------------------------------
 
@@ -268,6 +291,13 @@ ALTER TABLE `designations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `dtr`
+--
+ALTER TABLE `dtr`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `emp_id` (`emp_id`);
+
+--
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
@@ -311,6 +341,12 @@ ALTER TABLE `designations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
+-- AUTO_INCREMENT for table `dtr`
+--
+ALTER TABLE `dtr`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
@@ -319,6 +355,12 @@ ALTER TABLE `schedule`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `dtr`
+--
+ALTER TABLE `dtr`
+  ADD CONSTRAINT `dtr_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`id`);
 
 --
 -- Constraints for table `employees`
