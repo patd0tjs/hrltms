@@ -51,6 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['profile'] = 'pages/my_profile';
+$route['admin/tardy'] = 'pages/tardy';
+$route['admin/undertime'] = 'pages/undertime';
 $route['admin/dtr'] = 'pages/dtr';
 $route['admin/schedules'] = 'pages/schedules';
 $route['admin/employees'] = 'pages/employees';

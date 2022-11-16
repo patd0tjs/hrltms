@@ -27,8 +27,9 @@ class Pages extends CI_Controller{
     // admin's pages
     public function dashboard(){
         if($this->session->id == 'admin'){
-            $this->load->view('components/header');
-            $this->load->view('components/navbar');
+            $data['title'] = "Dashboard";
+            $this->load->view('components/header', $data);
+            $this->load->view('components/navbar', $data);
             $this->load->view('pages/admin/dashboard');
             $this->load->view('components/footer');
         } else {
@@ -42,11 +43,12 @@ class Pages extends CI_Controller{
             $data = array(
                 'departments'  => $this->Users_model->get_departments(),
                 'designations' => $this->Users_model->get_designations(),
-                'employees'    => $this->Users_model->get_employees()
+                'employees'    => $this->Users_model->get_employees(),
+                'title'        => 'Employees'
             );
 
             $this->load->view('components/header');
-            $this->load->view('components/navbar');
+            $this->load->view('components/navbar', $data);
             $this->load->view('pages/admin/employees', $data);
             $this->load->view('components/footer');
         } else {
@@ -69,9 +71,13 @@ class Pages extends CI_Controller{
 
     public function tardy(){
         if($this->session->id == 'admin'){
+            $data = array(
+                'tardies' => $this->DateAndTime_model->get_tardy(),
+                'title'   => 'Tardy'
+            );
             $this->load->view('components/header');
-            $this->load->view('components/navbar');
-            $this->load->view('pages/admin/dashboard');
+            $this->load->view('components/navbar', $data);
+            $this->load->view('pages/admin/tardy', $data);
             $this->load->view('components/footer');
         } else {
             $this->session->set_flashdata('error', 'You are not allowed to visit this page');
@@ -79,15 +85,33 @@ class Pages extends CI_Controller{
         }
     }
 
+    public function undertime(){
+        if($this->session->id == 'admin'){
+            $data = array(
+                'undertimes' => $this->DateAndTime_model->get_undertime(),
+                'title'      => 'Undertime'
+            );
+            $this->load->view('components/header');
+            $this->load->view('components/navbar', $data);
+            $this->load->view('pages/admin/undertime', $data);
+            $this->load->view('components/footer');
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
+    
+
     public function schedules(){
         if($this->session->id == 'admin'){
             $data = array(
                 'employees' => $this->Users_model->get_employees(),
                 'schedules' => $this->DateAndTime_model->get_schedules(),
+                'title'     => 'Schedules'
             );
 
             $this->load->view('components/header');
-            $this->load->view('components/navbar');
+            $this->load->view('components/navbar', $data);
             $this->load->view('pages/admin/schedules', $data);
             $this->load->view('components/footer');
 
@@ -102,10 +126,11 @@ class Pages extends CI_Controller{
             $data = array(
                 'employees' => $this->Users_model->get_employees(),
                 'dtr'       => $this->DateAndTime_model->get_dtr(),
+                'title'     => 'Daily Time Report'
             );
 
             $this->load->view('components/header');
-            $this->load->view('components/navbar');
+            $this->load->view('components/navbar', $data);
             $this->load->view('pages/admin/dtr', $data);
             $this->load->view('components/footer');
 

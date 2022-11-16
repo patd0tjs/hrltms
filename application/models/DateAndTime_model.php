@@ -21,11 +21,29 @@ class DateAndTime_model extends CI_Model{
     }
 
     public function get_tardy(){
-        return $this->db->get('tardy')->result_array();
+        return $this->db->select('tardy.emp_id as emp_id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('tardy.date as date')
+                        ->select('tardy.diff as diff')
+                        ->from('tardy')
+                        ->join('employees', 'tardy.emp_id=employees.id')
+                        ->get()
+                        ->result_array();
     }
 
     public function get_undertime(){
-        return $this->db->get('undertime')->result_array();
+        return $this->db->select('undertime.emp_id as emp_id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('undertime.date as date')
+                        ->select('undertime.diff as diff')
+                        ->from('undertime')
+                        ->join('employees', 'undertime.emp_id=employees.id')
+                        ->get()
+                        ->result_array();
     }
 
     // add schedule

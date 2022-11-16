@@ -58,7 +58,7 @@
 </div>
 
 
- <table id='schedules' style="width: 100%">
+ <table id='schedules' class="table table-striped" style="width: 100%">
   <thead>
     <tr>
       <th>Employee ID</th>

@@ -48,7 +48,7 @@
   </div>
 </div>
 
-<table id="dtr" style="width: 100%; text-align: center">
+<table id="dtr" class="table table-striped" style="width: 100%; text-align: center">
     <thead>
         <tr>
             <th rowspan="2">Employee ID</th>
