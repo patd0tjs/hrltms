@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 03:01 PM
+-- Generation Time: Nov 16, 2022 at 04:06 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -219,19 +219,23 @@ INSERT INTO `employee_details` (`id`, `id_pic`, `department_id`, `designation_id
 CREATE TABLE `leaves` (
   `id` int(11) NOT NULL,
   `emp_id` varchar(255) NOT NULL,
-  `date` date NOT NULL,
   `status` enum('pending','approved') DEFAULT 'pending',
-  `reason` varchar(255) NOT NULL
+  `s_date` date NOT NULL,
+  `e_date` date NOT NULL,
+  `nature` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `leaves`
 --
 
-INSERT INTO `leaves` (`id`, `emp_id`, `date`, `status`, `reason`) VALUES
-(1, 'unika iha', '2022-11-09', 'approved', ''),
-(2, 'unika iha', '2022-11-10', 'pending', ''),
-(3, 'unika iha', '2022-11-11', 'pending', '');
+INSERT INTO `leaves` (`id`, `emp_id`, `status`, `s_date`, `e_date`, `nature`) VALUES
+(4, 'emp1', 'approved', '2022-11-02', '2022-11-25', 'Sick Leave'),
+(5, 'emp1', 'pending', '2022-11-03', '2022-11-07', 'Sick Leave'),
+(6, 'unika iha', 'approved', '2022-11-03', '2022-11-05', 'Maandatory/Force Leave'),
+(7, 'emp1', 'pending', '2022-11-01', '2022-11-05', 'Maternity Leave'),
+(8, 'asdasdasd', 'approved', '2022-11-03', '2022-11-05', 'Maternity Leave'),
+(9, 'unika iha', 'pending', '2022-11-03', '2022-11-05', 'Sick Leave');
 
 -- --------------------------------------------------------
 
@@ -437,7 +441,7 @@ ALTER TABLE `dtr`
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `schedule`
