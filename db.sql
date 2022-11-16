@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 02:09 AM
+-- Generation Time: Nov 16, 2022 at 03:40 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -131,7 +131,10 @@ CREATE TABLE `dtr` (
 --
 
 INSERT INTO `dtr` (`id`, `emp_id`, `am_in`, `am_out`, `pm_in`, `pm_out`, `date`) VALUES
-(2, 'emp1', '08:30:00', '00:00:00', '00:00:00', '00:00:00', '2022-11-04');
+(2, 'emp1', '08:30:00', '00:00:00', '00:00:00', '00:00:00', '2022-11-04'),
+(3, 'emp1', '06:00:00', '00:00:00', '00:00:00', '00:00:00', '2022-11-11'),
+(4, 'emp1', '00:00:00', '00:00:00', '00:00:00', '14:33:00', '2022-11-02'),
+(5, 'emp1', '00:00:00', '00:00:00', '00:00:00', '14:33:00', '2022-11-02');
 
 -- --------------------------------------------------------
 
@@ -270,6 +273,26 @@ INSERT INTO `tardy` (`id`, `emp_id`, `date`, `diff`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `undertime`
+--
+
+CREATE TABLE `undertime` (
+  `id` int(11) NOT NULL,
+  `emp_id` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `diff` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `undertime`
+--
+
+INSERT INTO `undertime` (`id`, `emp_id`, `date`, `diff`) VALUES
+(1, 'emp1', '2022-11-02', '00:27:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -346,6 +369,13 @@ ALTER TABLE `tardy`
   ADD KEY `emp_id` (`emp_id`);
 
 --
+-- Indexes for table `undertime`
+--
+ALTER TABLE `undertime`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `emp_id` (`emp_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -371,7 +401,7 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `schedule`
@@ -383,6 +413,12 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `tardy`
 --
 ALTER TABLE `tardy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `undertime`
+--
+ALTER TABLE `undertime`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -420,6 +456,12 @@ ALTER TABLE `schedule`
 --
 ALTER TABLE `tardy`
   ADD CONSTRAINT `tardy_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`id`);
+
+--
+-- Constraints for table `undertime`
+--
+ALTER TABLE `undertime`
+  ADD CONSTRAINT `undertime_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
