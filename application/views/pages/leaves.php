@@ -13,13 +13,37 @@
       </div>
       <form action="<?= base_url()?>dateandtime/request_leave" method="post">
         <div class="modal-body">
-            <label for="datePick">Select Date(s): </label>
-            <input type="text" id="datePick" name="date" required/>
 
-            <label for="reason">Select Date(s): </label>
-            <textarea name="reason" id="reason" cols="30" rows="10" required></textarea>
+            <label for="nature">Nature of Leave: </label>
+            <select name="nature" id="nature" required>
+              <option value="Vacation Leave">Vacation Leave - Any Date</option>
+              <option value="Maandatory/Force Leave">Maandatory/Force Leave - Any Date</option>
+              <option value="Sick Leave">Sick Leave - Any Date</option>
+              <option value="Maternity Leave">Maternity Leave - 105 Days</option>
+              <option value="Paternity Leave">Paternity Leave - 7 Days</option>
+              <option value="Social Privilege Leave">Social Privilege Leave - 3 Days</option>
+              <option value="Solo Parent Leave">Solo Parent Leave - 7 Days</option>
+              <option value="Study Leave">Study Leave - Up to 6 Months</option>
+              <option value="VAWC Leave">VAWC Leave - 10 Days</option>
+              <option value="Rehabilitation Leave">Rehabilitation Leave - Up to 6 Months</option>
+              <option value="Special Leave Benefits for Women">Special Leave Benefits for Women - Up to 2 Months</option>
+              <option value="Special Emergency (Calamity) Leave">Special Emergency (Calamity) Leave - Up to 5 Days</option>
+              <option value="Monetization of Leave Credit">Monetization of Leave Credits - Any Date</option>
+              <option value="Terminal Leave">Terminal Leave - Any Date</option>
+              <option value="Adoption Leave">Adoption Leave - Any Date</option>
+            </select>
+
+            <br>
+            <label for="s_date">Start Date: </label>
+            <input type="date" name="s_date" id="s_date" required>
+
+            <br>
+            <label for="e_date">End Date: </label>
+            <input type="date" name="e_date" id="e_date" required>
         </div>
         <div class="modal-footer">
+            <input type="hidden" name="emp_id" value="<?=$this->session->id?>">
+            <input type="hidden" name="status" value="pending">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Send Request</button>
         </div>
@@ -32,15 +56,17 @@
  <table id='pending' class="table table-striped" style="width: 100%">
     <thead>
         <tr>
-        <th>Date</th>
-        <th>Reason</th>
+          <th>Nature</th>
+          <th>Start Date</th>
+          <th>End Date</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach($pending as $request):?>
         <tr>
-            <td><?= $request['date']?></td>
-            <td><?= $request['reason']?></td>
+            <td><?= $request['nature']?></td>
+            <td><?= $request['s_date']?></td>
+            <td><?= $request['e_date']?></td>
         </tr>
         <?php endforeach ?>
     </tbody>
@@ -50,29 +76,25 @@
  <table id='approved' class="table table-striped" style="width: 100%">
     <thead>
         <tr>
-        <th>Date</th>
-        <th>Reason</th>
+          <th>Nature</th>
+          <th>Start Date</th>
+          <th>End Date</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach($approved as $leave):?>
         <tr>
-            <td><?= $leave['date']?></td>
-            <td><?= $leave['reason']?></td>
+          <td><?= $leave['nature']?></td>
+          <td><?= $leave['s_date']?></td>
+          <td><?= $leave['e_date']?></td>
         </tr>
         <?php endforeach ?>
     </tbody>
  </table>
 <script>
     $(document).ready(function () {
-      $('#datePick').multiDatesPicker(
-        { dateFormat: 'yy-m-d' }
-      );
-    });
-
-    $(document).ready(function () {
     $('#pending').DataTable();
-});
+  });
 
 $(document).ready(function () {
     $('#approved').DataTable();

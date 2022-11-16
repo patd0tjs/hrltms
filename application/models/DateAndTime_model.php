@@ -186,19 +186,14 @@ class DateAndTime_model extends CI_Model{
     }
 
     public function request_leave(){
-        $dates = $this->input->post('date');
-        $date = explode(",", $dates);
-
-        for($i = 0; $i < count($date); $i++){
-            $data = array();
-
             $data = array(
-                'emp_id' => $this->session->id,
-                'date'   => $date[$i],
-                'reason' => $this->input->post('reason')
+                'emp_id' => $this->input->post('emp_id'),
+                's_date' => $this->input->post('s_date'),
+                'e_date' => $this->input->post('e_date'),
+                'nature' => $this->input->post('nature'),
+                'status' => $this->input->post('status'),
             );
             $this->db->insert('leaves', $data);
-        }
     }
 
     public function my_pending_leaves(){
@@ -221,8 +216,9 @@ class DateAndTime_model extends CI_Model{
                         ->select('employees.l_name as l_name')
                         ->select('employees.f_name as f_name')
                         ->select('employees.m_name as m_name')
-                        ->select('leaves.date as date')
-                        ->select('leaves.reason as reason')
+                        ->select('leaves.s_date as s_date')
+                        ->select('leaves.e_date as e_date')
+                        ->select('leaves.nature as nature')
                         ->from('leaves')
                         ->join('employees', 'leaves.emp_id=employees.id')
                         ->where('status', 'pending')
@@ -235,8 +231,9 @@ class DateAndTime_model extends CI_Model{
                         ->select('employees.l_name as l_name')
                         ->select('employees.f_name as f_name')
                         ->select('employees.m_name as m_name')
-                        ->select('leaves.date as date')
-                        ->select('leaves.reason as reason')
+                        ->select('leaves.s_date as s_date')
+                        ->select('leaves.e_date as e_date')
+                        ->select('leaves.nature as nature')
                         ->from('leaves')
                         ->join('employees', 'leaves.emp_id=employees.id')
                         ->where('status', 'approved')

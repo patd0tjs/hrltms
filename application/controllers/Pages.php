@@ -66,9 +66,10 @@ class Pages extends CI_Controller{
         if($this->session->id == 'admin'){
 
             $data = array(
-                'title'    => 'Employee Leave Requests',
-                'pending'  => $this->DateAndTime_model->get_pending_leaves(),
-                'approved' => $this->DateAndTime_model->get_approved_leaves(),
+                'title'      => 'Employee Leave Requests',
+                'employees'  => $this->Users_model->get_employees(),
+                'pending'    => $this->DateAndTime_model->get_pending_leaves(),
+                'approved'   => $this->DateAndTime_model->get_approved_leaves(),
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);
