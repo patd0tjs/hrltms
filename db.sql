@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 03:40 AM
+-- Generation Time: Nov 16, 2022 at 03:01 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -213,6 +213,29 @@ INSERT INTO `employee_details` (`id`, `id_pic`, `department_id`, `designation_id
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `leaves`
+--
+
+CREATE TABLE `leaves` (
+  `id` int(11) NOT NULL,
+  `emp_id` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `status` enum('pending','approved') DEFAULT 'pending',
+  `reason` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `leaves`
+--
+
+INSERT INTO `leaves` (`id`, `emp_id`, `date`, `status`, `reason`) VALUES
+(1, 'unika iha', '2022-11-09', 'approved', ''),
+(2, 'unika iha', '2022-11-10', 'pending', ''),
+(3, 'unika iha', '2022-11-11', 'pending', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `schedule`
 --
 
@@ -355,6 +378,13 @@ ALTER TABLE `employee_details`
   ADD KEY `department_id` (`department_id`);
 
 --
+-- Indexes for table `leaves`
+--
+ALTER TABLE `leaves`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `emp_id` (`emp_id`);
+
+--
 -- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
@@ -404,6 +434,12 @@ ALTER TABLE `dtr`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `leaves`
+--
+ALTER TABLE `leaves`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
@@ -444,6 +480,12 @@ ALTER TABLE `employee_details`
   ADD CONSTRAINT `employee_details_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`username`),
   ADD CONSTRAINT `employee_details_ibfk_2` FOREIGN KEY (`designation_id`) REFERENCES `designations` (`id`),
   ADD CONSTRAINT `employee_details_ibfk_3` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`);
+
+--
+-- Constraints for table `leaves`
+--
+ALTER TABLE `leaves`
+  ADD CONSTRAINT `leaves_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`id`);
 
 --
 -- Constraints for table `schedule`
