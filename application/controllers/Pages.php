@@ -26,6 +26,7 @@ class Pages extends CI_Controller{
     public function dashboard(){
         if($this->session->id == 'admin'){
             $this->load->view('components/header');
+            $this->load->view('components/navbar');
             $this->load->view('pages/admin/dashboard');
             $this->load->view('components/footer');
         } else {
@@ -43,6 +44,7 @@ class Pages extends CI_Controller{
             );
 
             $this->load->view('components/header');
+            $this->load->view('components/navbar');
             $this->load->view('pages/admin/employees', $data);
             $this->load->view('components/footer');
         } else {
@@ -54,6 +56,7 @@ class Pages extends CI_Controller{
     public function leaves(){
         if($this->session->id == 'admin'){
             $this->load->view('components/header');
+            $this->load->view('components/navbar');
             $this->load->view('pages/admin/dashboard');
             $this->load->view('components/footer');
         } else {
@@ -65,6 +68,7 @@ class Pages extends CI_Controller{
     public function tardy(){
         if($this->session->id == 'admin'){
             $this->load->view('components/header');
+            $this->load->view('components/navbar');
             $this->load->view('pages/admin/dashboard');
             $this->load->view('components/footer');
         } else {
@@ -81,6 +85,7 @@ class Pages extends CI_Controller{
             );
 
             $this->load->view('components/header');
+            $this->load->view('components/navbar');
             $this->load->view('pages/admin/schedules', $data);
             $this->load->view('components/footer');
 
@@ -98,6 +103,7 @@ class Pages extends CI_Controller{
             );
 
             $this->load->view('components/header');
+            $this->load->view('components/navbar');
             $this->load->view('pages/admin/dtr', $data);
             $this->load->view('components/footer');
 
@@ -110,8 +116,11 @@ class Pages extends CI_Controller{
     // employees' pages
     public function my_profile(){
         if((!empty($this->session->id)) && ($this->session->id !== 'admin')){
+
+            $data['my_info'] = $this->Users_model->my_profile();
+
             $this->load->view('components/header');
-            $this->load->view('pages/profile');
+            $this->load->view('pages/profile', $data);
             $this->load->view('components/footer');
         } else {
             $this->session->set_flashdata('error', 'You are not allowed to visit this page');

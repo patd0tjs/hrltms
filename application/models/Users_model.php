@@ -5,6 +5,56 @@ class Users_model extends CI_Model{
         $this->load->database();
     }
 
+    // get employee information
+    public function my_profile(){
+        return $this->db->select('employees.id')
+                        ->select('employees.l_name')
+                        ->select('employees.f_name')
+                        ->select('employees.m_name')
+                        ->select('employee_details.id_pic')
+                        ->select('departments.name')
+                        ->select('designations.name')
+                        ->select('employee_details.status')
+                        ->select('employee_details.sex')
+                        ->select('employee_details.bday')
+                        ->select('employee_details.birth_place')
+                        ->select('employee_details.purok')
+                        ->select('employee_details.brgy')
+                        ->select('employee_details.municipality')
+                        ->select('employee_details.province')
+                        ->select('employee_details.zip')
+                        ->select('employee_details.date_hired')
+                        ->select('employee_details.plantilla')
+                        ->select('employee_details.education')
+                        ->select('employee_details.school')
+                        ->select('employee_details.prc')
+                        ->select('employee_details.prc_reg')
+                        ->select('employee_details.prc_exp')
+                        ->select('employee_details.philhealth')
+                        ->select('employee_details.phone')
+                        ->select('employee_details.marital_status')
+                        ->select('employee_details.gsis')
+                        ->select('employee_details.sss')
+                        ->select('employee_details.pag_ibig')
+                        ->select('employee_details.tin')
+                        ->select('employee_details.atm')
+                        ->select('employee_details.blood_type')
+                        ->select('employee_details.email')
+                        ->select('employee_details.remarks')
+                        ->from('employee_details')
+                        ->join('employees', 'employees.id=employee_details.id')
+                        ->join('departments', 'employees.id=departments.id')
+                        ->join('designations', 'employees.id=designations.id') 
+                        ->where('employees.id', $this->session->id)
+                        ->get()
+                        ->row_array();
+    }
+
+    public function my_tardy(){
+        
+    }
+
+    // upload photo logic
     private function uploadPhoto(){
         define('MB', 1048576);
         $extension = array("JPG", "JPEG", "PNG");

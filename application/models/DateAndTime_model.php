@@ -44,6 +44,7 @@ class DateAndTime_model extends CI_Model{
                         ->select('employees.l_name as l_name')
                         ->select('employees.f_name as f_name')
                         ->select('employees.m_name as m_name')
+                        ->select('dtr.date as date')
                         ->select('dtr.am_in as am_in')
                         ->select('dtr.am_out as am_out')
                         ->select('dtr.pm_in as pm_in')

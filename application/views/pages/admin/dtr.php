@@ -53,6 +53,7 @@
         <tr>
             <th rowspan="2">Employee ID</th>
             <th rowspan="2">Employee Name</th>
+            <th rowspan="2">Date</th>
             <th colspan="2">AM</th>
             <th colspan="2">PM</th>
         </tr>
@@ -68,6 +69,7 @@
             <tr>
                 <td><?= $emp_dtr['emp_id']?></td>
                 <td><?= $emp_dtr['l_name'] . ', ' . $emp_dtr['f_name'] . ' ' . $emp_dtr['m_name']?></td>
+                <td><?= $emp_dtr['date']?></td>
                 <td><?= date('g:i a', strtotime($emp_dtr['am_in']))?></td>
                 <td><?= date('g:i a', strtotime($emp_dtr['am_out']))?></td>
                 <td><?= date('g:i a', strtotime($emp_dtr['pm_in']))?></td>
