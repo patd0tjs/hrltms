@@ -46,6 +46,18 @@ class DateAndTime_model extends CI_Model{
                         ->result_array();
     }
 
+    public function my_tardy(){
+        return $this->db->where('emp_id', $this->session->id)
+                        ->get('tardy')
+                        ->result_array();
+    }
+
+    public function my_undertime(){
+        return $this->db->where('emp_id', $this->session->id)
+                        ->get('undertime')
+                        ->result_array();
+    }
+
     // add schedule
     public function add_schedule(){
         $dates = $this->input->post('date');

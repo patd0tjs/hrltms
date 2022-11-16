@@ -43,15 +43,11 @@ class Users_model extends CI_Model{
                         ->select('employee_details.remarks')
                         ->from('employee_details')
                         ->join('employees', 'employees.id=employee_details.id')
-                        ->join('departments', 'employees.id=departments.id')
-                        ->join('designations', 'employees.id=designations.id') 
+                        ->join('departments', 'employee_details.department_id=departments.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id') 
                         ->where('employees.id', $this->session->id)
                         ->get()
                         ->row_array();
-    }
-
-    public function my_tardy(){
-        
     }
 
     // upload photo logic

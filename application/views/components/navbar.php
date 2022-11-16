@@ -6,6 +6,8 @@
                     <span class="fs-5 d-none d-sm-inline">My Logo</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+
+                <?php if($this->session->id == 'admin'){?>
                     <li class="nav-item">
                         <a href="<?= base_url()?>admin" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
@@ -39,6 +41,18 @@
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Undertime</span>
                         </a>
                     </li>
+                <?php } else {?>
+                    <li class="nav-item">
+                        <a href="<?= base_url()?>profile" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url()?>deficiencies" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Deficiencies</span>
+                        </a>
+                    </li>
+                <?php } ?>
                 </ul>
                 <hr>
                 <div class="dropdown pb-4">
@@ -46,7 +60,7 @@
                         <span class="d-none d-sm-inline mx-1"><?= $this->session->id?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url()?>login">Logout</a></li>
                     </ul>
                 </div>
             </div>
