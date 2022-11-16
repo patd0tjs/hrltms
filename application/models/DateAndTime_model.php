@@ -68,8 +68,13 @@ class DateAndTime_model extends CI_Model{
         $this->db->insert('dtr', $data);
 
         if($this->compute_tardy()){
-            $diff = $this->compute_tardy();
-            $this->add_tardy($diff);
+            $tardy = $this->compute_tardy();
+            $this->add_tardy($tardy);
+        };
+
+        if($this->compute_undertime()){
+            $undertime = $this->compute_undertime();
+            $this->add_undertime($undertime);
         };
     }
 
@@ -79,7 +84,6 @@ class DateAndTime_model extends CI_Model{
 
         $employee = $this->db->select('time_in')
                              ->select('date')
-                             ->select('time_in')
                              ->where('emp_id', $this->input->post('employee'))
                              ->where('date', $this->input->post('date'))
                              ->get('schedule')
@@ -97,6 +101,29 @@ class DateAndTime_model extends CI_Model{
         }
     }
 
+    // undertime main logic
+    private function compute_undertime(){
+        $time_out = $this->input->post('pm_out');
+
+        $employee = $this->db->select('time_out')
+                             ->select('date')
+                             ->where('emp_id', $this->input->post('employee'))
+                             ->where('date', $this->input->post('date'))
+                             ->get('schedule')
+                             ->row_array();
+
+        if($time_out < $employee['time_out']){
+            $schedule = new DateTime($employee['time_out']);
+            $dtr = new DateTime($time_out);
+            $difference = $schedule ->diff($dtr);
+            $undertime = $difference ->format('%H:%I:%S');
+
+            return $undertime;
+        } else {
+            return FALSE;
+        }
+    }
+
     // add tardy to db
     private function add_tardy($diff){
         $data = array(
@@ -106,5 +133,16 @@ class DateAndTime_model extends CI_Model{
         );
 
         $this->db->insert('tardy', $data);
+    }
+
+    // add undertime to db
+    private function add_undertime($diff){
+        $data = array(
+            'emp_id' => $this->input->post('employee'),
+            'date'   => $this->input->post('date'),
+            'diff'   => $diff
+        );
+
+        $this->db->insert('undertime', $data);
     }
 }
