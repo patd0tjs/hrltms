@@ -79,6 +79,7 @@
                 <?= $request['l_name'] . ', ' . $request['f_name'] . ' ' . $request['m_name']?>
             </td>
             <td><?= $request['nature']?></td>
+            
             <td><?= $request['s_date']?></td>
             <td><?= $request['e_date']?></td>
             <td><?= $request['date_filed']?></td>

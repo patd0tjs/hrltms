@@ -93,6 +93,13 @@
     });
 
     $(document).ready(function () {
-    $('#schedules').DataTable();
+    $('#schedules').DataTable(
+      {
+        dom: 'Bfrtip',
+        buttons: [
+            'pdf' 
+        ]
+    }
+    );
 });
   </script>

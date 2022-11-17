@@ -21,6 +21,13 @@
 
  <script>
 $(document).ready(function () {
-    $('#undertime').DataTable();
+    $('#undertime').DataTable(
+      {
+        dom: 'Bfrtip',
+        buttons: [
+            'pdf' 
+        ]
+    }
+    );
 });
 </script>

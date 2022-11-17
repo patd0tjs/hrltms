@@ -200,6 +200,12 @@
 
 <script>
 $(document).ready(function () {
-    $('#employee_tbl').DataTable();
+    $('#employee_tbl').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'pdf' 
+        ]
+    }
+    );
 });
 </script>

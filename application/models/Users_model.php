@@ -65,7 +65,7 @@ class Users_model extends CI_Model{
             $configUpl['remove_spaces'] = TRUE;
             $this->load->library('upload', $configUpl);
 
-            if (!$this->upload->do_upload($img)) { 
+            if (!$this->upload->do_upload('id_pic')) { 
                 $error = array('error' => $this->upload->display_errors());
                 log_message('error', $error['error']);
             } else {

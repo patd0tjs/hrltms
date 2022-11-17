@@ -21,6 +21,13 @@
 
  <script>
 $(document).ready(function () {
-    $('#tardy').DataTable();
+    $('#tardy').DataTable(
+      {
+        dom: 'Bfrtip',
+        buttons: [
+            'pdf' 
+        ]
+    }
+    );
 });
 </script>
