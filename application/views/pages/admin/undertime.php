@@ -12,7 +12,11 @@
       <tr>
         <td><?= $undertime['emp_id']?></td>
         <td><?= $undertime['l_name'] . ', ' . $undertime['f_name'] . ' ' . $undertime['m_name']?></td>
-        <td><?= $undertime['date']?></td>
+        <?php 
+          $time = strtotime($undertime['date']);
+          $newformat = date('M d, Y',$time);
+        ?>
+        <td><?= $newformat?></td>
         <td><?= $undertime['diff']?></td>
       </tr>
     <?php endforeach ?>

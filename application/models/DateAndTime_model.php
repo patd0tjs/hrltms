@@ -26,17 +26,6 @@ class DateAndTime_model extends CI_Model{
                         ->result_array();
     }
 
-    public function empployee_schedule(){
-        return $this->db->select('schedule.date as date')
-                        ->select('schedule.time_in as time_in')
-                        ->select('schedule.time_out as time_out')
-                        ->from('schedule')
-                        ->join('employees', 'schedule.emp_id=employees.id')
-                        ->group_by('schedule.emp_id')
-                        ->get()
-                        ->result_array();
-    }
-
     public function get_tardy(){
         return $this->db->select('tardy.emp_id as emp_id')
                         ->select('employees.l_name as l_name')

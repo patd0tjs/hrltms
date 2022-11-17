@@ -12,6 +12,11 @@
       <tr>
         <td><?= $tardy['emp_id']?></td>
         <td><?= $tardy['l_name'] . ', ' . $tardy['f_name'] . ' ' . $tardy['m_name']?></td>
+        <?php 
+          $time = strtotime($tardy['date']);
+          $newformat = date('M d, Y',$time);
+        ?>
+        <td><?= $newformat?></td>
         <td><?= $tardy['date']?></td>
         <td><?= $tardy['diff']?></td>
       </tr>
