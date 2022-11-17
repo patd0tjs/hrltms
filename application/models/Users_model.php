@@ -51,11 +51,11 @@ class Users_model extends CI_Model{
     }
 
     // upload photo logic
-    private function uploadPhoto(){
+    public function uploadPhoto(){
         define('MB', 1048576);
         $extension = array("JPG", "JPEG", "PNG");
 
-        $img_extension = strtoupper(pathinfo($_FILES['id_pic']['name'], PATHINFO_EXTENSION));
+        $img_extension = strtoupper(pathinfo($_FILES['profile_pic']['name'], PATHINFO_EXTENSION));
 
         if (in_array($img_extension, $extension)) { 
             $configUpl['upload_path'] = 'assets/img/id';
@@ -65,7 +65,7 @@ class Users_model extends CI_Model{
             $configUpl['remove_spaces'] = TRUE;
             $this->load->library('upload', $configUpl);
 
-            if (!$this->upload->do_upload('id_pic')) { 
+            if (!$this->upload->do_upload('profile_pic')) { 
                 $error = array('error' => $this->upload->display_errors());
                 log_message('error', $error['error']);
             } else {
@@ -165,17 +165,10 @@ class Users_model extends CI_Model{
     }
 
     // add employee details to emp_details table
-    private function add_emp_details(){
-        if($this->input->post('id_pic')){
-            $id_pic = $this->uploadPhoto();
-
-        } else {
-            $id_pic = base_url() . 'assets/img/null_pic.jpg';
-        }
-        
+    private function add_emp_details(){    
         $data = array(
             'id'             => $this->input->post('id'),
-            'id_pic'         => $id_pic,
+            'id_pic'         =>  $this->uploadPhoto(),
             'department_id'  => $this->input->post('department'),
             'designation_id' => $this->input->post('designation'),
             'status'         => $this->input->post('status'),

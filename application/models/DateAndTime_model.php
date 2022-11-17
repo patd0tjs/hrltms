@@ -216,6 +216,10 @@ class DateAndTime_model extends CI_Model{
             );
             $this->db->insert('leaves', $data);
     }
+    public function get_leaves(){
+        return $this->db->get('leaves')
+                        ->result_array();
+    }
 
     public function my_pending_leaves(){
         return $this->db->where('emp_id', $this->session->id)
@@ -281,11 +285,11 @@ class DateAndTime_model extends CI_Model{
         $mail->SMTPSecure = 'ssl';
         $mail->Port     = 465;
        
-        $mail->setFrom('hr@company.com', 'Hello World');
+        $mail->setFrom('hr@company.com', 'HRMIS');
        
         $mail->addAddress($email);
 
-        $mail->Subject = 'Send Email via SMTP using PHPMailer in CodeIgniter';
+        $mail->Subject = 'Exceeded Number of lates/tardies';
        
 
         $mailContent = "You have exceeded the amount of lates/tardies. Please visit the HR office immediately";

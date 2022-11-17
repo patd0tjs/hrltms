@@ -1,3 +1,11 @@
+<?php if ($this->session->flashdata('error')){?>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert">
+    <?= $this->session->flashdata('error')?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<?php } ?>
 <table id='tardy' class="table table-striped" style="width: 100%">
   <thead>
     <tr>

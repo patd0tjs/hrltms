@@ -66,9 +66,22 @@
         <?php foreach($pending as $request):?>
         <tr>
             <td><?= $request['nature']?></td>
-            <td><?= $request['s_date']?></td>
-            <td><?= $request['e_date']?></td>
-            <td><?= $request['date_filed']?></td>
+            <?php 
+              $time = strtotime($request['s_date']);
+              $pending_s_date = date('M d, Y',$time);
+            ?>
+            <td><?= $pending_s_date?></td>
+            <?php 
+              $time = strtotime($request['e_date']);
+              $pending_e_date = date('M d, Y',$time);
+            ?>
+            <td><?= $pending_e_date?></td>
+
+            <?php 
+              $time = strtotime($request['date_filed']);
+              $pending_date_filed = date('M d, Y',$time);
+            ?>
+            <td><?= $pending_date_filed?></td>
         </tr>
         <?php endforeach ?>
     </tbody>
@@ -88,9 +101,22 @@
         <?php foreach($approved as $leave):?>
         <tr>
           <td><?= $leave['nature']?></td>
-          <td><?= $leave['s_date']?></td>
-          <td><?= $leave['e_date']?></td>
-          <td><?= $leave['date_filed']?></td>
+          <?php 
+              $time = strtotime($leave['s_date']);
+              $leave_s_date = date('M d, Y',$time);
+            ?>
+            <td><?= $leave_s_date?></td>
+            <?php 
+              $time = strtotime($leave['e_date']);
+              $leave_e_date = date('M d, Y',$time);
+            ?>
+            <td><?= $leave_e_date?></td>
+
+            <?php 
+              $time = strtotime($leave['date_filed']);
+              $leave_date_filed = date('M d, Y',$time);
+            ?>
+            <td><?= $leave_date_filed?></td>
         </tr>
         <?php endforeach ?>
     </tbody>

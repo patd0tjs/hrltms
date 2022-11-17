@@ -1,4 +1,11 @@
+<?php if ($this->session->flashdata('error')){?>
 
+<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert">
+    <?= $this->session->flashdata('error')?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<?php } ?>
 <style>
 .ui-state-highlight {
   border: 0 !important;

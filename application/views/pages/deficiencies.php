@@ -10,7 +10,11 @@
     <tbody>
         <?php foreach($my_tardy as $tardy):?>
         <tr>
-            <td><?= $tardy['date']?></td>
+            <?php 
+                $time = strtotime($tardy['date']);
+                $newtardy = date('M d, Y',$time);
+            ?>
+            <td><?= $newtardy?></td>
             <td><?= $tardy['diff']?></td>
         </tr>
         <?php endforeach ?>
@@ -28,7 +32,11 @@
     <tbody>
         <?php foreach($my_undertime as $undertime):?>
         <tr>
-            <td><?= $undertime['date']?></td>
+            <?php 
+                $time = strtotime($undertime['date']);
+                $newundertime = date('M d, Y',$time);
+            ?>
+            <td><?= $newundertime?></td>
             <td><?= $undertime['diff']?></td>
         </tr>
         <?php endforeach ?>

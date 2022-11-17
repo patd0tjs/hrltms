@@ -1,3 +1,11 @@
+<?php if ($this->session->flashdata('error')){?>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert">
+    <?= $this->session->flashdata('error')?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<?php } ?>
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     add dtr
 </button>

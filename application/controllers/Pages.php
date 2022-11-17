@@ -28,10 +28,10 @@ class Pages extends CI_Controller{
     public function dashboard(){
         if($this->session->id == 'admin'){
             $data = array(
-                'title'      => "Dashboard",
-                'employees'  => $this->Users_model->get_employees(),
-                'tardies'    => $this->DateAndTime_model->get_tardy(),
-                'undertimes' => $this->DateAndTime_model->get_undertime(),
+                'title'     => "Dashboard",
+                'employees' => $this->Users_model->get_employees(),
+                'tardies'   => $this->DateAndTime_model->get_tardy(),
+                'leaves'    => $this->DateAndTime_model->get_leaves(),
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);

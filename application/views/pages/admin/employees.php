@@ -1,3 +1,11 @@
+<?php if ($this->session->flashdata('error')){?>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert">
+    <?= $this->session->flashdata('error')?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<?php } ?>
 <!-- add employee button -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Add Employee
@@ -14,12 +22,11 @@
 
         <!-- employee info -->
         <div class="modal-body">
-        <form action="<?= base_url()?>users/add_emp" method="post" enctype='multipart/form-data'>
+        <form action="<?= base_url()?>users/add_emp" method="post" enctype="multipart/form-data">
 
-          <label for="id_pic">Employee Picture:</label>
-          <input type="file" name="id_pic" accept="image/*" placeholder="id_pic">
+          <label for="profile_pic">Employee Picture:</label>
+          <input type="file" name="profile_pic" accept="image/*" placeholder="profile_pic" required>
           
-
           <input type="text" name="id" placeholder="employee id" required>
 
           <br>
