@@ -142,12 +142,13 @@ class DateAndTime_model extends CI_Model{
         $time_in = $this->input->post('am_in');
 
         $employee = $this->db->select('time_in')
+                             ->select('time_out')
                              ->select('date')
                              ->where('emp_id', $this->input->post('employee'))
                              ->where('date', $this->input->post('date'))
                              ->get('schedule')
                              ->row_array();
-
+                 
         if($time_in > $employee['time_in']){
             $schedule = new DateTime($employee['time_in']);
             $dtr = new DateTime($time_in);

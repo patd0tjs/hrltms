@@ -73,7 +73,12 @@
       <tr>
         <td><?= $schedule['emp_id']?></td>
         <td><?= $schedule['l_name'] . ', ' . $schedule['f_name'] . ' ' . $schedule['m_name']?></td>
-        <td><?= $schedule['date']?></td>
+        
+        <?php 
+          $time = strtotime($schedule['date']);
+          $newformat = date('M d, Y',$time);
+        ?>
+        <td><?= $newformat?></td>
         <td><?= date('g:i a', strtotime($schedule['time_in']))?></td>
         <td><?= date('g:i a', strtotime($schedule['time_out']))?></td>
       </tr>

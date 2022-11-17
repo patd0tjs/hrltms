@@ -69,7 +69,11 @@
             <tr>
                 <td><?= $emp_dtr['emp_id']?></td>
                 <td><?= $emp_dtr['l_name'] . ', ' . $emp_dtr['f_name'] . ' ' . $emp_dtr['m_name']?></td>
-                <td><?= $emp_dtr['date']?></td>
+                <?php 
+                $time = strtotime($emp_dtr['date']);
+                $newformat = date('M d, Y',$time);
+                ?>
+                <td><?= $newformat?></td>
                 <td><?= date('g:i a', strtotime($emp_dtr['am_in']))?></td>
                 <td><?= date('g:i a', strtotime($emp_dtr['am_out']))?></td>
                 <td><?= date('g:i a', strtotime($emp_dtr['pm_in']))?></td>
