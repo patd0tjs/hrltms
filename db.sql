@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 04:06 PM
+-- Generation Time: Nov 17, 2022 at 01:20 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -126,16 +126,6 @@ CREATE TABLE `dtr` (
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `dtr`
---
-
-INSERT INTO `dtr` (`id`, `emp_id`, `am_in`, `am_out`, `pm_in`, `pm_out`, `date`) VALUES
-(2, 'emp1', '08:30:00', '00:00:00', '00:00:00', '00:00:00', '2022-11-04'),
-(3, 'emp1', '06:00:00', '00:00:00', '00:00:00', '00:00:00', '2022-11-11'),
-(4, 'emp1', '00:00:00', '00:00:00', '00:00:00', '14:33:00', '2022-11-02'),
-(5, 'emp1', '00:00:00', '00:00:00', '00:00:00', '14:33:00', '2022-11-02');
-
 -- --------------------------------------------------------
 
 --
@@ -148,19 +138,6 @@ CREATE TABLE `employees` (
   `m_name` varchar(255) DEFAULT NULL,
   `l_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `employees`
---
-
-INSERT INTO `employees` (`id`, `f_name`, `m_name`, `l_name`) VALUES
-('34242342', 'asdfafggdfh', 'ghfghfg', 'asdasf'),
-('asdasdasd', 'asdasdas', 'dasdasdasd', 'asdasd'),
-('emp1', 'Dela Cruz', 'Pedro', 'Juan'),
-('hackdog', 'asdfafggdfh', 'ghfghfg', 'asdasf'),
-('unika iha', 'michael', 'angelo', 'toting'),
-('user1', 'gdfhdfg', 'fghfgh', 'asdasd'),
-('yeheyyy', 'asdfafggdfh', 'ghfghfg', 'asdasf');
 
 -- --------------------------------------------------------
 
@@ -202,14 +179,6 @@ CREATE TABLE `employee_details` (
   `remarks` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `employee_details`
---
-
-INSERT INTO `employee_details` (`id`, `id_pic`, `department_id`, `designation_id`, `status`, `sex`, `bday`, `birth_place`, `purok`, `brgy`, `municipality`, `province`, `zip`, `date_hired`, `plantilla`, `education`, `school`, `prc`, `prc_reg`, `prc_exp`, `philhealth`, `phone`, `marital_status`, `gsis`, `sss`, `pag_ibig`, `tin`, `atm`, `blood_type`, `email`, `remarks`) VALUES
-('hackdog', NULL, 6, 4, 'irregular', 'female', '2022-11-01', 'asdasd', 'asdasda', 'molino', 'sdasdasd', 'asdasdas', 4534523, '2022-11-02', 56456456, 'jhs', 'sdfdsf', 4534345, '2022-12-04', '2022-12-10', 56456456, 456456456, 'married', 45654, 3453, NULL, 3456345, 3546546, 'O+', 'rezeltoting@gmail.com', 'asdasfdfgstghash'),
-('unika iha', 'http://localhost/hris/assets/img/null_pic.jpg', 12, 27, 'regular', 'male', '1999-01-04', 'bacolod', 'bulacan', 'sto domingo', 'cavite', 'luzon', 1234, '2022-10-16', 444, 'jhs', 'Saint Hatdog', 123, '2022-10-31', '2022-11-15', 444, 555, 'widowed', 1231231, 345353, NULL, 345345345, 23423423, 'AB+', 'yvetteaguilar06@gmail.com', 'hatdog');
-
 -- --------------------------------------------------------
 
 --
@@ -222,20 +191,9 @@ CREATE TABLE `leaves` (
   `status` enum('pending','approved') DEFAULT 'pending',
   `s_date` date NOT NULL,
   `e_date` date NOT NULL,
-  `nature` varchar(255) NOT NULL
+  `nature` varchar(255) NOT NULL,
+  `date_filed` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `leaves`
---
-
-INSERT INTO `leaves` (`id`, `emp_id`, `status`, `s_date`, `e_date`, `nature`) VALUES
-(4, 'emp1', 'approved', '2022-11-02', '2022-11-25', 'Sick Leave'),
-(5, 'emp1', 'pending', '2022-11-03', '2022-11-07', 'Sick Leave'),
-(6, 'unika iha', 'approved', '2022-11-03', '2022-11-05', 'Maandatory/Force Leave'),
-(7, 'emp1', 'pending', '2022-11-01', '2022-11-05', 'Maternity Leave'),
-(8, 'asdasdasd', 'approved', '2022-11-03', '2022-11-05', 'Maternity Leave'),
-(9, 'unika iha', 'pending', '2022-11-03', '2022-11-05', 'Sick Leave');
 
 -- --------------------------------------------------------
 
@@ -251,32 +209,6 @@ CREATE TABLE `schedule` (
   `time_out` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `schedule`
---
-
-INSERT INTO `schedule` (`id`, `emp_id`, `date`, `time_in`, `time_out`) VALUES
-(10, '34242342', '2022-11-01', '10:37:00', '21:37:00'),
-(11, '34242342', '2022-11-03', '10:37:00', '21:37:00'),
-(12, '34242342', '2022-11-05', '10:37:00', '21:37:00'),
-(13, 'emp1', '2022-11-02', '07:00:00', '15:00:00'),
-(14, 'emp1', '2022-11-04', '07:00:00', '15:00:00'),
-(15, 'emp1', '2022-11-07', '07:00:00', '15:00:00'),
-(16, 'emp1', '2022-11-09', '07:00:00', '15:00:00'),
-(17, 'emp1', '2022-11-11', '07:00:00', '15:00:00'),
-(18, 'emp1', '2022-11-14', '07:00:00', '15:00:00'),
-(19, 'emp1', '2022-11-16', '07:00:00', '15:00:00'),
-(20, 'emp1', '2022-11-18', '07:00:00', '15:00:00'),
-(21, 'emp1', '2022-11-21', '07:00:00', '15:00:00'),
-(22, 'emp1', '2022-11-23', '07:00:00', '15:00:00'),
-(23, 'emp1', '2022-11-25', '07:00:00', '15:00:00'),
-(24, 'emp1', '2022-11-28', '07:00:00', '15:00:00'),
-(25, 'emp1', '2022-11-30', '07:00:00', '15:00:00'),
-(26, 'emp1', '2022-11-05', '09:00:00', '15:00:00'),
-(27, 'emp1', '2022-11-12', '09:00:00', '15:00:00'),
-(28, 'emp1', '2022-11-19', '09:00:00', '15:00:00'),
-(29, 'emp1', '2022-11-26', '09:00:00', '15:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -290,13 +222,6 @@ CREATE TABLE `tardy` (
   `diff` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tardy`
---
-
-INSERT INTO `tardy` (`id`, `emp_id`, `date`, `diff`) VALUES
-(1, 'emp1', '2022-11-04', '01:30:00');
-
 -- --------------------------------------------------------
 
 --
@@ -309,13 +234,6 @@ CREATE TABLE `undertime` (
   `date` date NOT NULL,
   `diff` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `undertime`
---
-
-INSERT INTO `undertime` (`id`, `emp_id`, `date`, `diff`) VALUES
-(1, 'emp1', '2022-11-02', '00:27:00');
 
 -- --------------------------------------------------------
 
@@ -334,15 +252,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `pw`, `type`) VALUES
-('34242342', 'password', 'emp'),
-('admin', 'test', 'admin'),
-('asdasdasd', 'password', 'emp'),
-('emp1', 'pass', 'emp'),
-('emp2', 'password', 'emp'),
-('hackdog', 'password', 'emp'),
-('unika iha', 'password', 'emp'),
-('user1', 'password', 'emp'),
-('yeheyyy', 'password', 'emp');
+('admin', 'test', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -435,7 +345,7 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `leaves`
@@ -453,13 +363,13 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `tardy`
 --
 ALTER TABLE `tardy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `undertime`
 --
 ALTER TABLE `undertime`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

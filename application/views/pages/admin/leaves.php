@@ -67,6 +67,7 @@
             <th>Nature</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Date Filed</th>
             <th></th>
         </tr>
     </thead>
@@ -80,6 +81,7 @@
             <td><?= $request['nature']?></td>
             <td><?= $request['s_date']?></td>
             <td><?= $request['e_date']?></td>
+            <td><?= $request['date_filed']?></td>
             <td>
                 <form action="<?= base_url()?>dateandtime/approve_leave" method="post">
                     <input type="hidden" name="id" value="<?= $request['id']?>">
@@ -100,6 +102,7 @@
             <th>Nature</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Date Filed</th>
         </tr>
     </thead>
     <tbody>
@@ -112,6 +115,7 @@
             <td><?= $leave['nature']?></td>
             <td><?= $leave['s_date']?></td>
             <td><?= $leave['e_date']?></td>
+            <td><?= $request['date_filed']?></td>
         </tr>
         <?php endforeach ?>
     </tbody>

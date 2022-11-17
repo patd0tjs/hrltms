@@ -1,4 +1,10 @@
 <?php
+
+require FCPATH.'vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 class DateAndTime_model extends CI_Model{
     public function __construct(){
         parent:: __construct();
@@ -109,6 +115,7 @@ class DateAndTime_model extends CI_Model{
         if($this->compute_tardy()){
             $tardy = $this->compute_tardy();
             $this->add_tardy($tardy);
+            $this->count_tardy($tardy);
         };
 
         if($this->compute_undertime()){
@@ -117,6 +124,19 @@ class DateAndTime_model extends CI_Model{
         };
     }
 
+    // count tardy
+    private function count_tardy(){
+        $employee = $this->db->select('employee_details.email as email')
+                             ->from('tardy')
+                             ->join('employee_details', 'tardy.emp_id=employee_details.id')
+                             ->where('emp_id', $this->input->post('employee'))
+                             ->get()
+                             ->result_array();
+
+        if (count($employee) > 10){
+            $this->send_warning($employee[0]['email']);
+        } 
+    }
     // compute tardy main logic
     private function compute_tardy(){
         $time_in = $this->input->post('am_in');
@@ -219,6 +239,7 @@ class DateAndTime_model extends CI_Model{
                         ->select('leaves.s_date as s_date')
                         ->select('leaves.e_date as e_date')
                         ->select('leaves.nature as nature')
+                        ->select('leaves.date_filed as date_filed')
                         ->from('leaves')
                         ->join('employees', 'leaves.emp_id=employees.id')
                         ->where('status', 'pending')
@@ -234,6 +255,7 @@ class DateAndTime_model extends CI_Model{
                         ->select('leaves.s_date as s_date')
                         ->select('leaves.e_date as e_date')
                         ->select('leaves.nature as nature')
+                        ->select('leaves.date_filed as date_filed')
                         ->from('leaves')
                         ->join('employees', 'leaves.emp_id=employees.id')
                         ->where('status', 'approved')
@@ -245,5 +267,29 @@ class DateAndTime_model extends CI_Model{
         $this->db->set('status', 'approved');
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('leaves');
+        $this->send();
+    }
+
+    private function send_warning($email){
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host     = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'pgbalanza@gmail.com';
+        $mail->Password = 'qhvdxhmtbkrwmwzx';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port     = 465;
+       
+        $mail->setFrom('hr@company.com', 'Hello World');
+       
+        $mail->addAddress($email);
+
+        $mail->Subject = 'Send Email via SMTP using PHPMailer in CodeIgniter';
+       
+
+        $mailContent = "You have exceeded the amount of lates/tardies. Please visit the HR office immediately";
+        $mail->Body = $mailContent;
+        $mail->send();
+
     }
 }
