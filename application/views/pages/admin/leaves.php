@@ -79,10 +79,22 @@
                 <?= $request['l_name'] . ', ' . $request['f_name'] . ' ' . $request['m_name']?>
             </td>
             <td><?= $request['nature']?></td>
-            
-            <td><?= $request['s_date']?></td>
-            <td><?= $request['e_date']?></td>
-            <td><?= $request['date_filed']?></td>
+            <?php 
+              $time = strtotime($request['s_date']);
+              $s_date = date('M d, Y',$time);
+            ?>
+            <td><?= $s_date?></td>
+            <?php 
+              $time = strtotime($request['e_date']);
+              $e_date = date('M d, Y',$time);
+            ?>
+            <td><?= $e_date?></td>
+
+            <?php 
+              $time = strtotime($request['date_filed']);
+              $date_filed = date('M d, Y',$time);
+            ?>
+            <td><?= $date_filed?></td>
             <td>
                 <form action="<?= base_url()?>dateandtime/approve_leave" method="post">
                     <input type="hidden" name="id" value="<?= $request['id']?>">

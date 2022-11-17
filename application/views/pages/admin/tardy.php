@@ -17,7 +17,6 @@
           $newformat = date('M d, Y',$time);
         ?>
         <td><?= $newformat?></td>
-        <td><?= $tardy['date']?></td>
         <td><?= $tardy['diff']?></td>
       </tr>
     <?php endforeach ?>
