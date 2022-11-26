@@ -16,12 +16,12 @@ class DateAndTime_model extends CI_Model{
                         ->select('employees.l_name as l_name')
                         ->select('employees.f_name as f_name')
                         ->select('employees.m_name as m_name')
-                        ->select('schedule.date as date')
+                        ->select('schedule.s_date as s_date')
+                        ->select('schedule.e_date as e_date')
                         ->select('schedule.time_in as time_in')
                         ->select('schedule.time_out as time_out')
                         ->from('schedule')
                         ->join('employees', 'schedule.emp_id=employees.id')
-                        ->group_by('schedule.emp_id')
                         ->get()
                         ->result_array();
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2022 at 01:20 AM
+-- Generation Time: Nov 26, 2022 at 01:53 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -139,6 +139,15 @@ CREATE TABLE `employees` (
   `l_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`id`, `f_name`, `m_name`, `l_name`) VALUES
+('asda', 'dasdas', 'dasdasdasdas', 'asdas'),
+('demo', 'dasdasd', 'asdasd', 'asdas'),
+('itspatnotrick', 'Patrick Glenn', 'Capili', 'Balanza');
+
 -- --------------------------------------------------------
 
 --
@@ -179,6 +188,15 @@ CREATE TABLE `employee_details` (
   `remarks` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `employee_details`
+--
+
+INSERT INTO `employee_details` (`id`, `id_pic`, `department_id`, `designation_id`, `status`, `sex`, `bday`, `birth_place`, `purok`, `brgy`, `municipality`, `province`, `zip`, `date_hired`, `plantilla`, `education`, `school`, `prc`, `prc_reg`, `prc_exp`, `philhealth`, `phone`, `marital_status`, `gsis`, `sss`, `pag_ibig`, `tin`, `atm`, `blood_type`, `email`, `remarks`) VALUES
+('asda', 'http://localhost/hris/assets/img/null_pic.jpg', 2, 4, 'irregular', 'female', '2022-11-08', 'asdasd', 'asdasd', 'asdasd', 'dasdasd', 'asdasdas', 212312312, '2022-11-03', 234234, 'jhs', 'asdasdas', 2342342, '2022-11-22', '2022-11-30', 234234, 242342342, 'married', 3424234, 234234, 4234234, 2423423, 23423423, 'A+', 'balanzaairlines@gmail.com', ''),
+('demo', 'http://localhost/hris/assets/img/null_pic.jpg', 2, 3, 'irregular', 'female', '2022-10-31', 'asd', 'fgasdfas', 'dfadsf', 'adsfsadfadsf', 'adsfasf', 345345, '2022-11-15', 453453, 'shs', 'dfgdfsfga', 3423424, '2022-11-27', '2022-11-24', 453453, 34534534, 'separated', 234324, 234234, 56456456, 45674565, 234123423, 'B+', 'pgbalanza@gmail.com', 'demo'),
+('itspatnotrick', 'http://localhost/hris/assets/img/id/5369677.jpg', 12, 8, 'regular', 'male', '1999-08-25', 'Manila', '', '456', 'Manila', 'Manila', 23, '2022-07-18', 11234, 'bachelors', 'University of Santo Tomas', 12345, '2022-11-13', '2026-09-13', 11234, 2147483647, 'married', 1, 1, 1, 1, 1, 'O+', 'pgbalanza@gmail.com', 'full stack');
+
 -- --------------------------------------------------------
 
 --
@@ -206,8 +224,18 @@ CREATE TABLE `schedule` (
   `emp_id` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `time_in` time NOT NULL,
-  `time_out` time NOT NULL
+  `time_out` time NOT NULL,
+  `s_date` date DEFAULT NULL,
+  `e_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `emp_id`, `date`, `time_in`, `time_out`, `s_date`, `e_date`) VALUES
+(36, 'itspatnotrick', '0000-00-00', '22:25:00', '05:26:00', '2022-11-20', '2022-11-20'),
+(37, 'itspatnotrick', '0000-00-00', '22:25:00', '05:26:00', '2022-11-20', '2022-11-21');
 
 -- --------------------------------------------------------
 
@@ -252,7 +280,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `pw`, `type`) VALUES
-('admin', 'test', 'admin');
+('admin', 'test', 'admin'),
+('asda', 'password', 'emp'),
+('demo', 'password', 'emp'),
+('itspatnotrick', 'password', 'emp');
 
 --
 -- Indexes for dumped tables
@@ -357,7 +388,7 @@ ALTER TABLE `leaves`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `tardy`
