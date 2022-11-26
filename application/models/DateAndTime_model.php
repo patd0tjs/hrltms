@@ -72,12 +72,23 @@ class DateAndTime_model extends CI_Model{
         for($i = 0; $i < count($date); $i++){
             $data = array();
 
+            $time_in = $this->input->post('time_in');
+            $time_out = $this->input->post('time_out');
+
+            if ($time_out < $time_in){
+                $e_date = date('Y-m-d', strtotime($date[$i] . ' + 1 day'));
+            } else {
+                $e_date = $date[$i];
+            }
+
             $data = array(
                 'emp_id'   => $this->input->post('employee'),
-                'date'     => $date[$i],
-                'time_in'  => $this->input->post('time_in'),
-                'time_out' => $this->input->post('time_out')
+                's_date'   => $date[$i],
+                'e_date'   => $e_date,
+                'time_in'  => $time_in,
+                'time_out' => $time_out,
             );
+           
             $this->db->insert('schedule', $data);
         }
     }
