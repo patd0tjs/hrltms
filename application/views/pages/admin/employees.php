@@ -182,6 +182,14 @@
   </div>
 </div>
 
+<form action="<?= base_url()?>admin/employees" method="post" id="filter" onchange="filter()">
+  <select id="departments" name="department" required>
+    <option value="" disabled selected hidden>Select Department</option>
+    <?php foreach($departments as $department):?>
+      <option value="<?= $department['id']?>"><?= $department['name']?></option>
+    <?php endforeach ?>
+  </select>
+</form>
 <table id="employee_tbl" class="table table-striped" style="width:100%">
   <thead>
     <tr>
@@ -385,6 +393,10 @@
 <?php endforeach ?>
 
 <script>
+function filter(){
+  document.getElementById('filter').submit();
+}
+
 $(document).ready(function () {
     $('#employee_tbl').DataTable({
         dom: 'Bfrtip',
