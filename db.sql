@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2022 at 03:07 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Nov 27, 2022 at 03:12 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `departments`
@@ -70,7 +70,7 @@ INSERT INTO `departments` (`id`, `name`) VALUES
 CREATE TABLE `designations` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `designations`
@@ -124,7 +124,7 @@ CREATE TABLE `dtr` (
   `pm_in` time DEFAULT NULL,
   `pm_out` time DEFAULT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -137,7 +137,7 @@ CREATE TABLE `employees` (
   `f_name` varchar(255) NOT NULL,
   `m_name` varchar(255) DEFAULT NULL,
   `l_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employees`
@@ -146,7 +146,7 @@ CREATE TABLE `employees` (
 INSERT INTO `employees` (`id`, `f_name`, `m_name`, `l_name`) VALUES
 ('asda', 'dasdas', 'dasdasdasdas', 'asdas'),
 ('demo', 'dasdasd', 'asdasd', 'asdas'),
-('itspatnotrick', 'Patrick Glenn', 'Capili', 'Balanza');
+('itspatnotrick', 'Patrick', 'Capili', 'Balanza');
 
 -- --------------------------------------------------------
 
@@ -186,7 +186,7 @@ CREATE TABLE `employee_details` (
   `blood_type` enum('A+','A-','B+','B-','AB+','AB','O+','O-') NOT NULL,
   `email` varchar(255) NOT NULL,
   `remarks` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee_details`
@@ -195,7 +195,7 @@ CREATE TABLE `employee_details` (
 INSERT INTO `employee_details` (`id`, `id_pic`, `department_id`, `designation_id`, `status`, `sex`, `bday`, `birth_place`, `purok`, `brgy`, `municipality`, `province`, `zip`, `date_hired`, `plantilla`, `education`, `school`, `prc`, `prc_reg`, `prc_exp`, `philhealth`, `phone`, `marital_status`, `gsis`, `sss`, `pag_ibig`, `tin`, `atm`, `blood_type`, `email`, `remarks`) VALUES
 ('asda', 'http://localhost/hris/assets/img/null_pic.jpg', 2, 4, 'irregular', 'female', '2022-11-08', 'asdasd', 'asdasd', 'asdasd', 'dasdasd', 'asdasdas', 212312312, '2022-11-03', 234234, 'jhs', 'asdasdas', 2342342, '2022-11-22', '2022-11-30', 234234, 242342342, 'married', 3424234, 234234, 4234234, 2423423, 23423423, 'A+', 'balanzaairlines@gmail.com', ''),
 ('demo', 'http://localhost/hris/assets/img/null_pic.jpg', 2, 3, 'irregular', 'female', '2022-10-31', 'asd', 'fgasdfas', 'dfadsf', 'adsfsadfadsf', 'adsfasf', 345345, '2022-11-15', 453453, 'shs', 'dfgdfsfga', 3423424, '2022-11-27', '2022-11-24', 453453, 34534534, 'separated', 234324, 234234, 56456456, 45674565, 234123423, 'B+', 'pgbalanza@gmail.com', 'demo'),
-('itspatnotrick', 'http://localhost/hris/assets/img/id/5369677.jpg', 12, 8, 'regular', 'male', '1999-08-25', 'Manila', '', '456', 'Manila', 'Manila', 23, '2022-07-18', 11234, 'bachelors', 'University of Santo Tomas', 12345, '2022-11-13', '2026-09-13', 11234, 2147483647, 'married', 1, 1, 1, 1, 1, 'O+', 'pgbalanza@gmail.com', 'full stack');
+('itspatnotrick', 'http://localhost/hris/assets/img/id/Joker-Wallpaper-For-PC.jpg', 1, 1, 'regular', 'male', '1999-08-25', 'Manila', '', '456', 'Manila', 'Manila', 23, '2022-07-18', 11234, 'elem', 'University of Santo Tomas', 12345, '2022-11-13', '2026-09-13', 11234, 2147483647, 'single', 1, 1, 1, 1, 1, 'A+', 'pgbalanza@gmail.com', 'full stack');
 
 -- --------------------------------------------------------
 
@@ -210,8 +210,16 @@ CREATE TABLE `leaves` (
   `s_date` date NOT NULL,
   `e_date` date NOT NULL,
   `nature` varchar(255) NOT NULL,
-  `date_filed` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `date_filed` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `reason` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `leaves`
+--
+
+INSERT INTO `leaves` (`id`, `emp_id`, `status`, `s_date`, `e_date`, `nature`, `date_filed`, `reason`) VALUES
+(10, 'itspatnotrick', 'approved', '2022-11-13', '2022-11-15', 'Others', '2022-11-27 14:12:25', 'lamay');
 
 -- --------------------------------------------------------
 
@@ -225,7 +233,7 @@ CREATE TABLE `recovery_code` (
   `expire` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `used` enum('Y','N') DEFAULT 'N',
   `code` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `recovery_code`
@@ -243,7 +251,8 @@ INSERT INTO `recovery_code` (`id`, `user_id`, `expire`, `used`, `code`) VALUES
 (9, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 5000),
 (10, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 6139),
 (11, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 1651),
-(12, 'itspatnotrick', '2022-11-26 08:32:43', 'Y', 4132);
+(12, 'itspatnotrick', '2022-11-26 08:32:43', 'Y', 4132),
+(13, 'itspatnotrick', '2022-11-27 12:21:38', 'Y', 1508);
 
 -- --------------------------------------------------------
 
@@ -259,7 +268,7 @@ CREATE TABLE `schedule` (
   `time_out` time NOT NULL,
   `s_date` date DEFAULT NULL,
   `e_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `schedule`
@@ -280,7 +289,7 @@ CREATE TABLE `tardy` (
   `emp_id` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `diff` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -293,7 +302,7 @@ CREATE TABLE `undertime` (
   `emp_id` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `diff` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -305,7 +314,7 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `pw` varchar(255) NOT NULL,
   `type` enum('admin','emp') DEFAULT 'emp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -420,13 +429,13 @@ ALTER TABLE `dtr`
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `recovery_code`
 --
 ALTER TABLE `recovery_code`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `schedule`
