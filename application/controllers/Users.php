@@ -37,10 +37,26 @@ class Users extends CI_Controller{
         if($this->session->recovery_id){
 
             if($this->Users_model->validate_code()){
-                redirect('change_password');
+                redirect('password_recovery');
             } else {
                 $this->session->set_flashdata('error', 'You are not allowed to visit this page');
                 redirect('recovery');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
+
+    public function recover_password(){
+        if($this->session->recovery_id){
+
+            if($this->Users_model->recover_password()){
+                $this->session->set_flashdata('success', 'Password change success! <br> You may now login using your new password');
+                redirect('login');
+            } else {
+                $this->session->set_flashdata('error', 'Passwords does not match!');
+                redirect('password_recovery');
             }
         } else {
             $this->session->set_flashdata('error', 'You are not allowed to visit this page');

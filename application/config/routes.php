@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+$route['password_recovery'] = 'pages/change_pw_recovery';
 $route['validate'] = 'pages/validate';
 $route['recovery'] = 'pages/recovery';
 $route['admin/leaves'] = 'pages/leaves';

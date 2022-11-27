@@ -33,17 +33,21 @@ h6 {
             <?= $this->session->flashdata('error')?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        
     <?php } ?>
 
     <div class="recovery">
-        <form action="<?= base_url()?>users/validate_code" method="post">
+        <form action="<?= base_url()?>users/recover_password" method="post">
             <h6>Please enter your new password:</h6>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name="pw" placeholder="pw" required>
+                <input type="password" class="form-control" id="floatingInput" name="pw" placeholder="pw" required>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
 
+            <h6>Please re-enter your new password:</h6>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingInput" name="pw2" placeholder="pw2" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </center>

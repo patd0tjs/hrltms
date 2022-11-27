@@ -298,4 +298,20 @@ class Users_model extends CI_Model{
 
     }
 
+    public function recover_password(){
+        $pw = $this->input->post('pw');
+        $pw2 = $this->input->post('pw2');
+
+        if ($pw == $pw2){
+            $this->db->set('pw', $pw);
+            $this->db->where('username', $this->session->recovery_id);
+            $this->db->update('users');
+
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+
+    }
+
 }
