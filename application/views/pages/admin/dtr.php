@@ -32,20 +32,12 @@
             <input type="date" name="date" id="date">
 
             <br>
-            <label for="am_in">Time In (AM)</label>
-            <input type="time" name="am_in" id="am_in">
+            <label for="time_in">Time In</label>
+            <input type="time" name="time_in" id="time_in">
 
             <br>
-            <label for="am_out">Time Out (AM)</label>
-            <input type="time" name="am_out" id="am_out">
-
-            <br>
-            <label for="pm_in">Time In (PM)</label>
-            <input type="time" name="pm_in" id="pm_in">
-
-            <br>
-            <label for="pm_out">Time Out (PM)</label>
-            <input type="time" name="pm_out" id="pm_out">
+            <label for="time_out">Time Out</label>
+            <input type="time" name="time_out" id="time_out">
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -59,16 +51,10 @@
 <table id="dtr" class="table table-striped" style="width: 100%; text-align: center">
     <thead>
         <tr>
-            <th rowspan="2">Employee ID</th>
-            <th rowspan="2">Employee Name</th>
-            <th rowspan="2">Date</th>
-            <th colspan="2">AM</th>
-            <th colspan="2">PM</th>
-        </tr>
-        <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Date</th>
             <td>Time In</td>
-            <td>Time Out</td>
-            <td>Time in</td>
             <td>Time Out</td>
         </tr>
     </thead>
@@ -82,10 +68,8 @@
                 $newformat = date('M d, Y',$time);
                 ?>
                 <td><?= $newformat?></td>
-                <td><?= date('g:i a', strtotime($emp_dtr['am_in']))?></td>
-                <td><?= date('g:i a', strtotime($emp_dtr['am_out']))?></td>
-                <td><?= date('g:i a', strtotime($emp_dtr['pm_in']))?></td>
-                <td><?= date('g:i a', strtotime($emp_dtr['pm_out']))?></td>
+                <td><?= date('g:i a', strtotime($emp_dtr['time_in']))?></td>
+                <td><?= date('g:i a', strtotime($emp_dtr['time_out']))?></td>
             </tr>
         <?php endforeach?>
     </tbody>
