@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2022 at 01:53 AM
+-- Generation Time: Nov 27, 2022 at 03:07 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -216,6 +216,38 @@ CREATE TABLE `leaves` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `recovery_code`
+--
+
+CREATE TABLE `recovery_code` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `expire` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `used` enum('Y','N') DEFAULT 'N',
+  `code` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `recovery_code`
+--
+
+INSERT INTO `recovery_code` (`id`, `user_id`, `expire`, `used`, `code`) VALUES
+(1, '0', '2022-11-25 22:03:29', 'N', 7441),
+(2, '0', '2022-11-25 21:55:07', 'N', 2023),
+(3, '0', '2022-11-26 07:07:38', 'N', 3011),
+(4, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 1239),
+(5, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 9069),
+(6, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 6335),
+(7, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 3757),
+(8, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 4108),
+(9, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 5000),
+(10, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 6139),
+(11, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 1651),
+(12, 'itspatnotrick', '2022-11-26 08:32:43', 'Y', 4132);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `schedule`
 --
 
@@ -330,6 +362,12 @@ ALTER TABLE `leaves`
   ADD KEY `emp_id` (`emp_id`);
 
 --
+-- Indexes for table `recovery_code`
+--
+ALTER TABLE `recovery_code`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
@@ -383,6 +421,12 @@ ALTER TABLE `dtr`
 --
 ALTER TABLE `leaves`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `recovery_code`
+--
+ALTER TABLE `recovery_code`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `schedule`
