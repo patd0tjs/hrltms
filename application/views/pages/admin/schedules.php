@@ -101,6 +101,12 @@
           <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#sched<?= $schedule['id']?>">
             Edit
           </button>
+          <?= form_open('dateandtime/delete_sched');?>
+            <input type="hidden" value="<?= $schedule['id']?>" name="id">
+            <button class="btn btn-danger" type="sumbit">
+              Delete
+            </button>
+          </form>
         </td>
       </tr>
     <?php endforeach ?>
@@ -143,7 +149,7 @@
           <div class="modal-footer">
             <input type="hidden" value="<?= $schedule['id']?>" name="id">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add Schedule</button>
+            <button type="submit" class="btn btn-primary">Update Schedule</button>
           </div>
         </form>
       </div>

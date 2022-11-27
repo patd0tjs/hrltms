@@ -41,6 +41,12 @@ class DateAndTime_model extends CI_Model{
         
     }
 
+    public function delete_sched(){
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->delete('schedule');
+        
+    }
+
     public function get_tardy(){
         return $this->db->select('tardy.emp_id as emp_id')
                         ->select('employees.l_name as l_name')
