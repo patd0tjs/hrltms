@@ -74,6 +74,7 @@
       <th>End Date</th>
       <th>Time In</th>
       <th>Time Out</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -96,10 +97,59 @@
 
         <td><?= date('g:i a', strtotime($schedule['time_in']))?></td>
         <td><?= date('g:i a', strtotime($schedule['time_out']))?></td>
+        <td>
+          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#sched<?= $schedule['id']?>">
+            Edit
+          </button>
+        </td>
       </tr>
     <?php endforeach ?>
   </tbody>
  </table>
+
+ <?php foreach($schedules as $schedule):?>
+  <div class="modal fade" id="sched<?= $schedule['id']?>" data-bs-backdrop="static" tabindex="-1" aria-labelledby="sched<?= $schedule['id']?>Label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="sched<?= $schedule['id']?>Label">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- main submit form -->
+        <form action="<?= base_url();?>dateandtime/change_schedule" method="post">
+          <div class="modal-body">
+
+          <!-- select employee -->
+            <label for="employee">Employee:</label>
+            <input type="text" value="<?= $schedule['l_name'] . ', ' . $schedule['f_name'] .  ' ' . $schedule['m_name']?>" disabled>
+
+            <br>
+            <label for="datePick">Start Date: </label>
+            <input type="date" id="datePick" name="s_date" value="<?= $schedule['s_date']?>" required/>
+
+            <br>
+            <label for="datePick">End Date: </label>
+            <input type="date" id="datePick" name="e_date" value="<?= $schedule['e_date']?>" required/>
+
+            <br>
+            <label for="time_in">Time In:</label>
+            <input type="time" name="time_in" id="time_in" value="<?= $schedule['time_in']?>">
+            <br>
+            <label for="time_in">Time Out:</label>
+            <input type="time" name="time_out" id="time_out" value="<?= $schedule['time_out']?>">
+          </div>
+
+          <div class="modal-footer">
+            <input type="hidden" value="<?= $schedule['id']?>" name="id">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Schedule</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<?php endforeach?>
   <script>
     $(document).ready(function () {
       $('#datePick').multiDatesPicker(

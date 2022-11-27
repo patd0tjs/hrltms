@@ -27,6 +27,20 @@ class DateAndTime_model extends CI_Model{
                         ->result_array();
     }
 
+    // change schedule
+    public function change_schedule(){
+        $data = array(
+            's_date'   => $this->input->post('s_date'),
+            'e_date'   => $this->input->post('e_date'),
+            'time_in'  => $this->input->post('time_in'),
+            'time_out' => $this->input->post('time_out')
+        );
+
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('schedule', $data);
+        
+    }
+
     public function get_tardy(){
         return $this->db->select('tardy.emp_id as emp_id')
                         ->select('employees.l_name as l_name')
