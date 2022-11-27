@@ -22,5 +22,30 @@ class Users extends CI_Controller{
             redirect('login');
         }
     }
+
+    public function check_username(){
+        if($this->Users_model->recover_account()){
+            redirect('validate');
+        } else {
+
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('recovery');
+        }
+    }
+
+    public function validate_code(){
+        if($this->session->recovery_id){
+
+            if($this->Users_model->validate_code()){
+                redirect('change_password');
+            } else {
+                $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+                redirect('recovery');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
     
 }

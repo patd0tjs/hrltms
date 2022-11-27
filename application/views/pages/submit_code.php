@@ -1,5 +1,5 @@
 <style>
-.login{
+.recovery{
     width: 50%;
     margin-top: 5%;
     border-style: 1px solid black;
@@ -16,9 +16,13 @@
     margin-left: auto; 
     margin-right: auto; 
 }
-.login button{
+.recovery button{
     margin-top: 5%;
     width: 100%;
+}
+
+h6 {
+    text-align: left;
 }
 
 </style>
@@ -32,21 +36,15 @@
         
     <?php } ?>
 
-    <div class="login">
-        <form action="<?= base_url()?>users/login" method="post">
+    <div class="recovery">
+        <form action="<?= base_url()?>users/validate_code" method="post">
+            <h6>Please enter the recovery code that was sent to your email:</h6>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username" required>
-                <label for="floatingInput">Username</label>
+                <input type="text" class="form-control" id="floatingInput" name="code" placeholder="code" required>
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" name="pw" placeholder="Password" required>
-                <label for="floatingPassword">Password</label>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
 
         </form>
-        <a href="recovery">Forgot Password?</a>
     </div>
 </center>
 <!-- for missing closing tags -->

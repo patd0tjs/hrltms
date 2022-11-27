@@ -154,7 +154,7 @@ class DateAndTime_model extends CI_Model{
 
         $employee = $this->db->select('time_in')
                              ->select('time_out')
-                             ->select('date')
+                             ->select('s_date')
                              ->where('emp_id', $this->input->post('employee'))
                              ->where('date', $this->input->post('date'))
                              ->get('schedule')

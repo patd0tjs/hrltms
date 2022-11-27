@@ -1,5 +1,13 @@
 <?php
+
+require FCPATH.'vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 class Users_model extends CI_Model{
+    private $user_id;
+
     public function __construct(){
         parent:: __construct();
         $this->load->database();
@@ -79,6 +87,12 @@ class Users_model extends CI_Model{
         return $file;     
     }
 
+    private function get_employee_email($id){
+        return $this->db->select('email')
+                        ->where('id', $id)
+                        ->get('employee_details')
+                        ->row_array();
+    }
     // check if user exists
     private function get_user(){
         $tmp_user = $this->db->where('username', $this->input->post('username'))->get('users');
@@ -88,6 +102,64 @@ class Users_model extends CI_Model{
 
         } else {
             return FALSE;
+        }
+    }
+
+    public function recover_account(){
+        $tmp_user = $this->get_user();
+
+        if($tmp_user){
+            $user = $tmp_user->row_array();
+
+            $this->session->set_userdata('recovery_id', $user['username']);
+            $r_code = rand(1000, 9999);
+            $email = $this->get_employee_email($this->session->recovery_id);
+
+            $data = array(
+                'user_id' => $this->session->recovery_id,
+                'expire'  => date('Y-m-d H:i:s', strtotime('+ 10 minutes')),
+                'code'    => $r_code
+            );
+
+            // invalidate previous codes
+            $this->db->set('used', 'Y');
+            $this->db->where('user_id', $this->session->recovery_id);
+            $this->db->update('recovery_code');
+        
+
+            $this->db->insert('recovery_code', $data);
+            $this->send_recovery($email['email'], $r_code);
+
+            return TRUE;
+        } else {
+            $this->session->set_flashdata('error', "Username doesn't exist");
+            return FALSE;
+        }
+
+    }
+
+    
+    public function validate_code(){
+        $curr_date = date('Y-m-d H:i:s');
+
+        $codes = $this->db->where('used', 'N')
+                          ->where('expire >=', $curr_date )
+                          ->where('user_id', $this->session->recovery_id)
+                          ->get('recovery_code');
+        
+        if($codes->num_rows() > 0){
+            $valid = $codes->row_array();
+
+            if($valid['code'] == $this->input->post('code')){
+
+                $this->db->set('used', 'Y');
+                $this->db->where('user_id', $this->session->recovery_id);
+                $this->db->update('recovery_code');
+
+                return TRUE;
+            } else {
+                return FALSE;
+            }
         }
     }
 
@@ -168,7 +240,7 @@ class Users_model extends CI_Model{
     private function add_emp_details(){    
         $data = array(
             'id'             => $this->input->post('id'),
-            'id_pic'         =>  $this->uploadPhoto(),
+            'id_pic'         => $this->uploadPhoto(),
             'department_id'  => $this->input->post('department'),
             'designation_id' => $this->input->post('designation'),
             'status'         => $this->input->post('status'),
@@ -201,6 +273,29 @@ class Users_model extends CI_Model{
 
         );
         $this->db->insert('employee_details', $data);
+    }
+
+    private function send_recovery($email, $code){
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host     = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'pgbalanza@gmail.com';
+        $mail->Password = 'qhvdxhmtbkrwmwzx';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port     = 465;
+       
+        $mail->setFrom('hr@company.com', 'HRMIS');
+       
+        $mail->addAddress($email);
+
+        $mail->Subject = 'Account Recovery';
+       
+
+        $mailContent = "Your recovery code is $code";
+        $mail->Body = $mailContent;
+        $mail->send();
+
     }
 
 }

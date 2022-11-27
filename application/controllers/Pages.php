@@ -17,6 +17,10 @@ class Pages extends CI_Controller{
         }
     }
 
+    public function recovery(){
+        $this->load->view('components/header');
+        $this->load->view('pages/recovery');;
+    }
 
     public function login(){
         $this->session->unset_userdata('id');
@@ -202,6 +206,30 @@ class Pages extends CI_Controller{
             $this->load->view('components/navbar', $data);
             $this->load->view('pages/deficiencies', $data);
             $this->load->view('components/footer');
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
+
+    public function validate(){
+        if((!empty($this->session->recovery_id))){
+
+            $this->load->view('components/header');
+            $this->load->view('pages/submit_code');
+
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
+
+    public function change_pw_recovery(){
+        if((!empty($this->session->recovery_id))){
+
+            $this->load->view('components/header');
+            $this->load->view('pages/change_pw_recovery');
+
         } else {
             $this->session->set_flashdata('error', 'You are not allowed to visit this page');
             redirect('login');
