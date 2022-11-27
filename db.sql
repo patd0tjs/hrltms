@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2022 at 03:12 PM
+-- Generation Time: Nov 27, 2022 at 06:48 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -119,12 +119,18 @@ INSERT INTO `designations` (`id`, `name`) VALUES
 CREATE TABLE `dtr` (
   `id` int(11) NOT NULL,
   `emp_id` varchar(255) NOT NULL,
-  `am_in` time DEFAULT NULL,
-  `am_out` time DEFAULT NULL,
-  `pm_in` time DEFAULT NULL,
-  `pm_out` time DEFAULT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `time_in` time NOT NULL,
+  `time_out` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dtr`
+--
+
+INSERT INTO `dtr` (`id`, `emp_id`, `date`, `time_in`, `time_out`) VALUES
+(14, 'itspatnotrick', '2022-11-20', '23:04:00', '03:04:00'),
+(15, 'itspatnotrick', '2022-11-20', '22:43:00', '04:05:00');
 
 -- --------------------------------------------------------
 
@@ -263,7 +269,6 @@ INSERT INTO `recovery_code` (`id`, `user_id`, `expire`, `used`, `code`) VALUES
 CREATE TABLE `schedule` (
   `id` int(11) NOT NULL,
   `emp_id` varchar(255) NOT NULL,
-  `date` date NOT NULL,
   `time_in` time NOT NULL,
   `time_out` time NOT NULL,
   `s_date` date DEFAULT NULL,
@@ -274,9 +279,8 @@ CREATE TABLE `schedule` (
 -- Dumping data for table `schedule`
 --
 
-INSERT INTO `schedule` (`id`, `emp_id`, `date`, `time_in`, `time_out`, `s_date`, `e_date`) VALUES
-(36, 'itspatnotrick', '0000-00-00', '22:25:00', '05:26:00', '2022-11-20', '2022-11-20'),
-(37, 'itspatnotrick', '0000-00-00', '22:25:00', '05:26:00', '2022-11-20', '2022-11-21');
+INSERT INTO `schedule` (`id`, `emp_id`, `time_in`, `time_out`, `s_date`, `e_date`) VALUES
+(36, 'itspatnotrick', '22:25:00', '05:26:00', '2022-11-20', '2022-11-20');
 
 -- --------------------------------------------------------
 
@@ -291,6 +295,14 @@ CREATE TABLE `tardy` (
   `diff` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tardy`
+--
+
+INSERT INTO `tardy` (`id`, `emp_id`, `date`, `diff`) VALUES
+(10, 'itspatnotrick', '2022-11-20', '00:39:00'),
+(11, 'itspatnotrick', '2022-11-20', '00:18:00');
+
 -- --------------------------------------------------------
 
 --
@@ -303,6 +315,14 @@ CREATE TABLE `undertime` (
   `date` date NOT NULL,
   `diff` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `undertime`
+--
+
+INSERT INTO `undertime` (`id`, `emp_id`, `date`, `diff`) VALUES
+(4, 'itspatnotrick', '2022-11-20', '02:22:00'),
+(5, 'itspatnotrick', '2022-11-20', '01:21:00');
 
 -- --------------------------------------------------------
 
@@ -423,13 +443,13 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `recovery_code`
@@ -447,13 +467,13 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `tardy`
 --
 ALTER TABLE `tardy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `undertime`
 --
 ALTER TABLE `undertime`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

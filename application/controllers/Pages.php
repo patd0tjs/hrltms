@@ -143,6 +143,23 @@ class Pages extends CI_Controller{
         }
     }
 
+    public function reports(){
+        if($this->session->id == 'admin'){
+            $data = array(
+                'title'     => 'Reports'
+            );
+
+            $this->load->view('components/header');
+            $this->load->view('components/navbar', $data);
+            $this->load->view('pages/admin/reports');
+            $this->load->view('components/footer');
+
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
+
     public function dtr(){
         if($this->session->id == 'admin'){
             $data = array(
