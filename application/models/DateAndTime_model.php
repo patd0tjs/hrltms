@@ -47,6 +47,12 @@ class DateAndTime_model extends CI_Model{
         
     }
 
+    public function delete_leave(){
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->delete('leaves');
+        
+    }
+
     public function get_tardy(){
         return $this->db->select('tardy.emp_id as emp_id')
                         ->select('employees.l_name as l_name')

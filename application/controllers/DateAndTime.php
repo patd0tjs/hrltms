@@ -51,6 +51,23 @@ class DateAndTime extends CI_Controller{
         }
     }
 
+    public function delete_leave(){
+        if($this->session->id){
+
+            if ($this->session->id == 'admin'){
+                $this->DateAndTime_model->delete_leave();
+                redirect('admin/leaves');
+            } else {
+                $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+                redirect('login');
+            }
+
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
+
     public function add_dtr(){
         if($this->session->id){
 

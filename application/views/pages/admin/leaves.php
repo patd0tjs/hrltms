@@ -111,6 +111,14 @@
                     <input type="hidden" name="id" value="<?= $request['id']?>">
                     <button class="btn btn-success" onclick="return confirm('Confirm leave approval?')">Approve</button>
                 </form>
+               
+              <?= form_open('dateandtime/delete_leave');?>
+                <input type="hidden" value="<?= $request['id']?>" name="id">
+                <button class="btn btn-danger" type="sumbit">
+                  Delete
+                </button>
+              </form>
+           
             </td>
         </tr>
         <?php endforeach ?>
@@ -153,6 +161,7 @@
               $date_filed = date('M d, Y',$time);
             ?>
             <td><?= $date_filed?></td>
+
         </tr>
         <?php endforeach ?>
     </tbody>
