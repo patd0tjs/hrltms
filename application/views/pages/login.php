@@ -7,7 +7,7 @@
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-#alert{
+.alert{
     width: 25%;
     position: absolute;
     top: 0;
@@ -25,13 +25,13 @@
 <center>
     <?php if ($this->session->flashdata('error')){?>
 
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <?= $this->session->flashdata('error')?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         
     <?php } elseif ($this->session->flashdata('success')){ ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?= $this->session->flashdata('success')?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

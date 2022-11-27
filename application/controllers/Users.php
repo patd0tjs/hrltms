@@ -63,5 +63,21 @@ class Users extends CI_Controller{
             redirect('login');
         }
     }
+
+    public function change_password(){
+        if($this->session->id){
+
+            if($this->Users_model->change_password()){
+                $this->session->set_flashdata('success', 'Password change success! <br> You may now login using your new password');
+                redirect('');
+            } else {
+                $this->session->set_flashdata('error', 'Passwords does not match!');
+                redirect('');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
     
 }

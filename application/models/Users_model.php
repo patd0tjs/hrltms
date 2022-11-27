@@ -314,4 +314,34 @@ class Users_model extends CI_Model{
 
     }
 
+    private function get_old_pw(){
+        return $this->db->select('pw')
+                        ->where('username', $this->session->id)
+                        ->get('users')
+                        ->row_array();
+    }
+
+    // update password
+    public function change_password(){
+        $my_pass = $this->get_old_pw();
+        $old     = $this->input->post('old');
+        $pw      = $this->input->post('pw');
+        $pw2     = $this->input->post('pw2');
+
+        if ($my_pass['pw'] == $old){
+            if ($pw == $pw2){
+                $this->db->set('pw', $pw);
+                $this->db->where('username', $this->session->id);
+                $this->db->update('users');
+    
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } else {
+            return FALSE;
+        }
+        
+    }
+
 }

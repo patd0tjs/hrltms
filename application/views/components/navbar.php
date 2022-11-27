@@ -73,12 +73,60 @@
                         <span class="d-none d-sm-inline mx-1"><?= $this->session->id?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#changePass">Change Password</a></li>
                         <li><a class="dropdown-item" href="<?= base_url()?>login">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="changePass" tabindex="-1" aria-labelledby="changePassLabel" data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="changePassLabel">Change Password</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <?= form_open('users/change_password');?>
+                        <div class="modal-body">
+                            <label for="old">Enter Old Password:</label>
+                            <input type="password" name="old" id="old" required>
+
+                            <br>
+                            <label for="pw">Enter New Password:</label>
+                            <input type="password" name="pw" id="pw" required>
+
+                            <br>
+                            <label for="pw2">Re-enter New Password:</label>
+                            <input type="password" name="pw2" id="pw2" required>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="col py-3">
             <div class="content">
+                <?php if ($this->session->flashdata('error')){?>
+
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?= $this->session->flashdata('error')?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                <?php } elseif ($this->session->flashdata('success')){ ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?= $this->session->flashdata('success')?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
+
                 <h1><?= $title?></h1>
             
