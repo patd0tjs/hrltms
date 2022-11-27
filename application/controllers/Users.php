@@ -23,6 +23,23 @@ class Users extends CI_Controller{
         }
     }
 
+    public function edit_emp(){
+        if($this->session->id){
+
+            if ($this->session->id == 'admin'){
+                $this->Users_model->edit_employee();
+                redirect('admin/employees');
+            } else {
+                $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+                redirect('login');
+            }
+
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
+
     public function check_username(){
         if($this->Users_model->recover_account()){
             redirect('validate');

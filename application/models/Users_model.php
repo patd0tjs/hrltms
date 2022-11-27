@@ -196,7 +196,46 @@ class Users_model extends CI_Model{
     }
 
     public function get_employees(){
-        return $this->db->get('employees')->result_array();
+        return $this->db->select('employees.id as id')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('employees.l_name as l_name')
+                        ->select('employee_details.id_pic as id_pic')
+                        ->select('departments.name as department_name')
+                        ->select('designations.name as designation_name')
+                        ->select('employee_details.status as status')
+                        ->select('employee_details.sex as sex')
+                        ->select('employee_details.bday as bday')
+                        ->select('employee_details.birth_place as birth_place')
+                        ->select('employee_details.purok as purok')
+                        ->select('employee_details.brgy as brgy')
+                        ->select('employee_details.municipality as municipality')
+                        ->select('employee_details.province as province')
+                        ->select('employee_details.zip as zip')
+                        ->select('employee_details.date_hired as date_hired')
+                        ->select('employee_details.plantilla as plantilla')
+                        ->select('employee_details.education as education')
+                        ->select('employee_details.school as school')
+                        ->select('employee_details.prc as prc')
+                        ->select('employee_details.prc_reg as prc_reg')
+                        ->select('employee_details.prc_exp as prc_exp')
+                        ->select('employee_details.philhealth as philhealth')
+                        ->select('employee_details.phone as phone')
+                        ->select('employee_details.marital_status as marital_status')
+                        ->select('employee_details.gsis as gsis')
+                        ->select('employee_details.sss as sss')
+                        ->select('employee_details.pag_ibig as pag_ibig')
+                        ->select('employee_details.tin as tin')
+                        ->select('employee_details.atm as atm')
+                        ->select('employee_details.blood_type as blood_type')
+                        ->select('employee_details.email as email')
+                        ->select('employee_details.remarks as remarks')
+                        ->from('employees')
+                        ->join('employee_details', 'employees.id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->join('departments', 'employee_details.department_id=departments.id')
+                        ->get()
+                        ->result_array();
     }
 
     // add employee main function
@@ -237,10 +276,16 @@ class Users_model extends CI_Model{
     }
 
     // add employee details to emp_details table
-    private function add_emp_details(){    
+    private function add_emp_details(){   
+        if(empty($_FILES['profile_pic']['name'])){
+            $photo = base_url() . 'assets/img/null_pic.jpg';
+            
+        } else {
+            $photo = $this->uploadPhoto();;
+        } 
         $data = array(
             'id'             => $this->input->post('id'),
-            'id_pic'         => $this->uploadPhoto(),
+            'id_pic'         => $photo,
             'department_id'  => $this->input->post('department'),
             'designation_id' => $this->input->post('designation'),
             'status'         => $this->input->post('status'),
@@ -280,12 +325,12 @@ class Users_model extends CI_Model{
         $mail->isSMTP();
         $mail->Host     = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'pgbalanza@gmail.com';
-        $mail->Password = 'qhvdxhmtbkrwmwzx';
+        $mail->Username = 'noreplybphkibawe@gmail.com';
+        $mail->Password = 'dcrlabifhkcfgzqd';
         $mail->SMTPSecure = 'ssl';
         $mail->Port     = 465;
        
-        $mail->setFrom('hr@company.com', 'HRMIS');
+        $mail->setFrom('noreplybphkibawe@gmail.com', 'HRMIS');
        
         $mail->addAddress($email);
 
@@ -343,5 +388,66 @@ class Users_model extends CI_Model{
         }
         
     }
+
+    // add employee main function
+    public function edit_employee(){
+        $data = array(
+            'l_name' => $this->input->post('l_name'),
+            'f_name' => $this->input->post('f_name'),
+            'm_name' => $this->input->post('m_name'),
+        );
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('employees', $data);
+
+            $this->edit_emp_details();
+    }
+    
+    
+    // add employee details to emp_details table
+    private function edit_emp_details(){ 
+        if(empty($_FILES['profile_pic']['name'])){
+            $photo = $this->input->post('old_pic');
+            
+        } else {
+            $photo = $this->uploadPhoto();;
+        }   
+        $data = array(
+            'id_pic'         => $photo,
+            'department_id'  => $this->input->post('department'),
+            'designation_id' => $this->input->post('designation'),
+            'status'         => $this->input->post('status'),
+            'sex'            => $this->input->post('sex'),
+            'bday'           => $this->input->post('bday'),
+            'birth_place'    => $this->input->post('birth_place'),
+            'purok'          => $this->input->post('purok'),
+            'brgy'           => $this->input->post('brgy'),
+            'municipality'   => $this->input->post('municipality'),
+            'province'       => $this->input->post('province'),
+            'zip'            => $this->input->post('zip'),
+            'date_hired'     => $this->input->post('date_hired'),
+            'plantilla'      => $this->input->post('philhealth'),
+            'education'      => $this->input->post('education'),
+            'school'         => $this->input->post('school'),
+            'prc'            => $this->input->post('prc'),
+            'prc_reg'        => $this->input->post('prc_reg'),
+            'prc_exp'        => $this->input->post('prc_exp'),
+            'philhealth'     => $this->input->post('philhealth'),
+            'phone'          => $this->input->post('phone'),
+            'marital_status' => $this->input->post('marital_status'),
+            'gsis'           => $this->input->post('gsis'),
+            'sss'            => $this->input->post('sss'),
+            'pag_ibig'       => $this->input->post('pag_ibig'),
+            'tin'            => $this->input->post('tin'),
+            'atm'            => $this->input->post('atm'),
+            'blood_type'     => $this->input->post('blood_type'),
+            'email'          => $this->input->post('email'),
+            'remarks'        => $this->input->post('remarks'),
+    
+            );
+
+            // $this->db->set($data);
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('employee_details', $data);
+        }
 
 }

@@ -292,12 +292,12 @@ class DateAndTime_model extends CI_Model{
         $mail->isSMTP();
         $mail->Host     = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'pgbalanza@gmail.com';
-        $mail->Password = 'qhvdxhmtbkrwmwzx';
+        $mail->Username = 'noreplybphkibawe@gmail.com';
+        $mail->Password = 'dcrlabifhkcfgzqd';
         $mail->SMTPSecure = 'ssl';
         $mail->Port     = 465;
        
-        $mail->setFrom('hr@company.com', 'HRMIS');
+        $mail->setFrom('noreplybphkibawe@gmail.com', 'HRMIS');
        
         $mail->addAddress($email);
 
