@@ -31,7 +31,7 @@
 
             <br>
             <label for="nature">Nature of Leave: </label>
-            <select name="nature" id="nature" required>
+            <select name="nature" id="nature" required onchange="others()">
               <option value="Vacation Leave">Vacation Leave - Any Date</option>
               <option value="Maandatory/Force Leave">Maandatory/Force Leave - Any Date</option>
               <option value="Sick Leave">Sick Leave - Any Date</option>
@@ -47,7 +47,10 @@
               <option value="Monetization of Leave Credit">Monetization of Leave Credits - Any Date</option>
               <option value="Terminal Leave">Terminal Leave - Any Date</option>
               <option value="Adoption Leave">Adoption Leave - Any Date</option>
+              <option value="Others">Others</option>
             </select>
+
+            <textarea name="reason" id="reason" cols="30" rows="10" style="display: none" placeholder="Reason" required></textarea>
 
             <br>
             <label for="s_date">Start Date: </label>
@@ -155,17 +158,28 @@
     </tbody>
  </table>
 <script>
-    $(document).ready(function () {
-      $('#datePick').multiDatesPicker(
-        { dateFormat: 'yy-m-d' }
-      );
-    });
+$(document).ready(function () {
+  $('#datePick').multiDatesPicker(
+    { dateFormat: 'yy-m-d' }
+  );
+});
 
-    $(document).ready(function () {
-    $('#pending').DataTable();
+$(document).ready(function () {
+  $('#pending').DataTable();
 });
 
 $(document).ready(function () {
     $('#approved').DataTable();
 });
-  </script>
+
+function others(){
+  let nature = document.getElementById('nature').value;
+  let reason = document.getElementById('reason').style;
+
+  if (nature == 'Others'){
+    reason.display = "block";
+  } else {
+    reason.display = "none";
+  }
+}
+</script>

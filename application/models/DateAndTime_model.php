@@ -223,6 +223,7 @@ class DateAndTime_model extends CI_Model{
                 's_date' => $this->input->post('s_date'),
                 'e_date' => $this->input->post('e_date'),
                 'nature' => $this->input->post('nature'),
+                'reason' => $this->input->post('reason'),
                 'status' => $this->input->post('status'),
             );
             $this->db->insert('leaves', $data);
