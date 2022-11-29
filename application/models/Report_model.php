@@ -109,22 +109,59 @@ class Report_model extends CI_Model{
     // main export and excel generation
     public function generate_report(){
         header('Content-Type: application/vnd.ms_excel');
-        header('Content-Disposition: attachment;filename="hello_world.xlsx"');
+        header('Content-Disposition: attachment;filename="hris_report.xlsx"');
 
         $spreadsheet = new Spreadsheet();
 
         $sheet = $spreadsheet->getActiveSheet();
 
+        // cell merging
+        $spreadsheet->getActiveSheet()->mergeCells("A1:G1");
+        $spreadsheet->getActiveSheet()->mergeCells("A2:G2");
+        $spreadsheet->getActiveSheet()->mergeCells("A3:G3");
+        $spreadsheet->getActiveSheet()->mergeCells("A4:G4");
+        $spreadsheet->getActiveSheet()->mergeCells("A5:G5");
+        $spreadsheet->getActiveSheet()->mergeCells("A6:G6");
+        $spreadsheet->getActiveSheet()->mergeCells("A7:G7");
+        $spreadsheet->getActiveSheet()->mergeCells("A8:G8");
+
+        // for table header
+        $spreadsheet->getActiveSheet()->mergeCells("A10:A11");
+        $spreadsheet->getActiveSheet()->mergeCells("B10:B11");
+        $spreadsheet->getActiveSheet()->mergeCells("C10:C11");
+        $spreadsheet->getActiveSheet()->mergeCells("D10:D11");
+        $spreadsheet->getActiveSheet()->mergeCells("E10:E11");
+        $spreadsheet->getActiveSheet()->mergeCells("F10:G10");
+
+        // autsize column
+        foreach (range('A', 'I') as $column) {            
+            $spreadsheet->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
+            
+        }
+        $spreadsheet->getActiveSheet()->getStyle('A:I')->getAlignment()->setHorizontal('center');
+        $curr_date = date('M, Y');
+
+        // set headers
         $sheet->setCellValue('A1', 'Republic of the Philippines');
         $sheet->setCellValue('A2', 'PROVINCE OF BUKIDNON');
         $sheet->setCellValue('A3', 'Provincial Capitol');
-        $sheet->setCellValue('A5', 'OFFICE: BUKIDNON PROVINCIAL HOSPITAL - KIBAWE');
+        $sheet->setCellValue('A5', 'MONTHLY TARDY AND UNDERTIME SUMMARY REPORT');
+        $sheet->setCellValue('A6', 'As of '. date('M, Y'));
+        $sheet->setCellValue('A8', 'OFFICE: BUKIDNON PROVINCIAL HOSPITAL-KIBABWE (REGULAR)');
+
+        $sheet->setCellValue('A10', 'NO');
+        $sheet->setCellValue('B10', 'NAME');
+        $sheet->setCellValue('C10', 'DESIGNATION');
+        $sheet->setCellValue('D10', 'NO. OF TIMES TARDY');
+        $sheet->setCellValue('E10', 'NO. OF TIME UNDERTIME');
+        $sheet->setCellValue('F10', 'TOTAL NO. OF');
+        $sheet->setCellValue('F11', 'HOURS');
+        $sheet->setCellValue('G11', 'MINUTES');
 
         $employees = $this->report_data();
 
-        $current_row = 5;
+        $current_row = 12;
         for($i = 0; $i < count($employees); $i++){
-            $row = $current_row + $i;
 
             // get records
             $tardy = $this->get_tardy($employees[$i]['emp_id']);
@@ -142,7 +179,9 @@ class Report_model extends CI_Model{
             // separate formats
             $total_hours = $this->get_hours($total);
             $total_minutes = $this->get_minutes($total);
-        
+
+            // cell generation
+            $row = $current_row + $i;
             $sheet->setCellValue('A' . $row, 1+$i);
             $sheet->setCellValue('B' . $row, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name']);
             $sheet->setCellValue('C' . $row, $employees[$i]['designation_name']);
