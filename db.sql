@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2022 at 06:48 PM
+-- Generation Time: Nov 29, 2022 at 06:17 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -119,18 +119,18 @@ INSERT INTO `designations` (`id`, `name`) VALUES
 CREATE TABLE `dtr` (
   `id` int(11) NOT NULL,
   `emp_id` varchar(255) NOT NULL,
-  `date` date NOT NULL,
   `time_in` time NOT NULL,
-  `time_out` time NOT NULL
+  `time_out` time NOT NULL,
+  `s_date` date NOT NULL,
+  `e_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `dtr`
 --
 
-INSERT INTO `dtr` (`id`, `emp_id`, `date`, `time_in`, `time_out`) VALUES
-(14, 'itspatnotrick', '2022-11-20', '23:04:00', '03:04:00'),
-(15, 'itspatnotrick', '2022-11-20', '22:43:00', '04:05:00');
+INSERT INTO `dtr` (`id`, `emp_id`, `time_in`, `time_out`, `s_date`, `e_date`) VALUES
+(16, 'itspatnotrick', '22:30:00', '05:00:00', '2022-11-20', '2022-11-21');
 
 -- --------------------------------------------------------
 
@@ -300,8 +300,9 @@ CREATE TABLE `tardy` (
 --
 
 INSERT INTO `tardy` (`id`, `emp_id`, `date`, `diff`) VALUES
-(10, 'itspatnotrick', '2022-11-20', '00:39:00'),
-(11, 'itspatnotrick', '2022-11-20', '00:18:00');
+(10, 'itspatnotrick', '2022-11-20', '00:55:00'),
+(11, 'itspatnotrick', '2022-11-20', '00:18:00'),
+(12, 'itspatnotrick', '2022-11-20', '00:05:00');
 
 -- --------------------------------------------------------
 
@@ -322,7 +323,8 @@ CREATE TABLE `undertime` (
 
 INSERT INTO `undertime` (`id`, `emp_id`, `date`, `diff`) VALUES
 (4, 'itspatnotrick', '2022-11-20', '02:22:00'),
-(5, 'itspatnotrick', '2022-11-20', '01:21:00');
+(5, 'itspatnotrick', '2022-11-20', '01:21:00'),
+(6, 'itspatnotrick', '2022-11-20', '00:26:00');
 
 -- --------------------------------------------------------
 
@@ -443,7 +445,7 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `leaves`
@@ -467,13 +469,13 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `tardy`
 --
 ALTER TABLE `tardy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `undertime`
 --
 ALTER TABLE `undertime`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

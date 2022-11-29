@@ -126,7 +126,8 @@ class DateAndTime_model extends CI_Model{
                         ->select('employees.l_name as l_name')
                         ->select('employees.f_name as f_name')
                         ->select('employees.m_name as m_name')
-                        ->select('dtr.date as date')
+                        ->select('dtr.s_date as s_date')
+                        ->select('dtr.e_date as e_date')
                         ->select('dtr.time_in as time_in')
                         ->select('dtr.time_out as time_out')
                         ->from('dtr')
@@ -139,11 +140,22 @@ class DateAndTime_model extends CI_Model{
     public function add_dtr(){
         $this->compute_tardy();
 
+        $time_in = $this->input->post('time_in');
+        $time_out = $this->input->post('time_out');
+        $s_date = $this->input->post('date');
+
+        if ($time_out < $time_in){
+            $e_date = date('Y-m-d', strtotime($s_date . ' + 1 day'));
+        } else {
+            $e_date = $date[$i];
+        }
+
         $data = array(
             'emp_id'   => $this->input->post('employee'),
-            'date'     => $this->input->post('date'),
-            'time_in'    => $this->input->post('time_in'),
-            'time_out'   => $this->input->post('time_out'),
+            's_date'   => $this->input->post('date'),
+            'e_date'   => $e_date,
+            'time_in'  => $time_in,
+            'time_out' => $time_out,
         );
 
         $this->db->insert('dtr', $data);
@@ -157,6 +169,7 @@ class DateAndTime_model extends CI_Model{
         if($this->compute_undertime()){
             $undertime = $this->compute_undertime();
             $this->add_undertime($undertime);
+            $this->count_tardy($undertime);
         };
     }
 
@@ -170,7 +183,20 @@ class DateAndTime_model extends CI_Model{
                              ->result_array();
 
         if (count($employee) > 10){
-            $this->send_warning($employee[0]['email']);
+            $this->send_warning($employee[0]['email'], 'tardies');
+        } 
+    }
+
+    private function count_undertime(){
+        $employee = $this->db->select('employee_details.email as email')
+                             ->from('undertime')
+                             ->join('employee_details', 'undertime.emp_id=employee_details.id')
+                             ->where('emp_id', $this->input->post('employee'))
+                             ->get()
+                             ->result_array();
+
+        if (count($employee) > 10){
+            $this->send_warning($employee[0]['email'], 'undertime');
         } 
     }
     // compute tardy main logic
@@ -312,7 +338,7 @@ class DateAndTime_model extends CI_Model{
         $this->send();
     }
 
-    private function send_warning($email){
+    private function send_warning($email, $violation){
         $mail = new PHPMailer(true);
         $mail->isSMTP();
         $mail->Host     = 'smtp.gmail.com';
@@ -329,7 +355,7 @@ class DateAndTime_model extends CI_Model{
         $mail->Subject = 'Exceeded Number of lates/tardies';
        
 
-        $mailContent = "You have exceeded the amount of lates/tardies. Please visit the HR office immediately";
+        $mailContent = "You have exceeded the amount of $violation. Please visit the HR office immediately";
         $mail->Body = $mailContent;
         $mail->send();
 

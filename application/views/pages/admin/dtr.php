@@ -53,7 +53,8 @@
         <tr>
             <th>Employee ID</th>
             <th>Employee Name</th>
-            <th>Date</th>
+            <th>Start Date</th>
+            <th>End Date</th>
             <td>Time In</td>
             <td>Time Out</td>
         </tr>
@@ -64,10 +65,16 @@
                 <td><?= $emp_dtr['emp_id']?></td>
                 <td><?= $emp_dtr['l_name'] . ', ' . $emp_dtr['f_name'] . ' ' . $emp_dtr['m_name']?></td>
                 <?php 
-                $time = strtotime($emp_dtr['date']);
+                $time = strtotime($emp_dtr['s_date']);
                 $newformat = date('M d, Y',$time);
                 ?>
                 <td><?= $newformat?></td>
+
+                <?php 
+                $time = strtotime($emp_dtr['e_date']);
+                $newformat_e = date('M d, Y',$time);
+                ?>
+                <td><?= $newformat_e?></td>
                 <td><?= date('g:i a', strtotime($emp_dtr['time_in']))?></td>
                 <td><?= date('g:i a', strtotime($emp_dtr['time_out']))?></td>
             </tr>
