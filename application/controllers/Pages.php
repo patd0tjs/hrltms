@@ -35,7 +35,7 @@ class Pages extends CI_Controller{
                 'title'     => "Dashboard",
                 'employees' => $this->Users_model->get_employees(),
                 'tardies'   => $this->DateAndTime_model->get_tardy(),
-                'leaves'    => $this->DateAndTime_model->get_leaves(),
+                'leaves'    => $this->DateAndTime_model->get_approved_leaves(),
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);

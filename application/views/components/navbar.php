@@ -49,11 +49,11 @@
                                 <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Leaves</span>
                             </a>
                         </li>
-                        <!-- <li>
+                        <li>
                             <a href="<?= base_url()?>admin/reports" class="nav-link px-0 align-middle" style="color: white">
                                 <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Reports</span>
                             </a>
-                        </li> -->
+                        </li>
                     <?php } else {?>
                         <li class="nav-item">
                             <a href="<?= base_url()?>profile" class="nav-link align-middle px-0" style="color: white">
