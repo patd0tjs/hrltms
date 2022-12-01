@@ -489,9 +489,51 @@ class Users_model extends CI_Model{
     
             );
 
-            // $this->db->set($data);
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('employee_details', $data);
         }
-
+    
+    public function employee_data($id){
+        return $this->db->select('employees.id as id')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('employees.l_name as l_name')
+                        ->select('employee_details.id_pic as id_pic')
+                        ->select('departments.name as department_name')
+                        ->select('designations.name as designation_name')
+                        ->select('employee_details.status as status')
+                        ->select('employee_details.sex as sex')
+                        ->select('employee_details.bday as bday')
+                        ->select('employee_details.birth_place as birth_place')
+                        ->select('employee_details.purok as purok')
+                        ->select('employee_details.brgy as brgy')
+                        ->select('employee_details.municipality as municipality')
+                        ->select('employee_details.province as province')
+                        ->select('employee_details.zip as zip')
+                        ->select('employee_details.date_hired as date_hired')
+                        ->select('employee_details.plantilla as plantilla')
+                        ->select('employee_details.education as education')
+                        ->select('employee_details.school as school')
+                        ->select('employee_details.prc as prc')
+                        ->select('employee_details.prc_reg as prc_reg')
+                        ->select('employee_details.prc_exp as prc_exp')
+                        ->select('employee_details.philhealth as philhealth')
+                        ->select('employee_details.phone as phone')
+                        ->select('employee_details.marital_status as marital_status')
+                        ->select('employee_details.gsis as gsis')
+                        ->select('employee_details.sss as sss')
+                        ->select('employee_details.pag_ibig as pag_ibig')
+                        ->select('employee_details.tin as tin')
+                        ->select('employee_details.atm as atm')
+                        ->select('employee_details.blood_type as blood_type')
+                        ->select('employee_details.email as email')
+                        ->select('employee_details.remarks as remarks')
+                        ->from('employees')
+                        ->join('employee_details', 'employees.id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->join('departments', 'employee_details.department_id=departments.id')
+                        ->where('employees.id', $id)
+                        ->get()
+                        ->row_array();
+    }
 }
