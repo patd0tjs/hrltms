@@ -26,25 +26,31 @@ class Report_model extends CI_Model{
     }
 
     // count tardy
-    private function get_tardy($emp_id){
+    private function get_tardy($emp_id, $s_date, $e_date){
         return $this->db->select('count(*) as num_tardy')
                         ->where('emp_id', $emp_id)
+                        ->where('date >=', $s_date)
+                        ->where('date <=', $e_date)
                         ->get('tardy')
                         ->row_array();
     }
 
     // count undertime
-    private function get_undertime($emp_id){
+    private function get_undertime($emp_id, $s_date, $e_date){
         return $this->db->select('count(*) as num_undertime')
                         ->where('emp_id', $emp_id)
+                        ->where('date >=', $s_date)
+                        ->where('date <=', $e_date)
                         ->get('undertime')
                         ->row_array();
     }
 
     // tardy time sum
-    private function get_tardy_time($emp_id){
+    private function get_tardy_time($emp_id, $s_date, $e_date){
         $time = $this->db->select('sec_to_time(sum(time_to_sec(diff))) as time_tardy')
                          ->where('emp_id', $emp_id)
+                         ->where('date >=', $s_date)
+                         ->where('date <=', $e_date)
                          ->get('tardy')
                          ->row_array();
 
@@ -58,9 +64,11 @@ class Report_model extends CI_Model{
     }
 
     // undertime time sum
-    private function get_undertime_time($emp_id){
+    private function get_undertime_time($emp_id, $s_date, $e_date){
         $time = $this->db->select('sec_to_time(sum(time_to_sec(diff))) as time_undertime')
                          ->where('emp_id', $emp_id)
+                         ->where('date >=', $s_date)
+                         ->where('date <=', $e_date)
                          ->get('undertime')
                          ->row_array();
 
@@ -110,6 +118,9 @@ class Report_model extends CI_Model{
     public function generate_report(){
         header('Content-Type: application/vnd.ms_excel');
         header('Content-Disposition: attachment;filename="hris_report.xlsx"');
+
+        $s_date = $this->input->post('s_date');
+        $e_date = $this->input->post('e_date');
 
         $spreadsheet = new Spreadsheet();
 
@@ -164,10 +175,10 @@ class Report_model extends CI_Model{
         for($i = 0; $i < count($employees); $i++){
 
             // get records
-            $tardy = $this->get_tardy($employees[$i]['emp_id']);
-            $undertime = $this->get_undertime($employees[$i]['emp_id']);
-            $tardy_time = $this->get_tardy_time($employees[$i]['emp_id']);
-            $undertime_time = $this->get_undertime_time($employees[$i]['emp_id']);
+            $tardy = $this->get_tardy($employees[$i]['emp_id'], $s_date, $e_date);
+            $undertime = $this->get_undertime($employees[$i]['emp_id'], $s_date, $e_date);
+            $tardy_time = $this->get_tardy_time($employees[$i]['emp_id'], $s_date, $e_date);
+            $undertime_time = $this->get_undertime_time($employees[$i]['emp_id'], $s_date, $e_date);
 
             // dissect time
             $time_1 = $this->time_to_interval(date('H:i:s', strtotime($tardy_time)));

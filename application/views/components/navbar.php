@@ -50,8 +50,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?= base_url()?>admin/reports" class="nav-link px-0 align-middle" style="color: white">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Reports</span>
+                            <a role="button" data-bs-toggle="modal" data-bs-target="#export" class="nav-link px-0 align-middle" style="color: white">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Tardy/Undertime Report</span>
                             </a>
                         </li>
                     <?php } else {?>
@@ -117,6 +117,34 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="export" tabindex="-1" aria-labelledby="exportLabel" data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exportLabel">Tardy/Undertime Report</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <?= form_open('reports/export');?>
+                        <div class="modal-body">
+                            <label for="s_date">Start Date:</label>
+                            <input type="date" name="s_date" id="s_date" required>
+
+                            <br>
+                            <label for="e_date">End Date:</label>
+                            <input type="date" name="e_date" id="e_date" required>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Generate Report</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <div class="col py-3">
             <div class="content">
                 <?php if ($this->session->flashdata('error')){?>
