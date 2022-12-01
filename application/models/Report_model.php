@@ -150,14 +150,13 @@ class Report_model extends CI_Model{
             
         }
         $spreadsheet->getActiveSheet()->getStyle('A:I')->getAlignment()->setHorizontal('center');
-        $curr_date = date('M, Y');
 
         // set headers
         $sheet->setCellValue('A1', 'Republic of the Philippines');
         $sheet->setCellValue('A2', 'PROVINCE OF BUKIDNON');
         $sheet->setCellValue('A3', 'Provincial Capitol');
         $sheet->setCellValue('A5', 'MONTHLY TARDY AND UNDERTIME SUMMARY REPORT');
-        $sheet->setCellValue('A6', 'As of '. date('M, Y'));
+        $sheet->setCellValue('A6', 'From '. $s_date . ' to ' .$s_date);
         $sheet->setCellValue('A8', 'OFFICE: BUKIDNON PROVINCIAL HOSPITAL-KIBABWE (REGULAR)');
 
         $sheet->setCellValue('A10', 'NO');

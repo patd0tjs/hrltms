@@ -23,11 +23,21 @@
         <div class="modal-body">
 
             <label for="employee">Select Employee:</label>
-            <select name="emp_id" id="emnployee" required>
+            <select name="emp_id" id="employee" onchange="showValue()" required>
                 <?php foreach($employees as $employee):?>
-                <option value="<?= $employee['id']?>"><?= $employee['l_name'] . ', ' . $employee['f_name'] .  ' ' . $employee['m_name']?></option>
+                  <option value="<?= $employee['id']?>">
+                    <?= $employee['l_name'] . ', ' . $employee['f_name'] .  ' ' . $employee['m_name']?>
+                  </option>
                 <?php endforeach?>
             </select>
+
+            <br>
+            <?php foreach($employees as $employee):?>
+              <div id="des<?=$employee['id']?>" class="emp_designations" style="display: none">
+                <label for="designation">Designation:</label>
+                <input type="text" value="<?=$employee['designation_name']?>" id="des_<?=$employee['id']?>" disabled>
+              </div>
+            <?php endforeach?>
 
             <br>
             <label for="nature">Nature of Leave: </label>
@@ -190,5 +200,17 @@ function others(){
   } else {
     reason.display = "none";
   }
+}
+
+function showValue(){
+ let employee = document.getElementById('employee').value;
+ var designation = document.getElementById('des' + employee).style;
+
+ const collection = document.getElementsByClassName("emp_designations");
+  for (let i = 0; i < collection.length; i++) {
+    collection[i].style.display = "none";
+  }
+
+ designation.display = "block";
 }
 </script>
