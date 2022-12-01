@@ -279,6 +279,7 @@ class DateAndTime_model extends CI_Model{
             );
             $this->db->insert('leaves', $data);
     }
+
     public function get_leaves(){
         return $this->db->get('leaves')
                         ->result_array();
@@ -307,6 +308,7 @@ class DateAndTime_model extends CI_Model{
                         ->select('leaves.s_date as s_date')
                         ->select('leaves.e_date as e_date')
                         ->select('leaves.nature as nature')
+                        ->select('leaves.reason as reason')
                         ->select('leaves.date_filed as date_filed')
                         ->from('leaves')
                         ->join('employees', 'leaves.emp_id=employees.id')
@@ -323,10 +325,34 @@ class DateAndTime_model extends CI_Model{
                         ->select('leaves.s_date as s_date')
                         ->select('leaves.e_date as e_date')
                         ->select('leaves.nature as nature')
+                        ->select('leaves.reason as reason')
                         ->select('leaves.date_filed as date_filed')
                         ->from('leaves')
                         ->join('employees', 'leaves.emp_id=employees.id')
                         ->where('status', 'approved')
+                        ->get()
+                        ->result_array();
+    }
+
+    public function get_approved_leaves_data($s_date, $e_date){
+        return $this->db->select('leaves.emp_id as emp_id')
+                        ->select('employees.id as employee_id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('designations.name as designation')
+                        ->select('leaves.s_date as s_date')
+                        ->select('leaves.e_date as e_date')
+                        ->select('leaves.nature as nature')
+                        ->select('leaves.reason as reason')
+                        ->select('leaves.date_filed as date_filed')
+                        ->from('leaves')
+                        ->join('employees', 'leaves.emp_id=employees.id')
+                        ->join('employee_details', 'leaves.emp_id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->where('leaves.status', 'approved')
+                        ->where('date_filed >=', $s_date)
+                        ->where('date_filed <=', $e_date)
                         ->get()
                         ->result_array();
     }

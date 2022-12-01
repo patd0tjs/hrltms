@@ -86,6 +86,7 @@
             <th>Employee ID</th>
             <th>Employee Name</th>
             <th>Nature</th>
+            <th>Reason (Others)</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Date Filed</th>
@@ -100,6 +101,7 @@
                 <?= $request['l_name'] . ', ' . $request['f_name'] . ' ' . $request['m_name']?>
             </td>
             <td><?= $request['nature']?></td>
+            <td><?= $request['reason']?></td>
             <?php 
               $time = strtotime($request['s_date']);
               $leave_s_date = date('M d, Y',$time);
@@ -135,13 +137,18 @@
     </tbody>
  </table>
 
- <h3>Approved</h3>
+<h3>Approved</h3>
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exportLeave">
+    Export
+  </button>
+
  <table id='approved' class="table table-striped" style="width: 100%">
     <thead>
         <tr>
             <th>Employee ID</th>
             <th>Employee Name</th>
             <th>Nature</th>
+            <th>Reason (Others)</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Date Filed</th>
@@ -155,6 +162,7 @@
                 <?= $leave['l_name'] . ', ' . $leave['f_name'] . ' ' . $leave['m_name']?>
             </td>
             <td><?= $leave['nature']?></td>
+            <td><?= $leave['reason']?></td>
             <?php 
               $time = strtotime($leave['s_date']);
               $s_date = date('M d, Y',$time);
@@ -176,6 +184,32 @@
         <?php endforeach ?>
     </tbody>
  </table>
+
+ <div class="modal fade" id="exportLeave" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exportLeaveLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exportLeaveLabel">Apply For Leave</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="<?= base_url()?>reports/export_leaves" method="post">
+        <div class="modal-body">
+          <label for="s_date">Start Date: </label>
+          <input type="date" name="s_date" id="s_date" required>
+
+          <br>
+          <label for="e_date">End Date: </label>
+          <input type="date" name="e_date" id="e_date" required>
+        <div class="modal-footer">
+            <input type="hidden" name="status" value="approved">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Download</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script>
 $(document).ready(function () {
   $('#datePick').multiDatesPicker(

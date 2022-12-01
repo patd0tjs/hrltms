@@ -205,4 +205,51 @@ class Report_model extends CI_Model{
         $writer->save("php://output");
 
     }
+
+    public function leaves_report(){
+        header('Content-Type: application/vnd.ms_excel');
+        header('Content-Disposition: attachment;filename="approved_leaves.xlsx"');
+
+        $s_date = $this->input->post('s_date');
+        $e_date = $this->input->post('e_date');
+
+        $spreadsheet = new Spreadsheet();
+
+        $employees = $this->DateAndTime_model->get_approved_leaves_data($s_date, $e_date); 
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // cell merging
+        $spreadsheet->getActiveSheet()->mergeCells("A1:E1");
+        $spreadsheet->getActiveSheet()->mergeCells("A2:E2");
+        $spreadsheet->getActiveSheet()->mergeCells("A3:E3");
+        $spreadsheet->getActiveSheet()->mergeCells("A4:E4");
+
+        // set headers
+        $sheet->setCellValue('A1', 'Date: ' . $s_date . ' to ' . $e_date);
+        $sheet->setCellValue('A2', 'Subject: APPLICATION FOR LEAVE');
+        $sheet->setCellValue('A3', "Ma'am, respectfully submitting herewith the Application for Leave of BPH-Kibawe personnel, to wit;");
+        $sheet->setCellValue('A5', "NO.")->setCellValue('B5', "NAME OF EMPLOYEES")->setCellValue('C5', "DESIGNATION")->setCellValue('D5', "DATE OF LEAVE")->setCellValue('E5', "NATURE OF LEAVE");
+
+        $current_row = 6;
+
+        for($i = 0; $i < count($employees); $i++){
+            // cell generation
+            $row = $current_row + $i;
+            $sheet->setCellValue('A' . $row, 1+$i);
+            $sheet->setCellValue('B' . $row, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name']);
+            $sheet->setCellValue('C' . $row, $employees[$i]['designation']);
+            $sheet->setCellValue('D' . $row, $employees[$i]['s_date'] . ' to '. $employees[$i]['e_date']);
+            $sheet->setCellValue('E' . $row, $employees[$i]['nature']);
+        }
+        // autsize column
+        foreach (range('A', 'E') as $column) {            
+            $spreadsheet->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
+            
+        }
+
+       
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save("php://output");
+    }
 }
