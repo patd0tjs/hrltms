@@ -156,7 +156,7 @@ class Report_model extends CI_Model{
         $sheet->setCellValue('A2', 'PROVINCE OF BUKIDNON');
         $sheet->setCellValue('A3', 'Provincial Capitol');
         $sheet->setCellValue('A5', 'MONTHLY TARDY AND UNDERTIME SUMMARY REPORT');
-        $sheet->setCellValue('A6', 'From '. $s_date . ' to ' .$s_date);
+        $sheet->setCellValue('A6', 'From '. date('M d, Y',strtotime($s_date)) . ' to ' . date('M d, Y',strtotime($s_date)));
         $sheet->setCellValue('A8', 'OFFICE: BUKIDNON PROVINCIAL HOSPITAL-KIBABWE (REGULAR)');
 
         $sheet->setCellValue('A10', 'NO');
