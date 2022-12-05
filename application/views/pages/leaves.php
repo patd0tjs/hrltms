@@ -134,12 +134,14 @@ $(document).ready(function () {
 
 function others(){
   let nature = document.getElementById('nature').value;
-  let reason = document.getElementById('reason').style;
+  let reason = document.getElementById('reason');
 
   if (nature == 'Others'){
-    reason.display = "block";
+    reason.style.display = "block";
+    reason.required = true;
   } else {
-    reason.display = "none";
+    reason.style.display = "none";
+    reason.required = false;
   }
 }
 </script>
