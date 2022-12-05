@@ -58,10 +58,13 @@ class DateAndTime_model extends CI_Model{
                         ->select('employees.l_name as l_name')
                         ->select('employees.f_name as f_name')
                         ->select('employees.m_name as m_name')
+                        ->select('designations.name as designation')
                         ->select('tardy.date as date')
                         ->select('tardy.diff as diff')
                         ->from('tardy')
                         ->join('employees', 'tardy.emp_id=employees.id')
+                        ->join('employee_details', 'employees.id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
                         ->get()
                         ->result_array();
     }
@@ -71,10 +74,13 @@ class DateAndTime_model extends CI_Model{
                         ->select('employees.l_name as l_name')
                         ->select('employees.f_name as f_name')
                         ->select('employees.m_name as m_name')
+                        ->select('designations.name as designation')
                         ->select('undertime.date as date')
                         ->select('undertime.diff as diff')
                         ->from('undertime')
                         ->join('employees', 'undertime.emp_id=employees.id')
+                        ->join('employee_details', 'employees.id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
                         ->get()
                         ->result_array();
     }
@@ -305,6 +311,7 @@ class DateAndTime_model extends CI_Model{
                         ->select('employees.l_name as l_name')
                         ->select('employees.f_name as f_name')
                         ->select('employees.m_name as m_name')
+                        ->select('designations.name as designation')
                         ->select('leaves.s_date as s_date')
                         ->select('leaves.e_date as e_date')
                         ->select('leaves.nature as nature')
@@ -312,7 +319,9 @@ class DateAndTime_model extends CI_Model{
                         ->select('leaves.date_filed as date_filed')
                         ->from('leaves')
                         ->join('employees', 'leaves.emp_id=employees.id')
-                        ->where('status', 'pending')
+                        ->join('employee_details', 'leaves.emp_id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->where('leaves.status', 'pending')
                         ->get()
                         ->result_array();
     }
@@ -322,6 +331,7 @@ class DateAndTime_model extends CI_Model{
                         ->select('employees.l_name as l_name')
                         ->select('employees.f_name as f_name')
                         ->select('employees.m_name as m_name')
+                        ->select('designations.name as designation')
                         ->select('leaves.s_date as s_date')
                         ->select('leaves.e_date as e_date')
                         ->select('leaves.nature as nature')
@@ -329,7 +339,9 @@ class DateAndTime_model extends CI_Model{
                         ->select('leaves.date_filed as date_filed')
                         ->from('leaves')
                         ->join('employees', 'leaves.emp_id=employees.id')
-                        ->where('status', 'approved')
+                        ->join('employee_details', 'leaves.emp_id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->where('leaves.status', 'approved')
                         ->get()
                         ->result_array();
     }
