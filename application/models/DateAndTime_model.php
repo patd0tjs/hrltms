@@ -361,7 +361,6 @@ class DateAndTime_model extends CI_Model{
         $this->db->set('status', 'approved');
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('leaves');
-        $this->send();
     }
 
     private function send_warning($email, $violation){
