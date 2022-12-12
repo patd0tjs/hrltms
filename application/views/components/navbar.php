@@ -96,16 +96,18 @@
 
                     <?= form_open('users/change_password');?>
                         <div class="modal-body">
-                            <label for="old">Enter Old Password:</label>
-                            <input type="password" name="old" id="old" required>
 
-                            <br>
-                            <label for="pw">Enter New Password:</label>
-                            <input type="password" name="pw" id="pw" required>
+                        <div class="mb-3">
+                            <label class="form-label" for="old">Enter Old Password:</label>
+                            <input class="form-control" type="password" name="old" id="old" required></div>
 
-                            <br>
-                            <label for="pw2">Re-enter New Password:</label>
-                            <input type="password" name="pw2" id="pw2" required>
+                            <div class="mb-3">
+                            <label class="form-label" for="pw">Enter New Password:</label>
+                            <input class="form-control" type="password" name="pw" id="pw" required></div>
+
+                            <div class="mb-3">
+                            <label class="form-label" for="pw2">Re-enter New Password:</label>
+                            <input class="form-control" type="password" name="pw2" id="pw2" required></div>
 
 
                         </div>
@@ -128,12 +130,14 @@
 
                     <?= form_open('reports/export');?>
                         <div class="modal-body">
-                            <label for="s_date">Start Date:</label>
-                            <input type="date" name="s_date" id="s_date" required>
 
-                            <br>
-                            <label for="e_date">End Date:</label>
-                            <input type="date" name="e_date" id="e_date" required>
+                        <div class="mb-3">
+                            <label class="form-label" for="s_date">From:</label>
+                            <input class="form-control" type="date" name="s_date" id="s_date" required></div>
+
+                            <div class="mb-3">
+                            <label class="form-label" for="e_date">To:</label>
+                            <input class="form-control" type="date" name="e_date" id="e_date" required></div>
 
                         </div>
                         <div class="modal-footer">

@@ -156,7 +156,7 @@ class Report_model extends CI_Model{
         $sheet->setCellValue('A2', 'PROVINCE OF BUKIDNON');
         $sheet->setCellValue('A3', 'Provincial Capitol');
         $sheet->setCellValue('A5', 'MONTHLY TARDY AND UNDERTIME SUMMARY REPORT');
-        $sheet->setCellValue('A6', 'From '. date('M d, Y',strtotime($s_date)) . ' to ' . date('M d, Y',strtotime($s_date)));
+        $sheet->setCellValue('A6', 'For the month of '. date('F Y',strtotime($s_date)));
         $sheet->setCellValue('A8', 'OFFICE: BUKIDNON PROVINCIAL HOSPITAL-KIBABWE (REGULAR)');
 
         $sheet->setCellValue('A10', 'NO');
@@ -213,6 +213,10 @@ class Report_model extends CI_Model{
         $s_date = $this->input->post('s_date');
         $e_date = $this->input->post('e_date');
 
+        date_default_timezone_set('Asia/Manila');
+        $timezone = date_default_timezone_get();
+        $today = date("F d, Y");
+
         $spreadsheet = new Spreadsheet();
 
         $employees = $this->DateAndTime_model->get_approved_leaves_data($s_date, $e_date); 
@@ -225,7 +229,7 @@ class Report_model extends CI_Model{
         $spreadsheet->getActiveSheet()->mergeCells("A4:E4");
 
         // set headers
-        $sheet->setCellValue('A1', 'Date: ' . $s_date . ' to ' . $e_date);
+        $sheet->setCellValue('A1', 'Date: ' . date('F d, Y',strtotime($today)));
         $sheet->setCellValue('A2', 'Subject: APPLICATION FOR LEAVE');
         $sheet->setCellValue('A3', "Ma'am, respectfully submitting herewith the Application for Leave of BPH-Kibawe personnel, to wit;");
         $sheet->setCellValue('A5', "NO.")->setCellValue('B5', "NAME OF EMPLOYEES")->setCellValue('C5', "DESIGNATION")->setCellValue('D5', "DATE OF LEAVE")->setCellValue('E5', "NATURE OF LEAVE");
@@ -238,7 +242,7 @@ class Report_model extends CI_Model{
             $sheet->setCellValue('A' . $row, 1+$i);
             $sheet->setCellValue('B' . $row, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name']);
             $sheet->setCellValue('C' . $row, $employees[$i]['designation']);
-            $sheet->setCellValue('D' . $row, $employees[$i]['s_date'] . ' to '. $employees[$i]['e_date']);
+            $sheet->setCellValue('D' . $row, date("M d", strtotime($employees[$i]['s_date'])) . ' - ' . date("d, Y", strtotime($employees[$i]['e_date'])));
             $sheet->setCellValue('E' . $row, $employees[$i]['nature']);
         }
         // autsize column

@@ -11,6 +11,7 @@
     <tr>
       <th>Employee ID</th>
       <th>Name</th>
+      <th>Designation</th>
       <th>Date</th>
       <th>Deficiency</th>
     </tr>
@@ -20,6 +21,7 @@
       <tr>
         <td><?= $tardy['emp_id']?></td>
         <td><?= $tardy['l_name'] . ', ' . $tardy['f_name'] . ' ' . $tardy['m_name']?></td>
+        <td><?= $tardy['designation']?></td>
         <?php 
           $time = strtotime($tardy['date']);
           $newformat = date('M d, Y',$time);

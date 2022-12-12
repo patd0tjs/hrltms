@@ -8,7 +8,7 @@
 <?php } ?>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Apply For Leave
+  Add Leave
 </button>
 
 <!-- Modal -->
@@ -16,22 +16,23 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Apply For Leave</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Leave</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="<?= base_url()?>dateandtime/request_leave" method="post">
         <div class="modal-body">
 
-            <label for="employee">Select Employee:</label>
-            <select name="emp_id" id="employee" onchange="showValue()" required>
+        <div class="mb-3">
+            <label class="form-label" for="employee">Select Employee:</label>
+            <select class="form-control" name="emp_id" id="employee" onchange="showValue()" required>
                 <?php foreach($employees as $employee):?>
                   <option value="<?= $employee['id']?>">
                     <?= $employee['l_name'] . ', ' . $employee['f_name'] .  ' ' . $employee['m_name']?>
                   </option>
                 <?php endforeach?>
-            </select>
+            </select></div>
 
-            <br>
+            
             <?php foreach($employees as $employee):?>
               <div id="des<?=$employee['id']?>" class="emp_designations" style="display: none">
                 <label for="designation">Designation:</label>
@@ -39,9 +40,10 @@
               </div>
             <?php endforeach?>
 
-            <br>
-            <label for="nature">Nature of Leave: </label>
-            <select name="nature" id="nature" required onchange="others()">
+            
+            <div class="mb-3">
+            <label class="form-label" for="nature">Nature of Leave: </label>
+            <select class="form-control" name="nature" id="nature" required onchange="others()">
               <option value="Vacation Leave">Vacation Leave - Any Date</option>
               <option value="Maandatory/Force Leave">Maandatory/Force Leave - Any Date</option>
               <option value="Sick Leave">Sick Leave - Any Date</option>
@@ -58,22 +60,23 @@
               <option value="Terminal Leave">Terminal Leave - Any Date</option>
               <option value="Adoption Leave">Adoption Leave - Any Date</option>
               <option value="Others">Others</option>
-            </select>
+            </select></div>
 
-            <textarea name="reason" id="reason" cols="30" rows="10" style="display: none" placeholder="Reason" required></textarea>
+            <textarea class="form-control" name="reason" id="reason" cols="30" rows="10" style="display: none" placeholder="Reason" required></textarea>
 
-            <br>
-            <label for="s_date">Start Date: </label>
-            <input type="date" name="s_date" id="s_date" required>
+            <div class="mb-3">
+            <label class="form-label" for="s_date">Start Date: </label>
+            <input class="form-control" type="date" name="s_date" id="s_date" required></div>
 
-            <br>
-            <label for="e_date">End Date: </label>
-            <input type="date" name="e_date" id="e_date" required>
+            <div class="mb-3">
+            <label class="form-label" for="e_date">End Date: </label>
+            <input class="form-control" type="date" name="e_date" id="e_date" required></div>
+
         </div>
         <div class="modal-footer">
             <input type="hidden" name="status" value="approved">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Send Request</button>
+            <button type="submit" class="btn btn-primary">Add Leave</button>
         </div>
       </form>
     </div>
@@ -85,6 +88,7 @@
         <tr>
             <th>Employee ID</th>
             <th>Employee Name</th>
+            <th>Designation</th>
             <th>Nature</th>
             <th>Reason (Others)</th>
             <th>Start Date</th>
@@ -100,6 +104,7 @@
             <td>
                 <?= $request['l_name'] . ', ' . $request['f_name'] . ' ' . $request['m_name']?>
             </td>
+            <td><?= $request['designation']?></td>
             <td><?= $request['nature']?></td>
             <td><?= $request['reason']?></td>
             <?php 
@@ -121,12 +126,12 @@
             <td>
                 <form action="<?= base_url()?>dateandtime/approve_leave" method="post">
                     <input type="hidden" name="id" value="<?= $request['id']?>">
-                    <button class="btn btn-success" onclick="return confirm('Confirm leave approval?')">Approve</button>
+                    <button class="btn btn-success btn-sm" onclick="return confirm('Confirm leave approval?')" style="margin-bottom: 5px;">Approve</button>
                 </form>
-               
+      
               <?= form_open('dateandtime/delete_leave');?>
                 <input type="hidden" value="<?= $request['id']?>" name="id">
-                <button class="btn btn-danger" type="sumbit">
+                <button class="btn btn-danger btn-sm" type="sumbit">
                   Delete
                 </button>
               </form>
@@ -138,7 +143,7 @@
  </table>
 
 <h3>Approved</h3>
-  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exportLeave">
+  <button style="margin-bottom: 10px;" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exportLeave">
     Export
   </button>
 
@@ -147,6 +152,7 @@
         <tr>
             <th>Employee ID</th>
             <th>Employee Name</th>
+            <th>Designation</th>
             <th>Nature</th>
             <th>Reason (Others)</th>
             <th>Start Date</th>
@@ -161,6 +167,7 @@
             <td>
                 <?= $leave['l_name'] . ', ' . $leave['f_name'] . ' ' . $leave['m_name']?>
             </td>
+            <td><?= $leave['designation']?></td>
             <td><?= $leave['nature']?></td>
             <td><?= $leave['reason']?></td>
             <?php 
@@ -189,17 +196,20 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exportLeaveLabel">Apply For Leave</h1>
+        <h1 class="modal-title fs-5" id="exportLeaveLabel">Leave Report</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="<?= base_url()?>reports/export_leaves" method="post">
         <div class="modal-body">
-          <label for="s_date">Start Date: </label>
-          <input type="date" name="s_date" id="s_date" required>
 
-          <br>
-          <label for="e_date">End Date: </label>
-          <input type="date" name="e_date" id="e_date" required>
+        <div class="mb-3">
+          <label class="form-label" for="s_date">From: </label>
+          <input class="form-control" type="date" name="s_date" id="s_date" required></div>
+
+          <div class="mb-3">
+          <label class="form-label" for="e_date">To: </label>
+          <input class="form-control" type="date" name="e_date" id="e_date" required></div>
+
         <div class="modal-footer">
             <input type="hidden" name="status" value="approved">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

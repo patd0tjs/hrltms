@@ -159,7 +159,8 @@ class DateAndTime_model extends CI_Model{
         if ($time_out < $time_in){
             $e_date = date('Y-m-d', strtotime($s_date . ' + 1 day'));
         } else {
-            $e_date = $date[$i];
+            $e_date = $s_date;
+            //$e_date = $date[$i];
         }
 
         $data = array(

@@ -12,6 +12,7 @@
     <tr>
       <th>Employee ID</th>
       <th>Name</th>
+      <th>Designation</th>
       <th>Date</th>
       <th>Deficiency</th>
     </tr>
@@ -21,6 +22,7 @@
       <tr>
         <td><?= $undertime['emp_id']?></td>
         <td><?= $undertime['l_name'] . ', ' . $undertime['f_name'] . ' ' . $undertime['m_name']?></td>
+        <td><?= $undertime['designation']?></td>
         <?php 
           $time = strtotime($undertime['date']);
           $newformat = date('M d, Y',$time);

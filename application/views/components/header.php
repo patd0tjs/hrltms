@@ -29,9 +29,9 @@
             <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
 
             <link rel="stylesheet" href="<?= base_url()?>assets/styles/styles.css">
-            <title>HRIS</title>
+            <link rel="icon" href="<?= base_url()?>assets/img/logo.jpg" type="image/icon type">
+            <title>HRMIS</title>
         </head>
     <body>
-
 
         

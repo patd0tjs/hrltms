@@ -16,7 +16,7 @@
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Employee</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -24,137 +24,157 @@
         <div class="modal-body">
         <form action="<?= base_url()?>users/add_emp" method="post" enctype="multipart/form-data">
 
-          <label for="profile_pic">Employee Picture:</label>
-          <input type="file" name="profile_pic" accept="image/*" placeholder="profile_pic">
+          <div class="mb-3">
+          <label for="profile_pic" class="form-label">Employee Picture:</label>
+          <input class="form-control" type="file" type="file" name="profile_pic" accept="image/*" placeholder="profile_pic">
+          </div>
           
-          <input type="text" name="id" placeholder="employee id" required>
+          <div class="mb-3">
+          <label for="id" class="form-label">Employee ID:</label>
+          <input type="text" name="id" class="form-control" placeholder="Employee ID" required></div>
 
-          <br>
-          <input type="text" name="l_name" placeholder="surname" required>
+          <div class="mb-3">
+          <label for="l_name" class="form-label">Employee Surname:</label>
+          <input type="text" name="l_name" class="form-control" placeholder="Surname" required></div>
 
-          <br>
-          <input type="text" name="f_name" placeholder="first name" required>
+          <div class="mb-3">
+          <label for="f_name" class="form-label">Employee Firstname:</label>
+          <input type="text" class="form-control" name="f_name" placeholder="Firstname" required></div>
 
-          <br>
-          <input type="text" name="m_name" placeholder="middle name">
+          <div class="mb-3">
+          <label for="m_name" class="form-label">Employee Middlename</label>
+          <input type="text" class="form-control" name="m_name" placeholder="Middlename"></div>
 
-          <br>
-          <label for="departments">Department:</label>
-          <select id="departments" name="department" required>
+          <div class="mb-3">
+          <label for="departments" class="form-label">Department:</label>
+          <select id="departments" class="form-control" name="department" required>
             <?php foreach($departments as $department):?>
               <option value="<?= $department['id']?>"><?= $department['name']?></option>
             <?php endforeach ?>
-          </select>
+          </select></div>
 
-          <br>
-          <label for="designation">Designation:</label>
-          <select id="designation" name ="designation" required>
+          <div class="mb-3">
+          <label for="designation" class="form-label">Designation:</label>
+          <select id="designation" class="form-control" name ="designation" required>
             <?php foreach($designations as $designation):?>
               <option value="<?= $designation['id']?>"><?= $designation['name']?></option>
             <?php endforeach ?>
-          </select>
+          </select></div>
 
-          <br>
-          <label for="status">Employment Status:</label>
-          <select id="status" name="status" required>
-            <option value="regular">Regular</option>
-            <option value="irregular">Irregular</option>
-          </select>
+          <div class="mb-3">
+          <label for="status" class="form-label">Employment Status:</label>
+          <select id="status" class="form-control" name="status" required>
+            <option value="regular">Permanent</option>
+            <option value="irregular">JO</option>
+          </select></div>
 
-          <br>
-          <label for="sex">Sex:</label>
-          <select id="sex" name="sex" required>
+          <div class="mb-3">
+          <label for="sex" class="form-label">Sex:</label>
+          <select id="sex" class="form-control" name="sex" required>
             <option value="male">Male</option>
             <option value="female">Female</option>
-          </select>
+          </select></div>
+
+          <div class="mb-3">
+          <label for="bday" class="form-label">Birthday:</label>
+          <input type="date" name="bday" class="form-control" required></div>
+
+          <div class="mb-3">
+          <label for="birth_place" class="form-label">Birth Place:</label>
+          <input type="text" name="birth_place" class="form-control" placeholder="Place of Birth" required></div>
+
+          <div class="row g-3">
+          <label for="" class="form-label">Address:</label>
+          <div class="col-auto">
+          <input class="form-control" type="text" name="purok" placeholder="Purok"></div>
+          <div class="col-auto">
+          <input class="form-control" type="text" name="brgy" placeholder="Barangay" required></div>
+          <div class="col-auto">
+          <input class="form-control" type="text" name="municipality" placeholder="Municipality" required></div>
+          <div class="col-auto">
+          <input class="form-control" type="text" name="province" placeholder="Province" required></div>
+          <div class="col-auto">
+          <input class="form-control" type="number" name="zip" placeholder="Zip code" required></div></div>
 
           <br>
-          <label for="bday">Birthday:</label>
-          <input type="date" name="bday" required>
+          <div class="mb-3">
+          <label class="form-label" for="date_hired">Date Hired:</label>
+          <input class="form-control" type="date" name="date_hired" required></div>
 
-          <br>
-          <input type="text" name="birth_place" placeholder="Place of Birth" required>
+          <div class="mb-3">
+          <label class="form-label" for="plantilla">Plantilla No:</label>
+          <input class="form-control" type="number" name="plantilla" placeholder="Plantilla #"></div>
 
-          <br>
-          <label for="">Address:</label>
-
-          <br>
-          <input type="text" name="purok" placeholder="purok">
-
-          <br>
-          <input type="text" name="brgy" placeholder="barangay" required>
-          
-          <br>
-          <input type="text" name="municipality" placeholder="municipality" required>
-          
-          <br>
-          <input type="text" name="province" placeholder="province" required>
-          
-          <br>
-          <input type="number" name="zip" placeholder="zip code" required>
-
-          <br>
-          <label for="">Date Hired:</label>
-          <input type="date" name="date_hired" required>
-
-          <br>
-          <input type="number" name="plantilla" placeholder="plantilla number">
-
-          <br>
-          <label for="education">Education:</label>
-          <select name="education" id="education" required>
+          <div class="row g-3">
+          <label class="form-label" for="education">Education:</label>
+          <div class="col-auto">
+          <select class="form-control" name="education" id="education" required>
             <option value="elem">Elementary</option>
             <option value="jhs">Junior High</option>
             <option value="shs">Senior High</option>
             <option value="bachelors">Bachelor's Degree</option>
             <option value="post_grad">Post Graduate Degree</option>
-          </select>
+          </select></div>
 
-          <input type="text" name="school" placeholder="School Name" required>
-
-          <br>
-          <input type="number" name="prc" placeholder="PRC Number">
-
-          <label for="">Date of Registration:</label>
-          <input type="date" name="prc_reg">
-
-          <label for="">Date of Expiry:</label>
-          <input type="date" name="prc_exp">
+          <div class="col-auto">
+          <input class="form-control" type="text" name="school" placeholder="School Name" required></div></div>
 
           <br>
-          <input type="number" name="philhealth" placeholder="philhealth number"/>
+          <div class="mb-3">
+            <label for="prc" class="form-label">PRC No:</label>
+          <input class="form-control" type="number" name="prc" placeholder="PRC Number"></div>
+
+          <div class="row g-3">
+          <div class="col-auto">
+          <label for="prc_reg" class="form-label">Date of Registration:</label>
+          <input type="date" name="prc_reg" class="form-control"></div>
+
+          <div class="col-auto">
+          <label for="prc_exp" class="form-label">Date of Expiry:</label>
+          <input type="date" name="prc_exp" class="form-control"></div></div>
 
           <br>
-          <input type="number" name="phone" placeholder="contact number" required>
+          <div class="mb-3">
+          <label for="philhealth" class="form-label">Philhealth:</label>
+          <input class="form-control" type="number" name="philhealth" placeholder="Philhealth #"/></div>
 
-          <br>
-          <label for="marital_status">Marital Status:</label>
-          <select name="marital_status" id="marital_status" required>
+          <div class="mb-3">
+          <label for="phone" class="form-label">Phone:</label>
+          <input class="form-control" type="number" name="phone" placeholder="Contact #" required></div>
+
+          <div class="mb-3">
+          <label for="marital_status" class="form-label">Marital Status:</label>
+          <select name="marital_status" id="marital_status" class="form-control" required>
             <option value="single">Single</option>
             <option value="married">Married</option>
             <option value="separated">Separated</option>
             <option value="divorced">Divorced</option>
             <option value="widowed">Widowed</option>
-          </select>
+          </select></div>
 
-          <br>
-          <input type="number" name="gsis" placeholder="gsis number">
+          <div class="mb-3">
+          <label for="gsis" class="form-label">GSIS:</label>
+          <input type="number" name="gsis" placeholder="GSIS #" class="form-control"></div>
 
-          <br>
-          <input type="number" name="sss" placeholder="sss number">
+          <div class="mb-3">
+          <label for="sss" class="form-label">SSS:</label>
+          <input class="form-control" type="number" name="sss" placeholder="SSS #"></div>
 
-          <br>
-          <input type="number" name="pag_ibig" placeholder="pag-ibig number">
+          <div class="mb-3">
+          <label for="pag_ibig" class="form-label">Pag-Ibig:</label>
+          <input type="number" class="form-control" name="pag_ibig" placeholder="Pag-Ibig #"></div>
 
-          <br>
-          <input type="number" name="tin" placeholder="tin number" required>
+          <div class="mb-3">
+          <label for="tin" class="form-label">TIN:</label>
+          <input class="form-control" type="number" name="tin" placeholder="TIN #" required></div>
 
-          <br>
-          <input type="number" name="atm" placeholder="atm number" required>
+          <div class="mb-3">
+          <label for="atm" class="form-label">ATM:</label>
+          <input class="form-control" type="number" name="atm" placeholder="ATM #" required></div>
 
-          <br>
-          <label for="">Blood Type:</label>
-          <select name="blood_type" required>
+          <div class="mb-3">
+          <label for="blood_type" class="form-label">Blood Type:</label>
+          <select name="blood_type" class="form-control" required>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
             <option value="B+">B+</option>
@@ -163,13 +183,16 @@
             <option value="AB-">AB-</option>
             <option value="O+">O+</option>
             <option value="O-">O-</option>
-          </select>
+          </select></div>
 
-          <br>
-          <input type="email" name="email" placeholder="email" email>
+          <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" class="form-control" name="email" placeholder="email" email></div>
 
-          <br>
-          <textarea name="remarks" cols="30" rows="10" placeholder="remarks"></textarea>
+          <div class="mb-3">
+          <label for="remarks" class="form-label">Remarks:</label>
+          <textarea name="remarks" class="form-control" cols="30" rows="10" placeholder="remarks"></textarea></div>
+
         </div>
 
         <!-- submit -->
@@ -183,20 +206,23 @@
 </div>
 
 <form action="<?= base_url()?>admin/employees" method="post" id="filter" onchange="filter()">
-  <select id="departments" name="department" required>
+<br>
+  <select id="departments" name="department" class="form-control" style="max-width: 200px;" required>
     <option value="" disabled selected hidden>Select Department</option>
     <?php foreach($departments as $department):?>
       <option value="<?= $department['id']?>"><?= $department['name']?></option>
     <?php endforeach ?>
   </select>
 </form>
+<br>
 <table id="employee_tbl" class="table table-striped" style="width:100%;">
   <thead>
     <tr>
       <th>Employee ID</th>
       <th>Last Name</th>
       <th>First Name</th>
-      <th>Middle Name</th>
+      <th>Middle Name</th> 
+      <th>Designation</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -207,8 +233,9 @@
         <td><?=$emp['id']?></td>
         <td><?=$emp['l_name']?></td>
         <td><?=$emp['f_name']?></td>
-        <td><?=$emp['m_name']?></td>
-        <td>
+        <td><?=$emp['m_name']?></td> 
+        <td><?= $emp['designation_name']?></td>
+        <td>    
           <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#export<?= $emp['id']?>">
             Export
           </button>
@@ -226,7 +253,7 @@
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="emp<?= $emp['id']?>Label">Cats</h1>
+          <h1 class="modal-title fs-5" id="emp<?= $emp['id']?>Label">Update Employee Details</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -234,11 +261,11 @@
           <div class="modal-body">
           <form action="<?= base_url()?>users/edit_emp" method="post" enctype="multipart/form-data">
 
-            <label for="profile_pic">Employee Picture:</label>
-            <input type="file" name="profile_pic" accept="image/*" placeholder="profile_pic">
+          <div class="mb-3">
+            <label for="profile_pic" class="form-label">Employee Picture:</label>
+            <input type="file" name="profile_pic" class="form-control" accept="image/*" placeholder="profile_pic"></div>
 
             <input type="hidden" name="id" placeholder="employee id" value="<?= $emp['id']?>" required>
-
             <input type="hidden" name="old_pic" value="<?= $emp['id_pic']?>" required>
 
             <br>
@@ -252,20 +279,20 @@
               <tbody>
                 <tr>
                   <td>Surname:</td>
-                  <td><input type="text" name="l_name" placeholder="surname" value="<?= $emp['l_name']?>" required></td>
+                  <td><input class="form-control" type="text" name="l_name" placeholder="surname" value="<?= $emp['l_name']?>" required></td>
                 </tr>
                 <tr>
                   <td>First Name:</td>
-                  <td><input type="text" name="f_name" placeholder="first name" value="<?= $emp['f_name']?>" required></td>
+                  <td><input class="form-control" type="text" name="f_name" placeholder="first name" value="<?= $emp['f_name']?>" required></td>
                 </tr>
                 <tr>
                   <td>Middle Name:</td>
-                  <td><input type="text" name="m_name" placeholder="middle name" value="<?= $emp['m_name']?>"></td>
+                  <td><input class="form-control" type="text" name="m_name" placeholder="middle name" value="<?= $emp['m_name']?>"></td>
                 </tr>
                 <tr>
                   <td>Department:</td>
                   <td>            
-                    <select id="departments" name="department" required>
+                    <select class="form-control" id="departments" name="department" required>
                       <?php foreach($departments as $department):?>
                         <option value="<?= $department['id']?>"><?= $department['name']?></option>
                       <?php endforeach ?>
@@ -275,7 +302,7 @@
                 <tr>
                   <td>Designation:</td>
                   <td>
-                    <select id="designation" name ="designation" required>
+                    <select class="form-control" id="designation" name ="designation" required>
                       <?php foreach($designations as $designation):?>
                         <option value="<?= $designation['id']?>"><?= $designation['name']?></option>
                       <?php endforeach ?>
@@ -285,16 +312,16 @@
                 <tr>
                   <td>Employment Status:</td>
                   <td>
-                    <select id="status" name="status" required>
-                      <option value="regular">Regular</option>
-                      <option value="irregular">Irregular</option>
+                    <select class="form-control" id="status" name="status" required>
+                      <option value="regular">Permanent</option>
+                      <option value="irregular">JO</option>
                     </select>
                   </td>
                 </tr>
                 <tr>
                   <td>Sex:</td>
                   <td>
-                    <select id="sex" name="sex" required>
+                    <select class="form-control" id="sex" name="sex" required>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
@@ -302,44 +329,44 @@
                 </tr>
                 <tr>
                   <td>Birthday:</td>
-                  <td><input type="date" name="bday" value="<?= $emp['bday']?>" required></td>
+                  <td><input class="form-control" type="date" name="bday" value="<?= $emp['bday']?>" required></td>
                 </tr>
                 <tr>
                   <td>Place of Birth:</td>
-                  <td><input type="text" name="birth_place" placeholder="Place of Birth" value="<?= $emp['birth_place']?>" required></td>
+                  <td><input class="form-control" type="text" name="birth_place" placeholder="Place of Birth" value="<?= $emp['birth_place']?>" required></td>
                 </tr>
                 <tr>
                   <td>Purok:</td>
-                  <td><input type="text" name="purok" placeholder="purok" value="<?= $emp['purok']?>"></td>
+                  <td><input class="form-control" type="text" name="purok" placeholder="purok" value="<?= $emp['purok']?>"></td>
                 </tr>
                 <tr>
                   <td>Barangay:</td>
-                  <td><input type="text" name="brgy" placeholder="barangay" value="<?= $emp['brgy']?>" required></td>
+                  <td><input class="form-control" type="text" name="brgy" placeholder="barangay" value="<?= $emp['brgy']?>" required></td>
                 </tr>
                 <tr>
                   <td>Municipality:</td>
-                  <td><input type="text" name="municipality" placeholder="municipality" value="<?= $emp['municipality']?>" required></td>
+                  <td><input class="form-control" type="text" name="municipality" placeholder="municipality" value="<?= $emp['municipality']?>" required></td>
                 </tr>
                 <tr>
                   <td>Province:</td>
-                  <td><input type="text" name="province" placeholder="province" value="<?= $emp['province']?>" required></td>
+                  <td><input class="form-control" type="text" name="province" placeholder="province" value="<?= $emp['province']?>" required></td>
                 </tr>
                 <tr>
                   <td>ZIP Code:</td>
-                  <td><input type="number" name="zip" placeholder="zip code" value="<?= $emp['zip']?>" required></td>
+                  <td><input class="form-control" type="number" name="zip" placeholder="zip code" value="<?= $emp['zip']?>" required></td>
                 </tr>
                 <tr>
                   <td>Date Hired:</td>
-                  <td><input type="date" name="date_hired" value="<?= $emp['date_hired']?>" required></td>
+                  <td><input class="form-control" type="date" name="date_hired" value="<?= $emp['date_hired']?>" required></td>
                 </tr>
                 <tr>
                   <td>Plantilla:</td>
-                  <td><input type="number" name="plantilla" value="<?= $emp['plantilla']?>" placeholder="plantilla number"></td>
+                  <td><input class="form-control" type="number" name="plantilla" value="<?= $emp['plantilla']?>" placeholder="plantilla number"></td>
                 </tr>
                 <tr>
                   <td>Education:</td>
                   <td>
-                    <select name="education" id="education" required>
+                    <select class="form-control" name="education" id="education" required>
                       <option value="elem">Elementary</option>
                       <option value="jhs">Junior High</option>
                       <option value="shs">Senior High</option>
@@ -350,32 +377,32 @@
                 </tr>
                 <tr>
                   <td>School Name:</td>
-                  <td><input type="text" name="school" placeholder="School Name" value="<?= $emp['school']?>" required></td>
+                  <td><input class="form-control" type="text" name="school" placeholder="School Name" value="<?= $emp['school']?>" required></td>
                 </tr>
                 <tr>
                   <td>PRC Number:</td>
-                  <td><input type="number" name="prc" value="<?= $emp['prc']?>" placeholder="PRC Number"></td>
+                  <td><input class="form-control" type="number" name="prc" value="<?= $emp['prc']?>" placeholder="PRC Number"></td>
                 </tr>
                 <tr>
                   <td>PRC Date of Registration:</td>
-                  <td><input type="date" name="prc_reg" value="<?= $emp['prc_reg']?>"></td>
+                  <td><input class="form-control" type="date" name="prc_reg" value="<?= $emp['prc_reg']?>"></td>
                 </tr>
                 <tr>
                   <td>PRC Date of Expiry:</td>
-                  <td><input type="date" name="prc_exp" value="<?= $emp['prc_exp']?>"></td>
+                  <td><input class="form-control" type="date" name="prc_exp" value="<?= $emp['prc_exp']?>"></td>
                 </tr>
                 <tr>
                   <td>PhilHealth Number:</td>
-                  <td><input type="number" name="philhealth" value="<?= $emp['philhealth']?>" placeholder="philhealth number"/></td>
+                  <td><input class="form-control" type="number" name="philhealth" value="<?= $emp['philhealth']?>" placeholder="philhealth number"/></td>
                 </tr>
                 <tr>
                   <td>Contact Number:</td>
-                  <td><input type="number" name="phone" placeholder="contact number" value="<?= $emp['phone']?>" required></td>
+                  <td><input class="form-control" type="number" name="phone" placeholder="contact number" value="<?= $emp['phone']?>" required></td>
                 </tr>
                 <tr>
                   <td>Marital Status:</td>
                   <td>
-                    <select name="marital_status" id="marital_status" required>
+                    <select class="form-control" name="marital_status" id="marital_status" required>
                       <option value="single">Single</option>
                       <option value="married">Married</option>
                       <option value="separated">Separated</option>
@@ -386,28 +413,28 @@
                 </tr>
                 <tr>
                   <td>GSIS Number:</td>
-                  <td><input type="number" name="gsis" placeholder="gsis number" value="<?= $emp['gsis']?>"></td>
+                  <td><input class="form-control" type="number" name="gsis" placeholder="gsis number" value="<?= $emp['gsis']?>"></td>
                 </tr>
                 <tr>
                   <td>SSS Number:</td>
-                  <td><input type="number" name="sss" placeholder="sss number" value="<?= $emp['sss']?>"></td>
+                  <td><input class="form-control" type="number" name="sss" placeholder="sss number" value="<?= $emp['sss']?>"></td>
                 </tr>
                 <tr>
                   <td>Pag-Ibig Number:</td>
-                  <td><input type="number" name="pag_ibig" placeholder="pag-ibig number" value="<?= $emp['pag_ibig']?>"></td>
+                  <td><input class="form-control" type="number" name="pag_ibig" placeholder="pag-ibig number" value="<?= $emp['pag_ibig']?>"></td>
                 </tr>
                 <tr>
                   <td>TIN Number:</td>
-                  <td><input type="number" name="tin" placeholder="tin number" value="<?= $emp['tin']?>" required></td>
+                  <td><input class="form-control" type="number" name="tin" placeholder="tin number" value="<?= $emp['tin']?>" required></td>
                 </tr>
                 <tr>
                   <td>ATM Number:</td>
-                  <td><input type="number" name="atm" placeholder="atm number" value="<?= $emp['atm']?>" required></td>
+                  <td><input class="form-control" type="number" name="atm" placeholder="atm number" value="<?= $emp['atm']?>" required></td>
                 </tr>
                 <tr>
                   <td>Blood Type:</td>
                   <td>
-                    <select name="blood_type" required>
+                    <select class="form-control" name="blood_type" required>
                       <option value="A+">A+</option>
                       <option value="A-">A-</option>
                       <option value="B+">B+</option>
@@ -421,11 +448,11 @@
                 </tr>
                 <tr>
                   <td>Email:</td>
-                  <td><input type="email" name="email" placeholder="email" value="<?= $emp['email']?>" required></td>
+                  <td><input class="form-control" type="email" name="email" placeholder="email" value="<?= $emp['email']?>" required></td>
                 </tr>
                 <tr>
                   <td>Remarks:</td>
-                  <td><textarea name="remarks" cols="30" rows="10" placeholder="remarks"><?= $emp['remarks']?></textarea></td>
+                  <td><textarea class="form-control" name="remarks" cols="30" rows="10" placeholder="remarks"><?= $emp['remarks']?></textarea></td>
                 </tr>
               </tbody>
             </table>
@@ -626,7 +653,7 @@
 function filter(){
   document.getElementById('filter').submit();
 }
-
+/*
 $(document).ready(function () {
     $('#employee_tbl').DataTable({
         dom: 'Bfrtip',
@@ -636,4 +663,5 @@ $(document).ready(function () {
     }
     );
 });
+*/
 </script>

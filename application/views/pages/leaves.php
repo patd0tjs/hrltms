@@ -14,8 +14,9 @@
       <form action="<?= base_url()?>dateandtime/request_leave" method="post">
         <div class="modal-body">
 
-            <label for="nature">Nature of Leave: </label>
-            <select name="nature" id="nature" required onchange="others()">
+        <div class="mb-3">
+            <label class="form-label" for="nature">Nature of Leave: </label>
+            <select class="form-control" name="nature" id="nature" required onchange="others()">
               <option value="Vacation Leave">Vacation Leave - Any Date</option>
               <option value="Maandatory/Force Leave">Maandatory/Force Leave - Any Date</option>
               <option value="Sick Leave">Sick Leave - Any Date</option>
@@ -32,16 +33,18 @@
               <option value="Terminal Leave">Terminal Leave - Any Date</option>
               <option value="Adoption Leave">Adoption Leave - Any Date</option>
               <option value="Others">Others</option>
-            </select>
+            </select></div>
 
-            <textarea name="reason" id="reason" cols="30" rows="10" style="display: none" placeholder="Reason" required></textarea>
-            <br>
-            <label for="s_date">Start Date: </label>
-            <input type="date" name="s_date" id="s_date" required>
+            <textarea class="form-control" name="reason" id="reason" cols="30" rows="10" style="display: none" placeholder="Reason" required></textarea>
+            
+            <div class="mb-3">
+            <label class="form-label" for="s_date">Start Date: </label>
+            <input class="form-control" type="date" name="s_date" id="s_date" required></div>
 
-            <br>
-            <label for="e_date">End Date: </label>
-            <input type="date" name="e_date" id="e_date" required>
+            <div class="mb-3">
+            <label class="form-label" for="e_date">End Date: </label>
+            <input class="form-control" type="date" name="e_date" id="e_date" required></div>
+            
         </div>
         <div class="modal-footer">
             <input type="hidden" name="emp_id" value="<?=$this->session->id?>">
@@ -144,4 +147,5 @@ function others(){
     reason.required = false;
   }
 }
+
 </script>

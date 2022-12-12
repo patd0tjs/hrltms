@@ -19,7 +19,7 @@
  
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button style="margin-bottom: 10px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Add Schedule
 </button>
 
@@ -28,7 +28,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Schedule</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -37,23 +37,26 @@
         <div class="modal-body">
 
         <!-- select employee -->
-          <label for="employee">Select Employee:</label>
-          <select name="employee" id="emnployee" required>
+        <div class="mb-3">
+          <label class="form-label" for="employee">Select Employee:</label>
+          <select class="form-control" name="employee" id="emnployee" required>
             <?php foreach($employees as $employee):?>
               <option value="<?= $employee['id']?>"><?= $employee['l_name'] . ', ' . $employee['f_name'] .  ' ' . $employee['m_name']?></option>
             <?php endforeach?>
-          </select>
+          </select></div>
 
-          <br>
-          <label for="datePick">Select Dates: </label>
-          <input type="text" id="datePick" name="date" required/>
+          <div class="mb-3">
+          <label class="form-label" for="datePick">Select Dates: </label>
+          <input class="form-control" type="text" id="datePick" name="date" required/></div>
 
-          <br>
-          <label for="time_in">Time In:</label>
-          <input type="time" name="time_in" id="time_in">
-          <br>
-          <label for="time_in">Time Out:</label>
-          <input type="time" name="time_out" id="time_out">
+          <div class="mb-3">
+          <label class="form-label" for="time_in">Time In:</label>
+          <input class="form-control" type="time" name="time_in" id="time_in"></div>
+          
+          <div class="mb-3">
+          <label class="form-label" for="time_in">Time Out:</label>
+          <input class="form-control" type="time" name="time_out" id="time_out"></div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -70,6 +73,7 @@
     <tr>
       <th>Employee ID</th>
       <th>Name</th>
+      <th>Designation</th>
       <th>Start Date</th>
       <th>End Date</th>
       <th>Time In</th>
@@ -82,7 +86,7 @@
       <tr>
         <td><?= $schedule['emp_id']?></td>
         <td><?= $schedule['l_name'] . ', ' . $schedule['f_name'] . ' ' . $schedule['m_name']?></td>
-        
+        <td><?= $schedule['designation']?></td>
         <?php 
           $s_date = strtotime($schedule['s_date']);
           $new_s_date = date('M d, Y',$s_date);
@@ -98,12 +102,12 @@
         <td><?= date('g:i a', strtotime($schedule['time_in']))?></td>
         <td><?= date('g:i a', strtotime($schedule['time_out']))?></td>
         <td>
-          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#sched<?= $schedule['id']?>">
+          <button style="margin-bottom: 5px;" type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#sched<?= $schedule['id']?>">
             Edit
           </button>
           <?= form_open('dateandtime/delete_sched');?>
             <input type="hidden" value="<?= $schedule['id']?>" name="id">
-            <button class="btn btn-danger" type="sumbit">
+            <button class="btn btn-danger btn-sm" type="sumbit">
               Delete
             </button>
           </form>
@@ -118,7 +122,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="sched<?= $schedule['id']?>Label">Modal title</h1>
+          <h1 class="modal-title fs-5" id="sched<?= $schedule['id']?>Label">Update Schedule</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -127,23 +131,26 @@
           <div class="modal-body">
 
           <!-- select employee -->
-            <label for="employee">Employee:</label>
-            <input type="text" value="<?= $schedule['l_name'] . ', ' . $schedule['f_name'] .  ' ' . $schedule['m_name']?>" disabled>
+          <div class="mb-3">
+            <label class="form-label" for="employee">Employee:</label>
+            <input class="form-control" type="text" value="<?= $schedule['l_name'] . ', ' . $schedule['f_name'] .  ' ' . $schedule['m_name']?>" disabled></div>
 
-            <br>
-            <label for="datePick">Start Date: </label>
-            <input type="date" id="datePick" name="s_date" value="<?= $schedule['s_date']?>" required/>
+            <div class="mb-3">
+            <label class="form-label" for="datePick">Start Date: </label>
+            <input class="form-control" type="date" id="datePick" name="s_date" value="<?= $schedule['s_date']?>" required/></div>
 
-            <br>
-            <label for="datePick">End Date: </label>
-            <input type="date" id="datePick" name="e_date" value="<?= $schedule['e_date']?>" required/>
+            <div class="mb-3">
+            <label class="form-label" for="datePick">End Date: </label>
+            <input class="form-control" type="date" id="datePick" name="e_date" value="<?= $schedule['e_date']?>" required/></div>
 
-            <br>
-            <label for="time_in">Time In:</label>
-            <input type="time" name="time_in" id="time_in" value="<?= $schedule['time_in']?>">
-            <br>
-            <label for="time_in">Time Out:</label>
-            <input type="time" name="time_out" id="time_out" value="<?= $schedule['time_out']?>">
+            <div class="mb-3">
+            <label class="form-label" for="time_in">Time In:</label>
+            <input class="form-control" type="time" name="time_in" id="time_in" value="<?= $schedule['time_in']?>"></div>
+            
+            <div class="mb-3">
+            <label class="form-label" for="time_in">Time Out:</label>
+            <input class="form-control" type="time" name="time_out" id="time_out" value="<?= $schedule['time_out']?>"></div>
+
           </div>
 
           <div class="modal-footer">

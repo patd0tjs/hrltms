@@ -148,7 +148,7 @@ class Pages extends CI_Controller{
             $data = array(
                 'employees' => $this->Users_model->get_employees(),
                 'dtr'       => $this->DateAndTime_model->get_dtr(),
-                'title'     => 'Daily Time Report'
+                'title'     => 'Daily Time Record'
             );
 
             $this->load->view('components/header');
@@ -168,7 +168,7 @@ class Pages extends CI_Controller{
 
             $data =array (
                 'my_info' => $this->Users_model->my_profile(),
-                'title'   => 'My Profile'
+                'title'   => 'Employee Profile'
             );
 
             $this->load->view('components/header');
@@ -186,7 +186,7 @@ class Pages extends CI_Controller{
         if((!empty($this->session->id)) && ($this->session->id !== 'admin')){
             
             $data = array(
-                'title' => 'My Leaves',
+                'title' => 'Employee Leaves',
                 'pending' => $this->DateAndTime_model->my_pending_leaves(),
                 'approved' => $this->DateAndTime_model->my_approved_leaves(),
             );
@@ -206,7 +206,7 @@ class Pages extends CI_Controller{
             $data = array(
                 'my_tardy'     => $this->DateAndTime_model->my_tardy(),
                 'my_undertime' => $this->DateAndTime_model->my_undertime(),
-                'title'        => 'My Deficiencies'
+                'title'        => 'Employee Deficiencies'
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);
