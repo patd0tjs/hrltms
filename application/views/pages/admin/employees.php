@@ -653,15 +653,9 @@
 function filter(){
   document.getElementById('filter').submit();
 }
-/*
+
 $(document).ready(function () {
-    $('#employee_tbl').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'pdf' 
-        ]
-    }
-    );
+    $('#employee_tbl').DataTable();
 });
-*/
+
 </script>
