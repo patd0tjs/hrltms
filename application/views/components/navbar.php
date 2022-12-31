@@ -79,7 +79,6 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#changePass">Change Password</a></li>
-                        <li><a class="dropdown-item" href="<?= base_url()?>login">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -150,6 +149,7 @@
         </div>
 
         <div class="col py-3">
+            <?php $this->load->view('components/topbar'); ?>
             <div class="content">
                 <?php if ($this->session->flashdata('error')){?>
 
@@ -165,5 +165,6 @@
                     </div>
                 <?php } ?>
 
+                
                 <h1><?= $title?></h1>
             
