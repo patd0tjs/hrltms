@@ -124,8 +124,17 @@ class DateAndTime_model extends CI_Model{
                 'time_in'  => $time_in,
                 'time_out' => $time_out,
             );
-           
-            $this->db->insert('schedule', $data);
+
+            $schedules = $this->db->where('s_date', $date[$i])
+                                  ->get('schedule')
+                                  ->num_rows();
+
+            if($schedules <= 0){
+                $this->db->insert('schedule', $data);
+            } else {
+                $this->session->set_flashdata('error', 'Conflicting schedules. Some schedules are not added');
+            }
+            
         }
     }
 
