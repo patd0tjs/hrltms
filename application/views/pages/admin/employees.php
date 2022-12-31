@@ -1,3 +1,24 @@
+<!-- this script should load first -->
+<script>
+  function check_id(){
+  let warning = document.getElementById('id_warn').style;
+  let id = document.getElementById('id').value;
+
+  const usernames = [
+    <?php foreach($employees as $emp):?>
+    '<?= $emp['id']?>',
+    <?php endforeach;?>
+  ];
+
+  if(usernames.includes(id)){
+    warning.display = 'block';
+  } else {
+    warning.display = 'none';
+  }
+
+}
+</script>
+
 <?php if ($this->session->flashdata('error')){?>
 
 <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert">
@@ -31,7 +52,8 @@
           
           <div class="mb-3">
           <label for="id" class="form-label">Employee ID:</label>
-          <input type="text" name="id" class="form-control" placeholder="Employee ID" required></div>
+          <input type="text" name="id" id="id" class="form-control" placeholder="Employee ID" onkeyup="check_id()" required></div>
+          <p id="id_warn" style="color: red; display: none">employee id already exists</p>
 
           <div class="mb-3">
           <label for="l_name" class="form-label">Employee Surname:</label>

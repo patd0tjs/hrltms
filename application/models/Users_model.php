@@ -59,7 +59,7 @@ class Users_model extends CI_Model{
     }
 
     // upload photo logic
-    public function uploadPhoto(){
+    private function uploadPhoto(){
         define('MB', 1048576);
         $extension = array("JPG", "JPEG", "PNG");
 

@@ -1,6 +1,6 @@
 <style>
 .recovery{
-    width: 50%;
+    width: 70%;
     margin-top: 5%;
     border-style: 1px solid black;
     padding: 5%;
@@ -25,6 +25,11 @@ h6 {
     text-align: left;
 }
 
+#login-logo{
+    width: 70%;
+    margin-top: 8%
+}
+
 </style>
 <center>
     <?php if ($this->session->flashdata('error')){?>
@@ -36,15 +41,24 @@ h6 {
         
     <?php } ?>
 
-    <div class="recovery">
-        <form action="<?= base_url()?>users/validate_code" method="post">
-            <h6>Please enter the recovery code that was sent to your email:</h6>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name="code" placeholder="code" required>
+    <div class="row">
+        <div class="col">
+            <div align="right">
+                <img src="<?= base_url()?>assets/img/logo-2.png" id="login-logo"> 
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-8">
+            <div class="recovery">
+                <form action="<?= base_url()?>users/validate_code" method="post">
+                    <h6>Please enter the recovery code that was sent to your email:</h6>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="code" placeholder="code" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
 
-        </form>
+                </form>
+            </div>
+        </div>
     </div>
 </center>
 <!-- for missing closing tags -->

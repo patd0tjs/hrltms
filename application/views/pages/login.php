@@ -1,6 +1,6 @@
 <style>
 .login{
-    width: 50%;
+    width: 70%;
     margin-top: 5%;
     border-style: 1px solid black;
     padding: 5%;
@@ -25,6 +25,11 @@ a{
     color: black;
 }
 
+#login-logo{
+    width: 70%;
+    margin-top: 8%
+}
+
 </style>
 <center>
     <?php if ($this->session->flashdata('error')){?>
@@ -41,24 +46,39 @@ a{
         </div>
     <?php } ?>
 
-    <div class="login">
-        <form action="<?= base_url()?>users/login" method="post">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username" required>
-                <label for="floatingInput">Username ID</label>
+    <div class="row">
+        <div class="col">
+            <div align="right">
+                <img src="<?= base_url()?>assets/img/logo-2.png" id="login-logo"> 
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" name="pw" placeholder="Password" required>
-                <label for="floatingPassword">Password</label>
+             
+        </div>
+         <div class="col-8">
+            <div class="login">
+                <form action="<?= base_url()?>users/login" method="post">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username" required>
+                        <label for="floatingInput">Username ID</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="floatingPassword" name="pw" placeholder="Password" required>
+                        <label for="floatingPassword">Password</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Login</button>
+
+                </form>
+                <br>
+                <a href="recovery">Forgot Password?</a>
             </div>
-
-            <button type="submit" class="btn btn-primary">Login</button>
-
-        </form>
-        <br>
-        <a href="recovery">Forgot Password?</a>
+         </div>
     </div>
+
 </center>
+
+
+
+
 <!-- for missing closing tags -->
 </div>
 </div>
