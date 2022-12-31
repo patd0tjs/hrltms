@@ -85,9 +85,10 @@
 
           <div class="mb-3">
           <label for="status" class="form-label">Employment Status:</label>
-          <select id="status" class="form-control" name="status" required>
+          <select id="status" class="form-control" name="status" onchange="disablePlantilla()" required>
             <option value="regular">Permanent</option>
             <option value="irregular">JO</option>
+            <option value="casual">Casual</option>
           </select></div>
 
           <div class="mb-3">
@@ -123,9 +124,10 @@
           <label class="form-label" for="date_hired">Date Hired:</label>
           <input class="form-control" type="date" name="date_hired" required></div>
 
-          <div class="mb-3">
-          <label class="form-label" for="plantilla">Plantilla No:</label>
-          <input class="form-control" type="number" name="plantilla" placeholder="Plantilla #"></div>
+          <div class="mb-3" id="plantilla">
+            <label class="form-label" for="plantilla">Plantilla No:</label>
+            <input class="form-control" type="number" name="plantilla" placeholder="Plantilla #">
+          </div>
 
           <div class="row g-3">
           <label class="form-label" for="education">Education:</label>
@@ -336,9 +338,10 @@
                 <tr>
                   <td>Employment Status:</td>
                   <td>
-                    <select class="form-control" id="status" name="status" required>
+                    <select class="form-control" id="status_edit" name="status" required>
                       <option value="regular">Permanent</option>
                       <option value="irregular">JO</option>
+                      <option value="casual">Casual</option>
                     </select>
                   </td>
                 </tr>
@@ -682,4 +685,14 @@ $(document).ready(function () {
     $('#employee_tbl').DataTable();
 });
 
+function disablePlantilla(){
+  let status = document.getElementById('status').value;
+  let plantilla = document.getElementById('plantilla').style;
+
+  if(status == "irregular"){
+    plantilla.display = "none";
+  } else {
+    plantilla.display = "block";
+  }
+}
 </script>
