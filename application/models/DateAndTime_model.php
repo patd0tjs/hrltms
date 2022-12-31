@@ -126,6 +126,7 @@ class DateAndTime_model extends CI_Model{
             );
 
             $schedules = $this->db->where('s_date', $date[$i])
+                                  ->where('emp_id', $this->input->post('employee'))
                                   ->get('schedule')
                                   ->num_rows();
 
@@ -159,7 +160,7 @@ class DateAndTime_model extends CI_Model{
 
     // add dtr
     public function add_dtr(){
-        $this->compute_tardy();
+        // $this->compute_tardy();
 
         $time_in = $this->input->post('time_in');
         $time_out = $this->input->post('time_out');
@@ -180,19 +181,29 @@ class DateAndTime_model extends CI_Model{
             'time_out' => $time_out,
         );
 
-        $this->db->insert('dtr', $data);
+        $schedules = $this->db->where('s_date', $this->input->post('date'))
+                              ->where('emp_id', $this->input->post('employee'))
+                              ->get('schedule')
+                              ->num_rows();
 
-        if($this->compute_tardy()){
-            $tardy = $this->compute_tardy();
-            $this->add_tardy($tardy);
-            $this->count_tardy($tardy);
-        };
+        if($schedules > 0){
+            $this->db->insert('dtr', $data);
 
-        if($this->compute_undertime()){
-            $undertime = $this->compute_undertime();
-            $this->add_undertime($undertime);
-            $this->count_tardy($undertime);
-        };
+            if($this->compute_tardy()){
+                $tardy = $this->compute_tardy();
+                $this->add_tardy($tardy);
+                $this->count_tardy($tardy);
+            };
+    
+            if($this->compute_undertime()){
+                $undertime = $this->compute_undertime();
+                $this->add_undertime($undertime);
+                $this->count_tardy($undertime);
+            };
+
+        } else {
+            $this->session->set_flashdata('error', "Employee schedule doesn't exists. DTR not added");
+        }
     }
 
     // count tardy
