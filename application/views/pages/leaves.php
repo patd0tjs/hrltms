@@ -62,7 +62,7 @@
               <input type="hidden" name="emp_id" value="<?=$this->session->id?>">
               <input type="hidden" name="status" value="pending">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Send Request</button>
+              <button type="submit" onclick="return confirm('Send leave application?')" class="btn btn-primary">Send Request</button>
           </div>
         </form>
       </div>
