@@ -16,9 +16,9 @@ class Users_model extends CI_Model{
     // get employee information
     public function my_profile(){
         return $this->db->select('employees.id')
-                        ->select('employees.l_name')
-                        ->select('employees.f_name')
-                        ->select('employees.m_name')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
                         ->select('employee_details.id_pic')
                         ->select('departments.name as department')
                         ->select('designations.name as designation')

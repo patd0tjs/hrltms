@@ -3,6 +3,18 @@
 <br><br><br><br><br><br><br>
 <div class="row row-cols-3">
     <div class="col">
+        <label class="form-label" for="">Last Name: </label>
+        <input class="form-control" type="text" value="<?= $my_info['l_name']?>" disabled>
+    </div>
+    <div class="col">
+        <label class="form-label" for="">First Name: </label>
+        <input class="form-control" type="text" value="<?= $my_info['f_name']?>" disabled>
+    </div>
+    <div class="col">
+        <label class="form-label" for="">Middle Name: </label>
+        <input class="form-control" type="text" value="<?= $my_info['m_name']?>" disabled>
+    </div>
+    <div class="col">
         <label class="form-label" for="">Employee ID: </label>
         <input class="form-control" type="text" value="<?= $my_info['id']?>" disabled>
     </div>

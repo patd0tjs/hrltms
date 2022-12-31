@@ -243,7 +243,8 @@
       <th>Employee ID</th>
       <th>Last Name</th>
       <th>First Name</th>
-      <th>Middle Name</th> 
+      <th>Middle Name</th>
+      <th>Gender</th> 
       <th>Designation</th>
       <th>Action</th>
     </tr>
@@ -255,7 +256,8 @@
         <td><?=$emp['id']?></td>
         <td><?=$emp['l_name']?></td>
         <td><?=$emp['f_name']?></td>
-        <td><?=$emp['m_name']?></td> 
+        <td><?=$emp['m_name']?></td>
+        <td><?=$emp['sex']?></td>
         <td><?= $emp['designation_name']?></td>
         <td>    
           <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#export<?= $emp['id']?>">
