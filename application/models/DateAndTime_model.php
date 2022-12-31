@@ -380,6 +380,8 @@ class DateAndTime_model extends CI_Model{
         $this->db->set('status', 'approved');
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('leaves');
+
+        $this->send_leave_approval($this->input->post('id'));
     }
 
     private function send_warning($email, $violation){
@@ -400,6 +402,39 @@ class DateAndTime_model extends CI_Model{
        
 
         $mailContent = "You have exceeded the amount of $violation. Please visit the HR office immediately";
+        $mail->Body = $mailContent;
+        $mail->send();
+
+    }
+
+    private function send_leave_approval($leave_id){
+
+        $leave = $this->db->select('employee_details.email as email')
+                          ->select('leaves.s_date as from')
+                          ->select('leaves.e_date as to')
+                          ->from('leaves')
+                          ->join('employee_details', 'leaves.emp_id=employee_details.id')
+                          ->where('leaves.id', $leave_id)
+                          ->get()
+                          ->row_array();
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host     = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'noreplybphkibawe@gmail.com';
+        $mail->Password = 'dcrlabifhkcfgzqd';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port     = 465;
+       
+        $mail->setFrom('noreplybphkibawe@gmail.com', 'HRMIS');
+       
+        $mail->addAddress($leave['email']);
+
+        $mail->Subject = 'Leave approval';
+       
+
+        $mailContent = "Your leave application with dates starting from" . $leave['from'] . ' to ' . $leave['to'] . ' has been approved!';
         $mail->Body = $mailContent;
         $mail->send();
 
