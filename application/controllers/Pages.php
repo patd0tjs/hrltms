@@ -32,10 +32,11 @@ class Pages extends CI_Controller{
     public function dashboard(){
         if($this->session->id == 'admin'){
             $data = array(
-                'title'     => "Dashboard",
-                'employees' => $this->Users_model->get_employees(),
-                'tardies'   => $this->DateAndTime_model->get_tardy(),
-                'leaves'    => $this->DateAndTime_model->get_approved_leaves(),
+                'title'          => "Dashboard",
+                'employees'      => $this->Users_model->get_employees(),
+                'tardies'        => $this->DateAndTime_model->get_tardy(),
+                'leaves'         => $this->DateAndTime_model->get_approved_leaves(),
+                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves()
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);
@@ -56,10 +57,11 @@ class Pages extends CI_Controller{
             }
 
             $data = array(
-                'departments'  => $this->Users_model->get_departments(),
-                'designations' => $this->Users_model->get_designations(),
-                'employees'    => $employees,
-                'title'        => 'Employees'
+                'departments'    => $this->Users_model->get_departments(),
+                'designations'   => $this->Users_model->get_designations(),
+                'employees'      => $employees,
+                'title'          => 'Employees',
+                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves()
             );
 
             $this->load->view('components/header');
@@ -76,10 +78,11 @@ class Pages extends CI_Controller{
         if($this->session->id == 'admin'){
 
             $data = array(
-                'title'      => 'Employee Leave Requests',
-                'employees'  => $this->Users_model->get_employees(),
-                'pending'    => $this->DateAndTime_model->get_pending_leaves(),
-                'approved'   => $this->DateAndTime_model->get_approved_leaves(),
+                'title'          => 'Employee Leave Requests',
+                'employees'      => $this->Users_model->get_employees(),
+                'pending'        => $this->DateAndTime_model->get_pending_leaves(),
+                'approved'       => $this->DateAndTime_model->get_approved_leaves(),
+                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves()
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);
@@ -94,8 +97,9 @@ class Pages extends CI_Controller{
     public function tardy(){
         if($this->session->id == 'admin'){
             $data = array(
-                'tardies' => $this->DateAndTime_model->get_tardy(),
-                'title'   => 'Tardy'
+                'tardies'        => $this->DateAndTime_model->get_tardy(),
+                'title'          => 'Tardy',
+                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves()
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);
@@ -110,8 +114,9 @@ class Pages extends CI_Controller{
     public function undertime(){
         if($this->session->id == 'admin'){
             $data = array(
-                'undertimes' => $this->DateAndTime_model->get_undertime(),
-                'title'      => 'Undertime'
+                'undertimes'     => $this->DateAndTime_model->get_undertime(),
+                'title'          => 'Undertime',
+                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves()
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);
@@ -127,9 +132,10 @@ class Pages extends CI_Controller{
     public function schedules(){
         if($this->session->id == 'admin'){
             $data = array(
-                'employees' => $this->Users_model->get_employees(),
-                'schedules' => $this->DateAndTime_model->get_schedules(),
-                'title'     => 'Schedules'
+                'employees'      => $this->Users_model->get_employees(),
+                'schedules'      => $this->DateAndTime_model->get_schedules(),
+                'title'          => 'Schedules',
+                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves()
             );
 
             $this->load->view('components/header');
@@ -146,9 +152,10 @@ class Pages extends CI_Controller{
     public function dtr(){
         if($this->session->id == 'admin'){
             $data = array(
-                'employees' => $this->Users_model->get_employees(),
-                'dtr'       => $this->DateAndTime_model->get_dtr(),
-                'title'     => 'Daily Time Record'
+                'employees'      => $this->Users_model->get_employees(),
+                'dtr'            => $this->DateAndTime_model->get_dtr(),
+                'title'          => 'Daily Time Record',
+                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves()
             );
 
             $this->load->view('components/header');

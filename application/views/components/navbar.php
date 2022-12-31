@@ -13,45 +13,45 @@
                     <?php if($this->session->id == 'admin'){?>
                         <li class="nav-item">
                             <a href="<?= base_url()?>admin" class="nav-link align-middle px-0" style="color: white">
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                                <span class="ms-1 d-none d-sm-inline">Dashboard</span>
                             </a>
                         </li>
                         <li>
                             <a href="<?= base_url()?>admin/employees" class="nav-link px-0 align-middle" style="color: white">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Employees</span>
+                                <span class="ms-1 d-none d-sm-inline">Employees</span>
                             </a>
                         </li>
                         <li>
                             <a href="<?= base_url()?>admin/dtr" class="nav-link px-0 align-middle" style="color: white">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">DTR</span>
+                                <span class="ms-1 d-none d-sm-inline">DTR</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="<?= base_url()?>admin/schedules" class="nav-link px-0 align-middle" style="color: white">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Schedules</span>
+                                <span class="ms-1 d-none d-sm-inline">Schedules</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="<?= base_url()?>admin/tardy" class="nav-link px-0 align-middle" style="color: white">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Tardy</span>
+                                <span class="ms-1 d-none d-sm-inline">Tardy</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="<?= base_url()?>admin/undertime" class="nav-link px-0 align-middle" style="color: white">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Undertime</span>
+                                <span class="ms-1 d-none d-sm-inline">Undertime</span>
                             </a>
                         </li>
                         <li>
                             <a href="<?= base_url()?>admin/leaves" class="nav-link px-0 align-middle" style="color: white">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Leaves</span>
+                                <span class="ms-1 d-none d-sm-inline">Leaves <i class="bi bi-bell-fill"></i> <?= count($pending_leaves)?></span>
                             </a>
                         </li>
                         <li>
                             <a role="button" data-bs-toggle="modal" data-bs-target="#export" class="nav-link px-0 align-middle" style="color: white">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Tardy/Undertime Report</span>
+                                <span class="ms-1 d-none d-sm-inline">Tardy/Undertime Report</span>
                             </a>
                         </li>
                     <?php } else {?>
@@ -62,12 +62,12 @@
                         </li>
                         <li>
                             <a href="<?= base_url()?>deficiencies" class="nav-link px-0 align-middle" style="color: white">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Deficiencies</span>
+                                <span class="ms-1 d-none d-sm-inline">Deficiencies</span>
                             </a>
                         </li>
                         <li>
                             <a href="<?= base_url()?>leaves" class="nav-link px-0 align-middle" style="color: white">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Leaves</span>
+                                <span class="ms-1 d-none d-sm-inline">Leaves</span>
                             </a>
                         </li>
                     <?php } ?>
