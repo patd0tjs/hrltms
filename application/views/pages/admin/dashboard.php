@@ -23,6 +23,7 @@
   </div>
 </div>
 
+<br>
 <figure class="highcharts-figure">
   <div id="container"></div>
 </figure>
@@ -37,7 +38,7 @@ Highcharts.chart('container', {
     type: 'pie'
   },
   title: {
-    text: 'Overall count'
+    text: 'Data count: <?= count($employees) + count($leaves) + count($tardies)?>'
   },
   tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
