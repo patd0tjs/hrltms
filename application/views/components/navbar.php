@@ -57,7 +57,12 @@
                     <?php } else {?>
                         <li class="nav-item">
                             <a href="<?= base_url()?>profile" class="nav-link align-middle px-0" style="color: white">
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Profile</span>
+                                <span class="ms-1 d-none d-sm-inline">Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url()?>schedule" class="nav-link px-0 align-middle" style="color: white">
+                                <span class="ms-1 d-none d-sm-inline">Schedule</span>
                             </a>
                         </li>
                         <li>

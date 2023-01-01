@@ -163,7 +163,7 @@
     </div>
   </div>
 <?php endforeach?>
-  <script>
+<script>
     $(document).ready(function () {
       $('#datePick').multiDatesPicker(
         { dateFormat: 'yy-m-d' }
@@ -171,15 +171,15 @@
     });
 
     $(document).ready(function () {
-    $('#schedules').DataTable(
-      {
-        dom: 'Bfrtip',
-        buttons: [
-            'pdf' 
-        ]
-    }
-    );
-});
-  </script>
+      $('#schedules').DataTable(
+        {
+          dom: 'Bfrtip',
+          buttons: [
+              'pdf' 
+          ]
+      }
+      ) ;
+    });
+</script>
 
   

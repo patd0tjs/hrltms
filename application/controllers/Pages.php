@@ -225,6 +225,23 @@ class Pages extends CI_Controller{
         }
     }
 
+    public function my_schedule(){
+        if((!empty($this->session->id)) && ($this->session->id !== 'admin')){
+
+            $data = array(
+                'my_schedules' => $this->DateAndTime_model->my_schedules(),
+                'title'        => 'My Schedule'
+            );
+            $this->load->view('components/header');
+            $this->load->view('components/navbar', $data);
+            $this->load->view('pages/schedule', $data);
+            $this->load->view('components/footer');
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
+
     public function validate(){
         if((!empty($this->session->recovery_id))){
 

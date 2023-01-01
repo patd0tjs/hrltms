@@ -30,6 +30,26 @@ class DateAndTime_model extends CI_Model{
                         ->result_array();
     }
 
+    public function my_schedules(){
+        return $this->db->select('schedule.emp_id as emp_id')
+                        ->select('schedule.id as id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('designations.name as designation')
+                        ->select('schedule.s_date as s_date')
+                        ->select('schedule.e_date as e_date')
+                        ->select('schedule.time_in as time_in')
+                        ->select('schedule.time_out as time_out')
+                        ->from('schedule')
+                        ->join('employees', 'schedule.emp_id=employees.id')
+                        ->join('employee_details', 'employees.id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->where('schedule.emp_id', $this->session->id)
+                        ->get()
+                        ->result_array();
+    }
+
     // change schedule
     public function change_schedule(){
         $data = array(
