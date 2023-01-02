@@ -17,4 +17,8 @@ class Reports extends CI_Controller{
             redirect('login');
         }
     }
+
+    public function pdf(){
+        $this->Report_model->tcpdf();
+    }
 }

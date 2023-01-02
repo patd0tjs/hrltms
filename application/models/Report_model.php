@@ -116,63 +116,16 @@ class Report_model extends CI_Model{
 
     // main export and excel generation
     public function generate_report(){
-        header('Content-Type: application/vnd.ms_excel');
-        header('Content-Disposition: attachment;filename="hris_report.xlsx"');
-
         $s_date = $this->input->post('s_date');
         $e_date = $this->input->post('e_date');
 
-        $spreadsheet = new Spreadsheet();
-
-        $sheet = $spreadsheet->getActiveSheet();
-
-        // cell merging
-        $spreadsheet->getActiveSheet()->mergeCells("A1:G1");
-        $spreadsheet->getActiveSheet()->mergeCells("A2:G2");
-        $spreadsheet->getActiveSheet()->mergeCells("A3:G3");
-        $spreadsheet->getActiveSheet()->mergeCells("A4:G4");
-        $spreadsheet->getActiveSheet()->mergeCells("A5:G5");
-        $spreadsheet->getActiveSheet()->mergeCells("A6:G6");
-        $spreadsheet->getActiveSheet()->mergeCells("A7:G7");
-        $spreadsheet->getActiveSheet()->mergeCells("A8:G8");
-
-        // for table header
-        $spreadsheet->getActiveSheet()->mergeCells("A10:A11");
-        $spreadsheet->getActiveSheet()->mergeCells("B10:B11");
-        $spreadsheet->getActiveSheet()->mergeCells("C10:C11");
-        $spreadsheet->getActiveSheet()->mergeCells("D10:D11");
-        $spreadsheet->getActiveSheet()->mergeCells("E10:E11");
-        $spreadsheet->getActiveSheet()->mergeCells("F10:G10");
-
-        // autsize column
-        foreach (range('A', 'I') as $column) {            
-            $spreadsheet->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
-            
-        }
-        $spreadsheet->getActiveSheet()->getStyle('A:I')->getAlignment()->setHorizontal('center');
-
-        // set headers
-        $sheet->setCellValue('A1', 'Republic of the Philippines');
-        $sheet->setCellValue('A2', 'PROVINCE OF BUKIDNON');
-        $sheet->setCellValue('A3', 'Provincial Capitol');
-        $sheet->setCellValue('A5', 'MONTHLY TARDY AND UNDERTIME SUMMARY REPORT');
-        $sheet->setCellValue('A6', 'For the month of '. date('F Y',strtotime($s_date)));
-        $sheet->setCellValue('A8', 'OFFICE: BUKIDNON PROVINCIAL HOSPITAL-KIBABWE (REGULAR)');
-
-        $sheet->setCellValue('A10', 'NO');
-        $sheet->setCellValue('B10', 'NAME');
-        $sheet->setCellValue('C10', 'DESIGNATION');
-        $sheet->setCellValue('D10', 'NO. OF TIMES TARDY');
-        $sheet->setCellValue('E10', 'NO. OF TIME UNDERTIME');
-        $sheet->setCellValue('F10', 'TOTAL NO. OF');
-        $sheet->setCellValue('F11', 'HOURS');
-        $sheet->setCellValue('G11', 'MINUTES');
-
         $employees = $this->report_data();
+        $report_date = date('F Y',strtotime($s_date));
 
-        $current_row = 12;
+        $table_data = array();
         for($i = 0; $i < count($employees); $i++){
 
+            $record = array();
             // get records
             $tardy = $this->get_tardy($employees[$i]['emp_id'], $s_date, $e_date);
             $undertime = $this->get_undertime($employees[$i]['emp_id'], $s_date, $e_date);
@@ -190,19 +143,82 @@ class Report_model extends CI_Model{
             $total_hours = $this->get_hours($total);
             $total_minutes = $this->get_minutes($total);
 
-            // cell generation
-            $row = $current_row + $i;
-            $sheet->setCellValue('A' . $row, 1+$i);
-            $sheet->setCellValue('B' . $row, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name']);
-            $sheet->setCellValue('C' . $row, $employees[$i]['designation_name']);
-            $sheet->setCellValue('D' . $row, $tardy['num_tardy']);
-            $sheet->setCellValue('E' . $row, $undertime['num_undertime']);
-            $sheet->setCellValue('F' . $row, $total_hours);
-            $sheet->setCellValue('G' . $row, $total_minutes);
+
+            array_push($record, $i+1, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'], $employees[$i]['designation_name'], $tardy['num_tardy'], $undertime['num_undertime'], $total_hours, $total_minutes);
+            array_push($table_data, $record);
         }
 
-        $writer = new Xlsx($spreadsheet);
-        $writer->save("php://output");
+        // set an empty row
+        $row = '';
+        foreach($table_data as $table):
+            $row .= 
+            <<<EOD
+                <tr>
+                    <td>$table[0]</td>
+                    <td>$table[1]</td>
+                    <td>$table[2]</td>
+                    <td>$table[3]</td>
+                    <td>$table[4]</td>
+                    <td>$table[5]</td>
+                    <td>$table[6]</td>
+                </tr>
+            EOD;
+        endforeach;
+
+        // set table
+        $table = <<<EOD
+            <br>
+            <br>
+            <style>
+                table#main, table#main th, table#main td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+            </style>
+            <table id="main" style="font-size: 11px; text-align: center">
+                <thead>
+                    <tr>
+                        <td>
+                            No.
+                        </td>
+                        <td>
+                            NAME
+                        </td>
+                        <td>
+                            DESIGNATION
+                        </td>
+                        <td>
+                            NO. OF TIMES TARDY
+                        </td>
+                        <td>
+                            NO. OF TIMES UNDERTIME
+                        </td>
+                        <td>
+                            HOURS
+                        </td>
+                        <td>
+                            MINUTES
+                        </td>
+                    </tr>
+                </thead>
+                <tbody> 
+                    $row 
+                </tbody>
+            </table> 
+            EOD;
+
+        $title = <<<EOD
+            <p align="center" style="font-size: 12px">
+                MONTHLY TARDY AND UNDERTIME SUMMARY REPORT
+                <br>
+                For the month of $report_date
+                <br>
+                <br>
+                OFFICE: BUKIDNON PROVINCIAL HOSPITAL-KIBABWE (REGULAR)									
+            </p> 
+            EOD;
+
+        $this->generate_pdf($title, $table, 'hello.pdf');
 
     }
 
@@ -255,5 +271,66 @@ class Report_model extends CI_Model{
 
         $writer = new Xlsx($spreadsheet);
         $writer->save("php://output");
+    }
+
+    private function generate_pdf($title, $table, $filename){
+        require_once(APPPATH . 'helpers/tcpdf/tcpdf.php');
+
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_RIGHT);
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+        if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+            require_once(dirname(__FILE__).'/lang/eng.php');
+            $pdf->setLanguageArray($l);
+        }
+
+        $pdf->AddPage();
+
+        $date = date('F Y',strtotime('01-01-2023'));
+
+        // Main content
+        $html = <<<EOD
+        <div align="center">
+            <table>
+                <tr>
+                    <td align="right">
+                        <div>
+                            <img src="assets/img/pdf_logo_1.png" style="width: 75px;">
+                        </div>  
+                    </td>
+                    <td>
+                        <p align="center" style="font-size: 14px">
+                            Republic of the Philippines
+                            <br>
+                            PROVINCE OF BUKIDNON
+                            <br>
+                            Provincial Capitol           
+                        </p>
+                    </td>
+                    <td align="left">
+                        <div>
+                            <img src="assets/img/pdf_logo_2.png" style="width: 80px">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            $title
+            $table
+        </div>
+        <div align="right">
+            <img src="assets/img/pdf_footer.jpg" style="width: 500px;">
+        </div>
+        EOD;
+    
+        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+
+        $pdf->Output($filename, 'I');
+
     }
 }
