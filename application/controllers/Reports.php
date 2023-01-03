@@ -53,4 +53,13 @@ class Reports extends CI_Controller{
             redirect('login');
         }
     }
+
+    public function export_employee_data(){
+        if($this->session->id == 'admin'){
+            $this->Report_model->employee_data_report();
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+    }
 }

@@ -218,7 +218,34 @@ class Report_model extends CI_Model{
             </p> 
             EOD;
 
-        $this->generate_pdf($title, $table, 'tardy_undertime.pdf');
+        $footer = 
+            <<<EOD
+                <table>
+                    <tr>
+                        <td>
+                            <p align="left" style="font-size: 12px">
+                                Prepared by:
+                                <br>
+                                <br>
+                                JUNRIEL D. OCOR, MPSM
+                                <br>
+                                Administrative Aide III
+                            </p>
+                        </td>
+                        <td>
+                            <p align="right" style="font-size: 12px">
+                                Approved by:
+                                <br>
+                                <br>
+                                ANTONIO R. TUBOG, MD, FPSMS
+                                <br>
+                                Chief of Hospital II
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            EOD;
+        $this->generate_pdf($title, $table, $footer, 'tardy_undertime.pdf');
 
     }
 
@@ -304,7 +331,34 @@ class Report_model extends CI_Model{
             </p> 
             EOD;
 
-        $this->generate_pdf($title, $table, 'tardy_undertime.pdf');
+        $footer = 
+            <<<EOD
+                <table>
+                    <tr>
+                        <td>
+                            <p align="left" style="font-size: 12px">
+                                Prepared by:
+                                <br>
+                                <br>
+                                JUNRIEL D. OCOR, MPSM
+                                <br>
+                                Administrative Aide III
+                            </p>
+                        </td>
+                        <td>
+                            <p align="right" style="font-size: 12px">
+                                Approved by:
+                                <br>
+                                <br>
+                                ANTONIO R. TUBOG, MD, FPSMS
+                                <br>
+                                Chief of Hospital II
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            EOD;
+        $this->generate_pdf($title, $table, $footer, 'tardy_undertime.pdf');
 
     }
 
@@ -382,7 +436,35 @@ class Report_model extends CI_Model{
             </p> 
             EOD;
 
-        $this->generate_pdf($title, $table, 'tardy_report.pdf');
+        $footer = 
+            <<<EOD
+                <table>
+                    <tr>
+                        <td>
+                            <p align="left" style="font-size: 12px">
+                                Prepared by:
+                                <br>
+                                <br>
+                                JUNRIEL D. OCOR, MPSM
+                                <br>
+                                Administrative Aide III
+                            </p>
+                        </td>
+                        <td>
+                            <p align="right" style="font-size: 12px">
+                                Approved by:
+                                <br>
+                                <br>
+                                ANTONIO R. TUBOG, MD, FPSMS
+                                <br>
+                                Chief of Hospital II
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            EOD;
+
+        $this->generate_pdf($title, $table, $footer, 'tardy_report.pdf');
     }
 
     public function undertime_report(){
@@ -458,8 +540,36 @@ class Report_model extends CI_Model{
                 UNDERTIME REPORT					
             </p> 
             EOD;
+        
+        $footer = 
+            <<<EOD
+                <table>
+                    <tr>
+                        <td>
+                            <p align="left" style="font-size: 12px">
+                                Prepared by:
+                                <br>
+                                <br>
+                                JUNRIEL D. OCOR, MPSM
+                                <br>
+                                Administrative Aide III
+                            </p>
+                        </td>
+                        <td>
+                            <p align="right" style="font-size: 12px">
+                                Approved by:
+                                <br>
+                                <br>
+                                ANTONIO R. TUBOG, MD, FPSMS
+                                <br>
+                                Chief of Hospital II
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            EOD;
 
-        $this->generate_pdf($title, $table, 'undertime_report.pdf');
+        $this->generate_pdf($title, $table, $footer, 'undertime_report.pdf');
     }
 
     public function schedules_report(){
@@ -539,16 +649,35 @@ class Report_model extends CI_Model{
             </table> 
             EOD;
 
-        $title = <<<EOD
-            <p align="left" style="font-size: 12px">
-                Date: $s_date
-                <br>
-                <br>
-                SCHEDULES REPORT					
-            </p> 
+        $title = 
+            <<<EOD
+                <p align="left" style="font-size: 12px">
+                    Date: $s_date
+                    <br>
+                    <br>
+                    SCHEDULES REPORT					
+                </p> 
+            EOD;
+        
+        $footer = 
+            <<<EOD
+                <table>
+                    <tr>
+                        <td>
+                            <p align="left" style="font-size: 12px">
+                                Prepared by:
+                                <br>
+                                <br>
+                                JUNRIEL D. OCOR, MPSM
+                                <br>
+                                Administrative Aide III/Payroll in-charge
+                            </p>
+                        </td>
+                    </tr>
+                </table>
             EOD;
 
-        $this->generate_pdf($title, $table, 'tardy_report.pdf');
+        $this->generate_pdf($title, $table, $footer, 'schedules_report.pdf');
     }
 
     public function dtr_report(){
@@ -636,11 +765,207 @@ class Report_model extends CI_Model{
                 DTR REPORT					
             </p> 
             EOD;
-
-        $this->generate_pdf($title, $table, 'tardy_report.pdf');
+            
+        $footer = 
+            <<<EOD
+                <table>
+                    <tr>
+                        <td>
+                            <p align="left" style="font-size: 12px">
+                                Prepared by:
+                                <br>
+                                <br>
+                                JUNRIEL D. OCOR, MPSM
+                                <br>
+                                Administrative Aide III/Payroll in-charge
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            EOD;
+        $this->generate_pdf($title, $table, $footer, 'tardy_report.pdf');
     }
 
-    private function generate_pdf($title, $table, $filename){
+    public function employee_data_report(){
+        $employee = $this->Users_model->get_employees_data(); 
+
+        // set table
+        $table = <<<EOD
+            <br>
+            <br>
+            <style>
+                table#main, table#main th, table#main td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+            </style>
+            <table id="main" style="font-size: 11px; text-align: center">
+                <tbody>
+                <tr>
+                    <td>Employee ID:</td>
+                    <td>$employee[id]</td>
+                </tr>
+                <tr>
+                    <td>Surname:</td>
+                    <td>$employee[l_name]</td>
+                </tr>
+                <tr>
+                    <td>First Name:</td>
+                    <td>$employee[f_name]</td>
+                </tr>
+                <tr>
+                    <td>Middle Name:</td>
+                    <td>$employee[m_name]</td>
+                </tr>
+                <tr>
+                    <td>Department:</td>
+                    <td>$employee[department_name]</td>
+                </tr>
+                <tr>
+                    <td>Designation:</td>
+                    <td>$employee[designation_name]</td>
+                </tr>
+                <tr>
+                    <td>Employment Status:</td>
+                    <td>$employee[status]</td>
+                </tr>
+                <tr>
+                    <td>Sex:</td>
+                    <td>$employee[sex]</td>
+                </tr>
+                <tr>
+                    <td>Birthday:</td>
+                    <td>$employee[bday]</td>
+                </tr>
+                <tr>
+                    <td>Place of Birth:</td>
+                    <td>$employee[birth_place]</td>
+                </tr>
+                <tr>
+                    <td>Purok:</td>
+                    <td>$employee[purok]</td>
+                </tr>
+                <tr>
+                    <td>Barangay:</td>
+                    <td>$employee[brgy]</td>
+                </tr>
+                <tr>
+                    <td>Municipality:</td>
+                    <td>$employee[municipality]</td>
+                </tr>
+                <tr>
+                    <td>Province:</td>
+                    <td>$employee[province]</td>
+                </tr>
+                <tr>
+                    <td>ZIP Code:</td>
+                    <td>$employee[zip]</td>
+                </tr>
+                <tr>
+                    <td>Date Hired:</td>
+                    <td>$employee[date_hired]</td>
+                </tr>
+                <tr>
+                    <td>Plantilla:</td>
+                    <td>$employee[plantilla]</td>
+                </tr>
+                <tr>
+                    <td>Education:</td>
+                    <td>$employee[education]</td>
+                </tr>
+                <tr>
+                    <td>School Name:</td>
+                    <td>$employee[school]</td>
+                </tr>
+                <tr>
+                    <td>PRC Number:</td>
+                    <td>$employee[prc]</td>
+                </tr>
+                <tr>
+                    <td>PRC Date of Registration:</td>
+                    <td>$employee[prc_reg]</td>
+                </tr>
+                <tr>
+                    <td>PRC Date of Expiry:</td>
+                    <td>$employee[prc_exp]</td>
+                </tr>
+                <tr>
+                    <td>PhilHealth Number:</td>
+                    <td>$employee[philhealth]</td>
+                </tr>
+                <tr>
+                    <td>Contact Number:</td>
+                    <td>$employee[phone]</td>
+                </tr>
+                <tr>
+                    <td>Marital Status:</td>
+                    <td>$employee[marital_status]</td>
+                </tr>
+                <tr>
+                    <td>GSIS Number:</td>
+                    <td>$employee[gsis]</td>
+                </tr>
+                <tr>
+                    <td>SSS Number:</td>
+                    <td>$employee[sss]</td>
+                </tr>
+                <tr>
+                    <td>Pag-Ibig Number:</td>
+                    <td>$employee[pag_ibig]</td>
+                </tr>
+                <tr>
+                    <td>TIN Number:</td>
+                    <td>$employee[tin]</td>
+                </tr>
+                <tr>
+                    <td>ATM Number:</td>
+                    <td>$employee[atm]</td>
+                    </tr>
+                <tr>
+                    <td>Blood Type:</td>
+                    <td>$employee[blood_type]</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>$employee[email]</td>
+                </tr>
+                <tr>
+                    <td>Remarks:</td>
+                    <td>$employee[remarks]</td>
+                </tr>
+                </tbody>
+            </table> 
+            EOD;
+
+        $title = 
+            <<<EOD
+                <p align="left" style="font-size: 12px">
+                    EMPLOYEE DATA				
+                </p> 
+            EOD;
+        
+        $footer = 
+            <<<EOD
+                <table>
+                    <tr>
+                        <td>
+                            <p align="left" style="font-size: 12px">
+                                Prepared by:
+                                <br>
+                                <br>
+                                JUNRIEL D. OCOR, MPSM
+                                <br>
+                                Administrative Aide III/Payroll in-charge
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            EOD;
+
+        $this->generate_pdf($title, $table, $footer, 'schedules_report.pdf');
+    }
+
+    private function generate_pdf($title, $table, $footer, $filename){
         require_once(APPPATH . 'helpers/tcpdf/tcpdf.php');
 
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -690,9 +1015,7 @@ class Report_model extends CI_Model{
             $title
             $table
         </div>
-        <div align="right">
-            <img src="assets/img/pdf_footer.jpg" style="width: 500px;">
-        </div>
+        $footer
         EOD;
     
         $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);

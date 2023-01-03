@@ -261,10 +261,13 @@
         <td><?=$emp['m_name']?></td>
         <td><?=$emp['sex']?></td>
         <td><?= $emp['designation_name']?></td>
-        <td>    
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#export<?= $emp['id']?>">
-            Export
-          </button>
+        <td>
+          <form action="<?= base_url()?>reports/export_employee_data" method="post">
+            <input type="hidden" name="id" value="<?= $emp['id']?>">
+            <button type="submit" class="btn btn-success">
+              Export
+            </button>
+          </form>    
           <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#emp<?= $emp['id']?>">
             Edit
           </button>
@@ -494,186 +497,6 @@
       </div>
     </div>
   </div>
-<?php endforeach ?>
-
-<?php foreach($employees as $emp):?>
-  <div class="modal fade" data-bs-backdrop="static" id="export<?= $emp['id']?>" tabindex="-1" aria-labelledby="export<?= $emp['id']?>Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="export<?= $emp['id']?>Label">Export Employee Data</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-          <!-- employee info -->
-        <div class="modal-body">
-          <table style="width: 100%" id="exp_tbl<?= $emp['id']?>">
-            <thead>
-              <tr>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Surname:</td>
-                <td><?= $emp['l_name']?></td>
-              </tr>
-              <tr>
-                <td>First Name:</td>
-                <td><?= $emp['f_name']?></td>
-              </tr>
-              <tr>
-                <td>Middle Name:</td>
-                <td><?= $emp['m_name']?></td>
-              </tr>
-              <tr>
-                <td>Department:</td>
-                <td><?= $emp['department_name']?></td>
-              </tr>
-              <tr>
-                <td>Designation:</td>
-                <td><?= $emp['designation_name']?></td>
-              </tr>
-              <tr>
-                <td>Employment Status:</td>
-                <td><?= $emp['status']?></td>
-              </tr>
-              <tr>
-                <td>Sex:</td>
-                <td><?= $emp['sex']?></td>
-              </tr>
-              <tr>
-                <td>Birthday:</td>
-                <td><?= $emp['bday']?></td>
-              </tr>
-              <tr>
-                <td>Place of Birth:</td>
-                <td><?= $emp['birth_place']?></td>
-              </tr>
-              <tr>
-                <td>Purok:</td>
-                <td><?= $emp['purok']?></td>
-              </tr>
-              <tr>
-                <td>Barangay:</td>
-                <td><?= $emp['brgy']?></td>
-              </tr>
-              <tr>
-                <td>Municipality:</td>
-                <td><?= $emp['municipality']?></td>
-              </tr>
-              <tr>
-                <td>Province:</td>
-                <td><?= $emp['province']?></td>
-              </tr>
-              <tr>
-                <td>ZIP Code:</td>
-                <td><?= $emp['zip']?></td>
-              </tr>
-              <tr>
-                <td>Date Hired:</td>
-                <td><?= $emp['date_hired']?></td>
-              </tr>
-              <tr>
-                <td>Plantilla:</td>
-                <td><?= $emp['plantilla']?></td>
-              </tr>
-              <tr>
-                <td>Education:</td>
-                <td><?= $emp['education']?></td>
-              </tr>
-              <tr>
-                <td>School Name:</td>
-                <td><?= $emp['school']?></td>
-              </tr>
-              <tr>
-                <td>PRC Number:</td>
-                <td><?= $emp['prc']?></td>
-              </tr>
-              <tr>
-                <td>PRC Date of Registration:</td>
-                <td><?= $emp['prc_reg']?></td>
-              </tr>
-              <tr>
-                <td>PRC Date of Expiry:</td>
-                <td><?= $emp['prc_exp']?></td>
-              </tr>
-              <tr>
-                <td>PhilHealth Number:</td>
-                <td><?= $emp['philhealth']?></td>
-              </tr>
-              <tr>
-                <td>Contact Number:</td>
-                <td><?= $emp['phone']?></td>
-              </tr>
-              <tr>
-                <td>Marital Status:</td>
-                <td><?= $emp['marital_status']?></td>
-              </tr>
-              <tr>
-                <td>GSIS Number:</td>
-                <td><?= $emp['gsis']?></td>
-              </tr>
-              <tr>
-                <td>SSS Number:</td>
-                <td><?= $emp['sss']?></td>
-              </tr>
-              <tr>
-                <td>Pag-Ibig Number:</td>
-                <td><?= $emp['pag_ibig']?></td>
-              </tr>
-              <tr>
-                <td>TIN Number:</td>
-                <td><?= $emp['tin']?></td>
-              </tr>
-              <tr>
-                <td>ATM Number:</td>
-                <td><?= $emp['atm']?></td>
-                </tr>
-              <tr>
-                <td>Blood Type:</td>
-                <td><?= $emp['blood_type']?></td>
-              </tr>
-              <tr>
-                <td>Email:</td>
-                <td><?= $emp['email']?></td>
-              </tr>
-              <tr>
-                <td>Remarks:</td>
-                <td><?= $emp['remarks']?></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    $(document).ready(function () {
-      $('#exp_tbl<?= $emp['id']?>').DataTable({
-        "ordering": false,
-        "searching": false,
-        "bPaginate": false,
-        "bLengthChange": false,
-        "bFilter": true,
-        "bInfo": false,
-        "bAutoWidth": false,
-          dom: 'Bfrtip',
-          buttons: [
-              {
-                  extend: 'excel',
-                  text: 'Export Data',
-                  title: 'Employee Data'
-              }
-          ]
-      });
-    });
-  </script>
 <?php endforeach ?>
 
 <script>
