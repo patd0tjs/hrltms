@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2022 at 01:22 PM
+-- Generation Time: Jan 04, 2023 at 12:53 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -265,7 +265,8 @@ INSERT INTO `recovery_code` (`id`, `user_id`, `expire`, `used`, `code`) VALUES
 (12, 'itspatnotrick', '2022-11-26 08:32:43', 'Y', 4132),
 (13, 'itspatnotrick', '2022-11-27 12:21:38', 'Y', 1508),
 (14, 'demo', '2022-12-31 02:40:37', 'Y', 9964),
-(15, 'demo', '2022-12-31 02:50:37', 'N', 7843);
+(15, 'demo', '2022-12-31 02:50:37', 'N', 7843),
+(16, 'itspatnotrick', '2023-01-03 15:02:33', 'Y', 6157);
 
 -- --------------------------------------------------------
 
@@ -354,11 +355,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `pw`, `type`) VALUES
-('1234', 'password', 'emp'),
-('admin', 'test', 'admin'),
-('asda', 'password', 'emp'),
-('demo', 'password', 'emp'),
-('itspatnotrick', 'test', 'emp');
+('1234', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'emp'),
+('admin', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'admin'),
+('asda', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'emp'),
+('demo', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'emp'),
+('itspatnotrick', '4e108bcdb47f1221a9f90a13ca941fed3b6ceb27ae4fd503b033ec41b8434b50', 'emp');
 
 --
 -- Indexes for dumped tables
@@ -469,7 +470,7 @@ ALTER TABLE `leaves`
 -- AUTO_INCREMENT for table `recovery_code`
 --
 ALTER TABLE `recovery_code`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `schedule`

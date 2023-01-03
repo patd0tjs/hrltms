@@ -170,7 +170,7 @@ class Users_model extends CI_Model{
         if($tmp_user){
             $user = $tmp_user->row_array();
 
-            if($user['pw'] == $this->input->post('pw')){
+            if($user['pw'] == hash('sha256', $this->input->post('pw'))){
                 $this->session->set_userdata('id', $user['username']);
                 return TRUE;
 
@@ -350,7 +350,7 @@ class Users_model extends CI_Model{
         if($registered == 0){
             $data = array(
                 'username' => $this->input->post('id'),
-                'pw'       => 'password',
+                'pw'       => hash('sha256','password'),
             );
 
             $this->db->insert('users', $data);
@@ -436,7 +436,7 @@ class Users_model extends CI_Model{
         $pw2 = $this->input->post('pw2');
 
         if ($pw == $pw2){
-            $this->db->set('pw', $pw);
+            $this->db->set('pw', hash('sha256', $pw));
             $this->db->where('username', $this->session->recovery_id);
             $this->db->update('users');
 
@@ -461,9 +461,9 @@ class Users_model extends CI_Model{
         $pw      = $this->input->post('pw');
         $pw2     = $this->input->post('pw2');
 
-        if ($my_pass['pw'] == $old){
+        if ($my_pass['pw'] == hash('sha256',$old)){
             if ($pw == $pw2){
-                $this->db->set('pw', $pw);
+                $this->db->set('pw', hash('sha256', $pw));
                 $this->db->where('username', $this->session->id);
                 $this->db->update('users');
     
