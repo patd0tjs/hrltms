@@ -1,4 +1,9 @@
 <style>
+body{
+    background-image: url("assets/img/bg.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+}
 .login{
     width: 70%;
     margin-top: 5%;
@@ -6,6 +11,7 @@
     padding: 5%;
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
 }
 .alert{
     width: 25%;

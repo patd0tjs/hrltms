@@ -1,4 +1,11 @@
 <style>
+
+body{
+    background-image: url("assets/img/bg.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
 .recovery{
     width: 50%;
     margin-top: 5%;
@@ -6,6 +13,7 @@
     padding: 5%;
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
 }
 #alert{
     width: 25%;
@@ -24,6 +32,10 @@
 h6 {
     text-align: left;
 }
+#login-logo{
+    width: 70%;
+    margin-top: 8%
+}
 
 </style>
 <center>
@@ -35,20 +47,29 @@ h6 {
         </div>
     <?php } ?>
 
-    <div class="recovery">
-        <form action="<?= base_url()?>users/recover_password" method="post">
-            <h6>Please enter your new password:</h6>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingInput" name="pw" placeholder="pw" required>
+    <div class="row">
+        <div class="col">
+            <div align="right">
+                <img src="<?= base_url()?>assets/img/logo-2.png" id="login-logo"> 
             </div>
+        </div>
+        <div class="col-8">
+            <div class="recovery">
+                <form action="<?= base_url()?>users/recover_password" method="post">
+                    <h6>Please enter your new password:</h6>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="floatingInput" name="pw" placeholder="pw" required>
+                    </div>
 
-            <h6>Please re-enter your new password:</h6>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingInput" name="pw2" placeholder="pw2" required>
+                    <h6>Please re-enter your new password:</h6>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="floatingInput" name="pw2" placeholder="pw2" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
             </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </div>
     </div>
 </center>
 <!-- for missing closing tags -->
