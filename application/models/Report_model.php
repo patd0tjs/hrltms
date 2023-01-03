@@ -114,7 +114,7 @@ class Report_model extends CI_Model{
         return $total;
     }
 
-    // main export and excel generation
+    // tardy and undertime report
     public function generate_report(){
         $s_date = $this->input->post('s_date');
         $e_date = $this->input->post('e_date');
@@ -306,6 +306,338 @@ class Report_model extends CI_Model{
 
         $this->generate_pdf($title, $table, 'tardy_undertime.pdf');
 
+    }
+
+    public function tardy_report(){
+        $s_date = $this->input->post('s_date');
+        $e_date = $this->input->post('e_date');
+
+        $employees = $this->DateAndTime_model->get_tardy_report($s_date, $e_date); 
+
+        $table_data = array();
+        for($i = 0; $i < count($employees); $i++){
+            $record = array();
+
+            array_push($record, $i+1, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'] . ' ' . $employees[$i]['m_name'], $employees[$i]['designation'], date("M d Y", strtotime($employees[$i]['date'])), $employees[$i]['diff']);
+            array_push($table_data, $record);
+        }
+
+        // set an empty row
+        $row = '';
+        foreach($table_data as $table):
+            $row .= 
+            <<<EOD
+                <tr>
+                    <td>$table[0]</td>
+                    <td>$table[1]</td>
+                    <td>$table[2]</td>
+                    <td>$table[3]</td>
+                    <td>$table[4]</td>
+                </tr>
+            EOD;
+        endforeach;
+
+        // set table
+        $table = <<<EOD
+            <br>
+            <br>
+            <style>
+                table#main, table#main th, table#main td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+            </style>
+            <table id="main" style="font-size: 11px; text-align: center">
+                <thead>
+                    <tr>
+                        <td>
+                            No.
+                        </td>
+                        <td>
+                            NAME
+                        </td>
+                        <td>
+                            DESIGNATION
+                        </td>
+                        <td>
+                            DATE
+                        </td>
+                        <td>
+                            DEFICIENCY
+                        </td>
+                    </tr>
+                </thead>
+                <tbody> 
+                    $row 
+                </tbody>
+            </table> 
+            EOD;
+
+        $title = <<<EOD
+            <p align="left" style="font-size: 12px">
+                Date: $s_date
+                <br>
+                <br>
+                TARDY REPORT					
+            </p> 
+            EOD;
+
+        $this->generate_pdf($title, $table, 'tardy_report.pdf');
+    }
+
+    public function undertime_report(){
+        $s_date = $this->input->post('s_date');
+        $e_date = $this->input->post('e_date');
+
+        $employees = $this->DateAndTime_model->get_undertime_report($s_date, $e_date); 
+
+        $table_data = array();
+        for($i = 0; $i < count($employees); $i++){
+            $record = array();
+
+            array_push($record, $i+1, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'] . ' ' . $employees[$i]['m_name'], $employees[$i]['designation'], date("M d Y", strtotime($employees[$i]['date'])), $employees[$i]['diff']);
+            array_push($table_data, $record);
+        }
+
+        // set an empty row
+        $row = '';
+        foreach($table_data as $table):
+            $row .= 
+            <<<EOD
+                <tr>
+                    <td>$table[0]</td>
+                    <td>$table[1]</td>
+                    <td>$table[2]</td>
+                    <td>$table[3]</td>
+                    <td>$table[4]</td>
+                </tr>
+            EOD;
+        endforeach;
+
+        // set table
+        $table = <<<EOD
+            <br>
+            <br>
+            <style>
+                table#main, table#main th, table#main td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+            </style>
+            <table id="main" style="font-size: 11px; text-align: center">
+                <thead>
+                    <tr>
+                        <td>
+                            No.
+                        </td>
+                        <td>
+                            NAME
+                        </td>
+                        <td>
+                            DESIGNATION
+                        </td>
+                        <td>
+                            DATE
+                        </td>
+                        <td>
+                            DEFICIENCY
+                        </td>
+                    </tr>
+                </thead>
+                <tbody> 
+                    $row 
+                </tbody>
+            </table> 
+            EOD;
+
+        $title = <<<EOD
+            <p align="left" style="font-size: 12px">
+                Date: $s_date
+                <br>
+                <br>
+                UNDERTIME REPORT					
+            </p> 
+            EOD;
+
+        $this->generate_pdf($title, $table, 'undertime_report.pdf');
+    }
+
+    public function schedules_report(){
+        $s_date = $this->input->post('s_date');
+        $e_date = $this->input->post('e_date');
+
+        $employees = $this->DateAndTime_model->get_schedules_report($s_date, $e_date); 
+
+        $table_data = array();
+        for($i = 0; $i < count($employees); $i++){
+            $record = array();
+
+            array_push($record, $i+1, $employees[$i]['emp_id'], $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'] . ' ' . $employees[$i]['m_name'], $employees[$i]['designation'], date("M d Y", strtotime($employees[$i]['s_date'])), date("M d Y", strtotime($employees[$i]['e_date'])), $employees[$i]['time_in'], $employees[$i]['time_out']);
+            array_push($table_data, $record);
+        }
+
+        // set an empty row
+        $row = '';
+        foreach($table_data as $table):
+            $row .= 
+            <<<EOD
+                <tr>
+                    <td>$table[0]</td>
+                    <td>$table[1]</td>
+                    <td>$table[2]</td>
+                    <td>$table[3]</td>
+                    <td>$table[4]</td>
+                    <td>$table[5]</td>
+                    <td>$table[6]</td>
+                    <td>$table[7]</td>
+                </tr>
+            EOD;
+        endforeach;
+
+        // set table
+        $table = <<<EOD
+            <br>
+            <br>
+            <style>
+                table#main, table#main th, table#main td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+            </style>
+            <table id="main" style="font-size: 11px; text-align: center">
+                <thead>
+                    <tr>
+                        <td>
+                            No.
+                        </td>
+                        <td>
+                            EMPLOYEE ID
+                        </td>
+                        <td>
+                            NAME
+                        </td>
+                        <td>
+                            DESIGNATION
+                        </td>
+                        <td>
+                            START DATE
+                        </td>
+                        <td>
+                            END DATE
+                        </td>
+                        <td>
+                            TIME IN
+                        </td>
+                        <td>
+                            TIME OUT
+                        </td>
+                    </tr>
+                </thead>
+                <tbody> 
+                    $row 
+                </tbody>
+            </table> 
+            EOD;
+
+        $title = <<<EOD
+            <p align="left" style="font-size: 12px">
+                Date: $s_date
+                <br>
+                <br>
+                SCHEDULES REPORT					
+            </p> 
+            EOD;
+
+        $this->generate_pdf($title, $table, 'tardy_report.pdf');
+    }
+
+    public function dtr_report(){
+        $s_date = $this->input->post('s_date');
+        $e_date = $this->input->post('e_date');
+
+        $employees = $this->DateAndTime_model->get_dtr_report($s_date, $e_date); 
+
+        $table_data = array();
+        for($i = 0; $i < count($employees); $i++){
+            $record = array();
+
+            array_push($record, $i+1, $employees[$i]['emp_id'], $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'] . ' ' . $employees[$i]['m_name'], $employees[$i]['designation'], date("M d Y", strtotime($employees[$i]['s_date'])), date("M d Y", strtotime($employees[$i]['e_date'])), $employees[$i]['time_in'], $employees[$i]['time_out']);
+            array_push($table_data, $record);
+        }
+
+        // set an empty row
+        $row = '';
+        foreach($table_data as $table):
+            $row .= 
+            <<<EOD
+                <tr>
+                    <td>$table[0]</td>
+                    <td>$table[1]</td>
+                    <td>$table[2]</td>
+                    <td>$table[3]</td>
+                    <td>$table[4]</td>
+                    <td>$table[5]</td>
+                    <td>$table[6]</td>
+                    <td>$table[7]</td>
+                </tr>
+            EOD;
+        endforeach;
+
+        // set table
+        $table = <<<EOD
+            <br>
+            <br>
+            <style>
+                table#main, table#main th, table#main td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+            </style>
+            <table id="main" style="font-size: 11px; text-align: center">
+                <thead>
+                    <tr>
+                        <td>
+                            No.
+                        </td>
+                        <td>
+                            EMPLOYEE ID
+                        </td>
+                        <td>
+                            NAME
+                        </td>
+                        <td>
+                            DESIGNATION
+                        </td>
+                        <td>
+                            START DATE
+                        </td>
+                        <td>
+                            END DATE
+                        </td>
+                        <td>
+                            TIME IN
+                        </td>
+                        <td>
+                            TIME OUT
+                        </td>
+                    </tr>
+                </thead>
+                <tbody> 
+                    $row 
+                </tbody>
+            </table> 
+            EOD;
+
+        $title = <<<EOD
+            <p align="left" style="font-size: 12px">
+                Date: $s_date
+                <br>
+                <br>
+                DTR REPORT					
+            </p> 
+            EOD;
+
+        $this->generate_pdf($title, $table, 'tardy_report.pdf');
     }
 
     private function generate_pdf($title, $table, $filename){

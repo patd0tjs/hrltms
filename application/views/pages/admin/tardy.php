@@ -6,6 +6,41 @@
 </div>
 
 <?php } ?>
+
+<button style="margin-bottom: 10px;" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exportTardy">
+  Export
+</button>
+
+<div class="modal fade" id="exportTardy" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exportTardyLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exportTardyLabel">Tardy Report</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="<?= base_url()?>reports/export_tardy" method="post">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label" for="s_date">From: </label>
+            <input class="form-control" type="date" name="s_date" id="s_date" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="e_date">To: </label>
+            <input class="form-control" type="date" name="e_date" id="e_date" required>
+          </div>
+
+          <div class="modal-footer">
+            <input type="hidden" name="status" value="approved">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Download</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <table id='tardy' class="table table-striped" style="width: 100%">
   <thead>
     <tr>
@@ -35,13 +70,6 @@
 
  <script>
 $(document).ready(function () {
-    $('#tardy').DataTable(
-      {
-        dom: 'Bfrtip',
-        buttons: [
-            'pdf' 
-        ]
-    }
-    );
+    $('#tardy').DataTable();
 });
 </script>

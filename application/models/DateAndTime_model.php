@@ -30,6 +30,27 @@ class DateAndTime_model extends CI_Model{
                         ->result_array();
     }
 
+    public function get_schedules_report($s_date, $e_date){
+        return $this->db->select('schedule.emp_id as emp_id')
+                        ->select('schedule.id as id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('designations.name as designation')
+                        ->select('schedule.s_date as s_date')
+                        ->select('schedule.e_date as e_date')
+                        ->select('schedule.time_in as time_in')
+                        ->select('schedule.time_out as time_out')
+                        ->from('schedule')
+                        ->join('employees', 'schedule.emp_id=employees.id')
+                        ->join('employee_details', 'employees.id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->where('schedule.s_date >=', $s_date)
+                        ->where('schedule.s_date <=', $e_date)
+                        ->get()
+                        ->result_array();
+    }
+
     public function my_schedules(){
         return $this->db->select('schedule.emp_id as emp_id')
                         ->select('schedule.id as id')
@@ -92,6 +113,24 @@ class DateAndTime_model extends CI_Model{
                         ->result_array();
     }
 
+    public function get_tardy_report($s_date, $e_date){
+        return $this->db->select('tardy.emp_id as emp_id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('designations.name as designation')
+                        ->select('tardy.date as date')
+                        ->select('tardy.diff as diff')
+                        ->from('tardy')
+                        ->join('employees', 'tardy.emp_id=employees.id')
+                        ->join('employee_details', 'employees.id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->where('tardy.date >=', $s_date)
+                        ->where('tardy.date <=', $e_date)
+                        ->get()
+                        ->result_array();
+    }
+
     public function get_undertime(){
         return $this->db->select('undertime.emp_id as emp_id')
                         ->select('employees.l_name as l_name')
@@ -104,6 +143,24 @@ class DateAndTime_model extends CI_Model{
                         ->join('employees', 'undertime.emp_id=employees.id')
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->get()
+                        ->result_array();
+    }
+
+    public function get_undertime_report($s_date, $e_date){
+        return $this->db->select('undertime.emp_id as emp_id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('designations.name as designation')
+                        ->select('undertime.date as date')
+                        ->select('undertime.diff as diff')
+                        ->from('undertime')
+                        ->join('employees', 'undertime.emp_id=employees.id')
+                        ->join('employee_details', 'employees.id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->where('undertime.date >=', $s_date)
+                        ->where('undertime.date <=', $e_date)
                         ->get()
                         ->result_array();
     }
@@ -174,6 +231,26 @@ class DateAndTime_model extends CI_Model{
                         ->join('employees', 'dtr.emp_id=employees.id')
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->get()
+                        ->result_array();
+    }
+
+    public function get_dtr_report($s_date, $e_date){
+        return $this->db->select('dtr.emp_id as emp_id')
+                        ->select('employees.l_name as l_name')
+                        ->select('employees.f_name as f_name')
+                        ->select('employees.m_name as m_name')
+                        ->select('designations.name as designation')
+                        ->select('dtr.s_date as s_date')
+                        ->select('dtr.e_date as e_date')
+                        ->select('dtr.time_in as time_in')
+                        ->select('dtr.time_out as time_out')
+                        ->from('dtr')
+                        ->join('employees', 'dtr.emp_id=employees.id')
+                        ->join('employee_details', 'employees.id=employee_details.id')
+                        ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->where('dtr.s_date >=', $s_date)
+                        ->where('dtr.s_date <=', $e_date)
                         ->get()
                         ->result_array();
     }
