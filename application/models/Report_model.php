@@ -485,6 +485,27 @@ class Report_model extends CI_Model{
             EOD;
 
         $title = <<<EOD
+            <table style="width:100%">
+                <tr>
+                    <td align="right">
+                        <div>
+                            <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                        </div>  
+                    </td>
+                    <td>
+                        <p align="center" style="font-size: 14px">
+                            Republic of the Philippines
+                            <br>
+                            PROVINCE OF BUKIDNON          
+                        </p>
+                    </td>
+                    <td align="left">
+                        <div>
+                            <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                        </div>
+                    </td>
+                </tr>
+            </table>
             <p align="left" style="font-size: 12px">
                 Date: $s_date
                 <br>
@@ -590,6 +611,27 @@ class Report_model extends CI_Model{
             EOD;
 
         $title = <<<EOD
+            <table style="width:100%">
+                <tr>
+                    <td align="right">
+                        <div>
+                            <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                        </div>  
+                    </td>
+                    <td>
+                        <p align="center" style="font-size: 14px">
+                            Republic of the Philippines
+                            <br>
+                            PROVINCE OF BUKIDNON          
+                        </p>
+                    </td>
+                    <td align="left">
+                        <div>
+                            <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                        </div>
+                    </td>
+                </tr>
+            </table>
             <p align="left" style="font-size: 12px">
                 Date: $s_date
                 <br>
@@ -708,6 +750,27 @@ class Report_model extends CI_Model{
 
         $title = 
             <<<EOD
+                <table style="width:100%">
+                    <tr>
+                        <td align="right">
+                            <div>
+                                <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                            </div>  
+                        </td>
+                        <td>
+                            <p align="center" style="font-size: 14px">
+                                Republic of the Philippines
+                                <br>
+                                PROVINCE OF BUKIDNON          
+                            </p>
+                        </td>
+                        <td align="left">
+                            <div>
+                                <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
                 <p align="left" style="font-size: 12px">
                     Date: $s_date
                     <br>
@@ -815,6 +878,27 @@ class Report_model extends CI_Model{
             EOD;
 
         $title = <<<EOD
+            <table style="width:100%">
+                <tr>
+                    <td align="right">
+                        <div>
+                            <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                        </div>  
+                    </td>
+                    <td>
+                        <p align="center" style="font-size: 14px">
+                            Republic of the Philippines
+                            <br>
+                            PROVINCE OF BUKIDNON          
+                        </p>
+                    </td>
+                    <td align="left">
+                        <div>
+                            <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                        </div>
+                    </td>
+                </tr>
+            </table>
             <p align="left" style="font-size: 12px">
                 Date: $s_date
                 <br>
@@ -996,6 +1080,27 @@ class Report_model extends CI_Model{
 
         $title = 
             <<<EOD
+                <table style="width:100%">
+                    <tr>
+                        <td align="right">
+                            <div>
+                                <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                            </div>  
+                        </td>
+                        <td>
+                            <p align="center" style="font-size: 14px">
+                                Republic of the Philippines
+                                <br>
+                                PROVINCE OF BUKIDNON          
+                            </p>
+                        </td>
+                        <td align="left">
+                            <div>
+                                <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
                 <p align="left" style="font-size: 12px">
                     EMPLOYEE DATA				
                 </p> 
