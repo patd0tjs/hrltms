@@ -203,6 +203,8 @@ class Users_model extends CI_Model{
                         ->select('employee_details.id_pic as id_pic')
                         ->select('departments.name as department_name')
                         ->select('designations.name as designation_name')
+                        ->select('employee_details.designation_id as designation_id')
+                        ->select('employee_details.department_id as department_id')
                         ->select('employee_details.status as status')
                         ->select('employee_details.sex as sex')
                         ->select('employee_details.bday as bday')
@@ -301,6 +303,8 @@ class Users_model extends CI_Model{
                         ->select('employee_details.id_pic as id_pic')
                         ->select('departments.name as department_name')
                         ->select('designations.name as designation_name')
+                        ->select('employee_details.designation_id as designation_id')
+                        ->select('employee_details.department_id as department_id')
                         ->select('employee_details.status as status')
                         ->select('employee_details.sex as sex')
                         ->select('employee_details.bday as bday')
@@ -373,6 +377,13 @@ class Users_model extends CI_Model{
             $this->session->set_flashdata('error', 'employee id already exists');
             return FALSE;
         }
+    }
+    public function get_designation_name($id){
+        return $this->db->where('id', $id)->get('designations')->row_array();
+    }
+
+    public function get_department_name($id){
+        return $this->db->where('id', $id)->get('departments')->row_array();
     }
 
     // add employee details to emp_details table

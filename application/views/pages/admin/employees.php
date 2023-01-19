@@ -338,9 +338,11 @@
                   <td>Department:</td>
                   <td>            
                     <select class="form-control" id="departments" name="department" required>
-                      <?php foreach($departments as $department):?>
+                    <option value="" disabled selected><?= $this->Users_model->get_department_name($emp['department_id'])['name']?></option>
+                      <?php foreach($departments as $department):
+                        if($department['id'] != $emp['department_id']){?>
                         <option value="<?= $department['id']?>"><?= $department['name']?></option>
-                      <?php endforeach ?>
+                      <?php }endforeach ?>
                     </select>
                   </td>
                 </tr>
@@ -348,9 +350,11 @@
                   <td>Designation:</td>
                   <td>
                     <select class="form-control" id="designation" name ="designation" required>
-                      <?php foreach($designations as $designation):?>
-                        <option value="<?= $designation['id']?>"><?= $designation['name']?></option>
-                      <?php endforeach ?>
+                      <option value="" disabled selected><?= $this->Users_model->get_designation_name($emp['designation_id'])['name']?></option>
+                      <?php foreach($designations as $designation):
+                        if($designation['id'] != $emp['designation_id']) {?>
+                          <option value="<?= $designation['id']?>"><?= $designation['name']?></option>
+                      <?php } endforeach ?>
                     </select>
                   </td>
                 </tr>
@@ -358,6 +362,7 @@
                   <td>Employment Status:</td>
                   <td>
                     <select class="form-control" id="status_edit" name="status" required>
+                      <option value="" selected disabled><?= $emp['status']?></option>
                       <option value="regular">Permanent</option>
                       <option value="irregular">JO</option>
                       <option value="casual">Casual</option>
@@ -368,6 +373,7 @@
                   <td>Sex:</td>
                   <td>
                     <select class="form-control" id="sex" name="sex" required>
+                      <option value="" selected disabled><?= $emp['sex']?></option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
