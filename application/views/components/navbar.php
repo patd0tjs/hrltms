@@ -101,22 +101,46 @@
                     <?php } else {?>
                         <li class="nav-item">
                             <a href="<?= base_url()?>profile" class="nav-link align-middle px-0" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">Profile</span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'Employee Profile'){ ?>
+                                        <strong>Profile</strong>
+                                    <?php } else {?>
+                                        Profile
+                                    <?php } ?>
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="<?= base_url()?>schedule" class="nav-link px-0 align-middle" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">Schedule</span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'My Schedule'){ ?>
+                                        <strong>Schedule</strong>
+                                    <?php } else {?>
+                                        Schedule
+                                    <?php } ?>
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="<?= base_url()?>deficiencies" class="nav-link px-0 align-middle" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">Deficiencies</span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'Employee Deficiencies'){ ?>
+                                        <strong>Deficiencies</strong>
+                                    <?php } else {?>
+                                        Deficiencies
+                                    <?php } ?>
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="<?= base_url()?>leaves" class="nav-link px-0 align-middle" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">Leaves</span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'Employee Leaves'){ ?>
+                                        <strong>My Leaves</strong>
+                                    <?php } else {?>
+                                        My Leaves
+                                    <?php } ?>
+                                </span>
                             </a>
                         </li>
                     <?php } ?>

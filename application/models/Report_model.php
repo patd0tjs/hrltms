@@ -208,6 +208,25 @@ class Report_model extends CI_Model{
             EOD;
 
         $title = <<<EOD
+            <table style="width:100%">
+                <tr>
+                    <td align="right">
+
+                    </td>
+                    <td>
+                        <p align="center" style="font-size: 14px">
+                            Republic of the Philippines
+                            <br>
+                            PROVINCE OF BUKIDNON
+                            <br>
+                            Provincial Capitol          
+                        </p>
+                    </td>
+                    <td align="left">
+
+                    </td>
+                </tr>
+            </table>
             <p align="center" style="font-size: 12px">
                 MONTHLY TARDY AND UNDERTIME SUMMARY REPORT
                 <br>
