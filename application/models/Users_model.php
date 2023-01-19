@@ -283,6 +283,17 @@ class Users_model extends CI_Model{
     }
 
     public function filter_employees(){
+        if($this->input->get('gender') != NULL){
+            $gender = $this->input->get('gender'); 
+        } else {
+            $gender = '';
+        }
+        
+        if($this->input->get('department') != NULL){
+            $department = $this->input->get('department');
+        } else {
+            $department = $this->input->get('');
+        }
         return $this->db->select('employees.id as id')
                         ->select('employees.f_name as f_name')
                         ->select('employees.m_name as m_name')
@@ -321,7 +332,8 @@ class Users_model extends CI_Model{
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
                         ->join('departments', 'employee_details.department_id=departments.id')
-                        ->where('employee_details.department_id', $this->input->post('department'))
+                        ->where('employee_details.department_id', $department)
+                        ->where('employee_details.sex', $gender)
                         ->get()
                         ->result_array();
     }

@@ -229,14 +229,30 @@
   </div>
 </div>
 
-<form action="<?= base_url()?>admin/employees" method="post" id="filter" onchange="filter()">
+<form action="<?= base_url()?>admin/employees" method="get" id="filter">
 <br>
-  <select id="departments" name="department" class="form-control" style="max-width: 200px;" required>
-    <option value="" disabled selected hidden>Select Department</option>
-    <?php foreach($departments as $department):?>
-      <option value="<?= $department['id']?>"><?= $department['name']?></option>
-    <?php endforeach ?>
-  </select>
+<table>
+  <tr>
+    <td>
+      <select id="departments" name="department" class="form-control" style="max-width: 200px;" required>
+        <option value="" disabled selected hidden>Select Department</option>
+        <?php foreach($departments as $department):?>
+          <option value="<?= $department['id']?>"><?= $department['name']?></option>
+        <?php endforeach ?>
+      </select>
+    </td>
+    <td>
+      <select id="departments" name="gender" class="form-control" style="max-width: 200px;" required>
+        <option value="" disabled selected hidden>Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </td>
+    <td>
+      <button class="btn btn-success">Filter</button>
+    </td>
+  </tr>
+</table>
 </form>
 <br>
 <table id="employee_tbl" class="table table-striped" style="width:100%;">

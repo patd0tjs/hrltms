@@ -51,7 +51,7 @@ class Pages extends CI_Controller{
 
     public function employees(){
         if($this->session->id == 'admin'){
-            if($this->input->post('department')){
+            if($this->input->get('department')){
                 $employees = $this->Users_model->filter_employees();
             } else {
                 $employees = $this->Users_model->get_employees();
