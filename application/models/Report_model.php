@@ -320,7 +320,45 @@ class Report_model extends CI_Model{
             EOD;
 
         $title = <<<EOD
+            <table style="width:100%">
+                <tr>
+                    <td align="right">
+                        <div>
+                            <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                        </div>  
+                    </td>
+                    <td>
+                        <p align="center" style="font-size: 14px">
+                            Republic of the Philippines
+                            <br>
+                            PROVINCE OF BUKIDNON          
+                        </p>
+                    </td>
+                    <td align="left">
+                        <div>
+                            <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <p align="center" style="font-size: 10px">
+                BUKIDNON PROVINCIAL HOSPITAL-KIBAWE
+                <br>
+                CM. Recto Street, Pamla, Kibawe, Bukidnon            
+            </p>
+            <div align="left"><hr /></div>
+            TRANSMITTAL
+
             <p align="left" style="font-size: 12px">
+                To: &nbsp; MARIE CARMEN C. UNABIA
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PG Department Head
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PEEDM Officer
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Province of Bukidnon
+                <br>
+                <br>
                 Date: $today
                 <br>
                 <br>
@@ -990,29 +1028,6 @@ class Report_model extends CI_Model{
 
         $html = <<<EOD
         <div align="center">
-            <table>
-                <tr>
-                    <td align="right">
-                        <div>
-                            <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
-                        </div>  
-                    </td>
-                    <td>
-                        <p align="center" style="font-size: 14px">
-                            Republic of the Philippines
-                            <br>
-                            PROVINCE OF BUKIDNON
-                            <br>
-                            Provincial Capitol           
-                        </p>
-                    </td>
-                    <td align="left">
-                        <div>
-                            <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
-                        </div>
-                    </td>
-                </tr>
-            </table>
             $title
             $table
         </div>

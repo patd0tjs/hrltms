@@ -36,7 +36,8 @@ class Pages extends CI_Controller{
                 'employees'      => $this->Users_model->get_employees(),
                 'tardies'        => $this->DateAndTime_model->get_tardy(),
                 'leaves'         => $this->DateAndTime_model->get_approved_leaves(),
-                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves()
+                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves(),
+                'hl'             => 'dashboard'
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);
@@ -61,7 +62,8 @@ class Pages extends CI_Controller{
                 'designations'   => $this->Users_model->get_designations(),
                 'employees'      => $employees,
                 'title'          => 'Employees',
-                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves()
+                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves(),
+                'hl'             => 'employees'
             );
 
             $this->load->view('components/header');
@@ -82,7 +84,7 @@ class Pages extends CI_Controller{
                 'employees'      => $this->Users_model->get_employees(),
                 'pending'        => $this->DateAndTime_model->get_pending_leaves(),
                 'approved'       => $this->DateAndTime_model->get_approved_leaves(),
-                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves()
+                'pending_leaves' => $this->DateAndTime_model->get_pending_leaves(),
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);

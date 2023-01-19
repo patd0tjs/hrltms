@@ -5,48 +5,92 @@
                 <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline">
                         <img src="<?= base_url()?>assets/img/logo.jpg" alt="" class="img-fluid" style="width:60%">
+                        <br>
+                        <strong>BPH-KIBAWE</strong>  
                     </span>
                 </a>
-                
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
 
                     <?php if($this->session->id == 'admin'){?>
                         <li class="nav-item">
                             <a href="<?= base_url()?>admin" class="nav-link align-middle px-0" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'Dashboard'){ ?>
+                                        <strong>Dashboard</strong>
+                                    <?php } else {?>
+                                        Dashboard
+                                    <?php } ?>
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="<?= base_url()?>admin/employees" class="nav-link px-0 align-middle" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">Employees</span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'Employees'){ ?>
+                                        <strong>Employees</strong>
+                                    <?php } else {?>
+                                        Employees
+                                    <?php } ?>
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="<?= base_url()?>admin/dtr" class="nav-link px-0 align-middle" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">DTR</span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'Daily Time Record'){ ?>
+                                        <strong>DTR</strong>
+                                    <?php } else {?>
+                                        DTR
+                                    <?php } ?>
+                                </span>
                             </a>
                         </li>
 
                         <li>
                             <a href="<?= base_url()?>admin/schedules" class="nav-link px-0 align-middle" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">Schedules</span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'Schedules'){ ?>
+                                        <strong>Schedules</strong>
+                                    <?php } else {?>
+                                        Schedules
+                                    <?php } ?>
+                                </span>
                             </a>
                         </li>
 
                         <li>
                             <a href="<?= base_url()?>admin/tardy" class="nav-link px-0 align-middle" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">Tardy</span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'Tardy'){ ?>
+                                        <strong>Tardy</strong>
+                                    <?php } else {?>
+                                        Tardy
+                                    <?php } ?>
+                                </span>
                             </a>
                         </li>
 
                         <li>
                             <a href="<?= base_url()?>admin/undertime" class="nav-link px-0 align-middle" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">Undertime</span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'Undertime'){ ?>
+                                        <strong>Undertime</strong>
+                                    <?php } else {?>
+                                        Undertime
+                                    <?php } ?>
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="<?= base_url()?>admin/leaves" class="nav-link px-0 align-middle" style="color: white">
-                                <span class="ms-1 d-none d-sm-inline">Leaves <i class="bi bi-bell-fill"></i> <?= count($pending_leaves)?></span>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    <?php if ($title == 'Employee Leave Requests'){ ?>
+                                        <strong>Leaves</strong>
+                                    <?php } else {?>
+                                        Leaves
+                                    <?php } ?>
+                                    <i class="bi bi-bell-fill"></i> <?= count($pending_leaves)?>
+                                </span>
                             </a>
                         </li>
                         <li>
