@@ -221,7 +221,7 @@
             </div>
         </div>
 
-        <div class="col py-3">
+        <div class="col py-3" style='background-color: #B4e24e;'>
             <?php $this->load->view('components/topbar'); ?>
             <div class="content">
                 <?php if ($this->session->flashdata('error')){?>
