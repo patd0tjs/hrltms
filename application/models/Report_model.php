@@ -447,6 +447,7 @@ class Report_model extends CI_Model{
                 </tr>
             EOD;
         endforeach;
+        $report_date = date('F Y',strtotime($s_date));
 
         // set table
         $table = <<<EOD
@@ -506,12 +507,14 @@ class Report_model extends CI_Model{
                     </td>
                 </tr>
             </table>
-            <p align="left" style="font-size: 12px">
-                Date: $s_date
+            <p align="center" style="font-size: 12px">
+                MONTHLY TARDY SUMMARY REPORT
+                <br>
+                For the month of $report_date
                 <br>
                 <br>
-                TARDY REPORT					
-            </p> 
+                OFFICE: BUKIDNON PROVINCIAL HOSPITAL-KIBABWE (REGULAR)									
+            </p>  
             EOD;
 
         $footer = 
@@ -574,6 +577,7 @@ class Report_model extends CI_Model{
             EOD;
         endforeach;
 
+        $report_date = date('F Y',strtotime($s_date));
         // set table
         $table = <<<EOD
             <br>
@@ -632,11 +636,13 @@ class Report_model extends CI_Model{
                     </td>
                 </tr>
             </table>
-            <p align="left" style="font-size: 12px">
-                Date: $s_date
+            <p align="center" style="font-size: 12px">
+                MONTHLY UNDERTIME SUMMARY REPORT
+                <br>
+                For the month of $report_date
                 <br>
                 <br>
-                UNDERTIME REPORT					
+                OFFICE: BUKIDNON PROVINCIAL HOSPITAL-KIBABWE (REGULAR)									
             </p> 
             EOD;
         

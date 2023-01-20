@@ -1,8 +1,23 @@
 <div class="container">
-<img style="width: 150px; height: 150px; border-radius: 5px; float: right;" src="<?= $my_info['id_pic']?>" alt="user profile">
-<br><br><br><br><br><br><br>
+    <div align="right">
+    <table>
+        <tr>
+            <td style="padding: 10px">
+                Name: <?= $my_info['l_name']. ', ' . $my_info['f_name']. ' ' . $my_info['m_name'];?>
+                <br>
+                Employee ID: <?= $my_info['id']?>
+            </td>
+            <td>
+                <img style="height: 150px;  border-radius: 5px; float: right;" src="<?= $my_info['id_pic']?>" alt="user profile">
+            </td>
+        </tr>
+    </table>
+    </div>
+
+
+<!-- <br><br><br><br><br><br><br> -->
 <div class="row row-cols-3">
-    <div class="col">
+    <!-- <div class="col">
         <label class="form-label" for="">Last Name: </label>
         <input class="form-control" type="text" value="<?= $my_info['l_name']?>" disabled>
     </div>
@@ -17,7 +32,7 @@
     <div class="col">
         <label class="form-label" for="">Employee ID: </label>
         <input class="form-control" type="text" value="<?= $my_info['id']?>" disabled>
-    </div>
+    </div> -->
     <div class="col">
         <label class="form-label" for="">Department: </label>
         <input class="form-control" type="text" value="<?= $my_info['department']?>" disabled>
@@ -141,7 +156,8 @@
         <label class="form-label" for="">Email Address: </label>
         <input class="form-control" type="text" value="<?= $my_info['email']?>" disabled>
     </div>
-<div class="col">
+    &nbsp;
+    <div class="col">
     <label class="form-label" for="">Remarks: </label>
     <textarea class="form-control" name="remarks" cols="30" rows="10" placeholder="remarks" disabled><?= $my_info['remarks']?></textarea>
 </div>
