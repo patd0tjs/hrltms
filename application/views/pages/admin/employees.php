@@ -264,6 +264,7 @@
       <th>Middle Name</th>
       <th>Gender</th> 
       <th>Designation</th>
+      <th>Department</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -277,6 +278,7 @@
         <td><?=$emp['m_name']?></td>
         <td><?=$emp['sex']?></td>
         <td><?= $emp['designation_name']?></td>
+        <td><?= $emp['department_name']?></td>
         <td>
           <form action="<?= base_url()?>reports/export_employee_data" method="post">
             <input type="hidden" name="id" value="<?= $emp['id']?>">
@@ -338,7 +340,7 @@
                   <td>Department:</td>
                   <td>            
                     <select class="form-control" id="departments" name="department" required>
-                    <option value="" disabled selected><?= $this->Users_model->get_department_name($emp['department_id'])['name']?></option>
+                    <option value="<?= $emp['department_id']?>" selected><?= $this->Users_model->get_department_name($emp['department_id'])['name']?></option>
                       <?php foreach($departments as $department):
                         if($department['id'] != $emp['department_id']){?>
                         <option value="<?= $department['id']?>"><?= $department['name']?></option>
@@ -350,7 +352,7 @@
                   <td>Designation:</td>
                   <td>
                     <select class="form-control" id="designation" name ="designation" required>
-                      <option value="" disabled selected><?= $this->Users_model->get_designation_name($emp['designation_id'])['name']?></option>
+                      <option value="<?= $emp['designation_id']?>" selected><?= $this->Users_model->get_designation_name($emp['designation_id'])['name']?></option>
                       <?php foreach($designations as $designation):
                         if($designation['id'] != $emp['designation_id']) {?>
                           <option value="<?= $designation['id']?>"><?= $designation['name']?></option>
@@ -362,7 +364,7 @@
                   <td>Employment Status:</td>
                   <td>
                     <select class="form-control" id="status_edit" name="status" required>
-                      <option value="" selected disabled><?= $emp['status']?></option>
+                      <option value="<?=$emp['status']?>" selected>Current: <?= $emp['status']?></option>
                       <option value="regular">Permanent</option>
                       <option value="irregular">JO</option>
                       <option value="casual">Casual</option>
@@ -373,7 +375,7 @@
                   <td>Sex:</td>
                   <td>
                     <select class="form-control" id="sex" name="sex" required>
-                      <option value="" selected disabled><?= $emp['sex']?></option>
+                      <option value="<?=$emp['sex']?>" selected>Current: <?= $emp['sex']?></option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>

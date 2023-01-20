@@ -33,7 +33,7 @@
 
             <link rel="stylesheet" href="<?= base_url()?>assets/styles/styles.css">
             <link rel="icon" href="<?= base_url()?>assets/img/logo.jpg" type="image/icon type">
-            <title>HRMIS</title>
+            <title>HRLTMS</title>
         </head>
     <body>
 
