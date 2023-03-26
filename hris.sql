@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2023 at 12:53 AM
+-- Generation Time: Mar 26, 2023 at 04:08 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -125,13 +125,6 @@ CREATE TABLE `dtr` (
   `e_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `dtr`
---
-
-INSERT INTO `dtr` (`id`, `emp_id`, `time_in`, `time_out`, `s_date`, `e_date`) VALUES
-(16, 'itspatnotrick', '22:30:00', '05:00:00', '2022-11-20', '2022-11-21');
-
 -- --------------------------------------------------------
 
 --
@@ -151,10 +144,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `f_name`, `m_name`, `l_name`, `timestamp`) VALUES
-('1234', 'asdasasd', 'asda', 'dasdasda', '2022-12-18 03:14:49'),
-('asda', 'dasdas', 'dasdasdasdas', 'asdas', '2022-12-18 03:14:49'),
-('demo', 'dasdasd', 'asdasd', 'asdas', '2022-12-18 03:14:49'),
-('itspatnotrick', 'Patrick', 'Capili', 'Balanza', '2022-12-18 03:14:49');
+('patrick', 'dsfgdsfgs', 'sdfgdsgdfsgd', 'dfsgsdfg', '2023-03-26 12:40:14');
 
 -- --------------------------------------------------------
 
@@ -167,8 +157,8 @@ CREATE TABLE `employee_details` (
   `id_pic` varchar(255) DEFAULT NULL,
   `department_id` int(11) NOT NULL,
   `designation_id` int(11) NOT NULL,
-  `status` enum('regular','irregular','casual') NOT NULL,
-  `sex` enum('male','female') NOT NULL,
+  `status` enum('Regular','Irregular','Casual') NOT NULL,
+  `sex` enum('Male','Female') NOT NULL,
   `bday` date NOT NULL,
   `birth_place` varchar(255) NOT NULL,
   `purok` varchar(255) DEFAULT NULL,
@@ -178,14 +168,14 @@ CREATE TABLE `employee_details` (
   `zip` int(11) NOT NULL,
   `date_hired` date NOT NULL,
   `plantilla` int(11) NOT NULL,
-  `education` enum('elem','jhs','shs','bachelors','post_grad') NOT NULL,
+  `education` enum('Elementary','JHS','SHS','Bachelors','Post Graduate') NOT NULL,
   `school` varchar(255) NOT NULL,
   `prc` int(11) DEFAULT NULL,
   `prc_reg` date DEFAULT NULL,
   `prc_exp` date DEFAULT NULL,
   `philhealth` int(11) DEFAULT NULL,
   `phone` int(11) NOT NULL,
-  `marital_status` enum('single','married','separated','divorced','widowed') NOT NULL,
+  `marital_status` enum('Single','Married','Separated','Divorced','Widowed') NOT NULL,
   `gsis` int(11) DEFAULT NULL,
   `sss` int(11) DEFAULT NULL,
   `pag_ibig` int(11) DEFAULT NULL,
@@ -201,10 +191,7 @@ CREATE TABLE `employee_details` (
 --
 
 INSERT INTO `employee_details` (`id`, `id_pic`, `department_id`, `designation_id`, `status`, `sex`, `bday`, `birth_place`, `purok`, `brgy`, `municipality`, `province`, `zip`, `date_hired`, `plantilla`, `education`, `school`, `prc`, `prc_reg`, `prc_exp`, `philhealth`, `phone`, `marital_status`, `gsis`, `sss`, `pag_ibig`, `tin`, `atm`, `blood_type`, `email`, `remarks`) VALUES
-('1234', 'http://localhost/hris/assets/img/id/kgqo26pqkik41.jpg', 3, 3, 'regular', 'female', '2022-11-02', 'asda', 'asdas', 'dasdasd', 'asdasd', 'asdasd', 1231231, '2022-11-09', 123131, 'shs', 'sdfasdfa', 0, '0000-00-00', '0000-00-00', 123131, 123123123, 'married', 123123, 1231, 123123, 123, 12312321, 'B-', 'email@mail.com', 'asdasad'),
-('asda', 'http://localhost/hris/assets/img/null_pic.jpg', 2, 4, 'irregular', 'female', '2022-11-08', 'asdasd', 'asdasd', 'asdasd', 'dasdasd', 'asdasdas', 212312312, '2022-11-03', 234234, 'jhs', 'asdasdas', 2342342, '2022-11-22', '2022-11-30', 234234, 242342342, 'married', 3424234, 234234, 4234234, 2423423, 23423423, 'A+', 'balanzaairlines@gmail.com', ''),
-('demo', 'http://localhost/hris/assets/img/null_pic.jpg', 2, 3, 'irregular', 'female', '2022-10-31', 'asd', 'fgasdfas', 'dfadsf', 'adsfsadfadsf', 'adsfasf', 345345, '2022-11-15', 453453, 'shs', 'dfgdfsfga', 3423424, '2022-11-27', '2022-11-24', 453453, 34534534, 'separated', 234324, 234234, 56456456, 45674565, 234123423, 'B+', 'pgbalanza@gmail.com', 'demo'),
-('itspatnotrick', 'http://localhost/hris/assets/img/id/Joker-Wallpaper-For-PC.jpg', 1, 1, 'regular', 'male', '1999-08-25', 'Manila', '', '456', 'Manila', 'Manila', 23, '2022-07-18', 11234, 'elem', 'University of Santo Tomas', 12345, '2022-11-13', '2026-09-13', 11234, 2147483647, 'single', 1, 1, 1, 1, 1, 'A+', 'pgbalanza@gmail.com', 'full stack');
+('patrick', 'http://localhost/hrmis/assets/img/id/macos-ventura-macos-13-macos-2022-stock-dark-mode-5k-retina-1920x1080-8133.jpg', 16, 17, 'Casual', 'Female', '2023-03-03', 'sadfgdsfgdasf', 'dfghsfgh', 'dfgsdfgds', 'dsfgsg', 'sdfgs', 3456345, '2023-04-06', 2147483647, 'JHS', 'asdfasdfsa', 2147483647, '2023-03-14', '2023-03-31', 2147483647, 324523452, 'Single', 2147483647, 4563453, 6345634, 2147483647, 2147483647, 'A+', '34563632@GMAIL.COM', 'defgsdfgadsfgsdfgsdfgdsaesdfadsfa');
 
 -- --------------------------------------------------------
 
@@ -223,15 +210,6 @@ CREATE TABLE `leaves` (
   `reason` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `leaves`
---
-
-INSERT INTO `leaves` (`id`, `emp_id`, `status`, `s_date`, `e_date`, `nature`, `date_filed`, `reason`) VALUES
-(10, 'itspatnotrick', 'approved', '2022-11-13', '2022-11-15', 'Others', '2022-11-27 14:12:25', 'lamay'),
-(12, 'itspatnotrick', 'approved', '2022-12-31', '2023-01-07', 'VAWC Leave', '2022-12-31 07:18:55', ''),
-(13, 'itspatnotrick', 'approved', '2023-01-03', '2023-01-06', 'VAWC Leave', '2022-12-31 07:22:01', '');
-
 -- --------------------------------------------------------
 
 --
@@ -245,28 +223,6 @@ CREATE TABLE `recovery_code` (
   `used` enum('Y','N') DEFAULT 'N',
   `code` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `recovery_code`
---
-
-INSERT INTO `recovery_code` (`id`, `user_id`, `expire`, `used`, `code`) VALUES
-(1, '0', '2022-11-25 22:03:29', 'N', 7441),
-(2, '0', '2022-11-25 21:55:07', 'N', 2023),
-(3, '0', '2022-11-26 07:07:38', 'N', 3011),
-(4, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 1239),
-(5, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 9069),
-(6, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 6335),
-(7, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 3757),
-(8, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 4108),
-(9, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 5000),
-(10, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 6139),
-(11, 'itspatnotrick', '2022-11-26 08:22:57', 'Y', 1651),
-(12, 'itspatnotrick', '2022-11-26 08:32:43', 'Y', 4132),
-(13, 'itspatnotrick', '2022-11-27 12:21:38', 'Y', 1508),
-(14, 'demo', '2022-12-31 02:40:37', 'Y', 9964),
-(15, 'demo', '2022-12-31 02:50:37', 'N', 7843),
-(16, 'itspatnotrick', '2023-01-03 15:02:33', 'Y', 6157);
 
 -- --------------------------------------------------------
 
@@ -283,13 +239,6 @@ CREATE TABLE `schedule` (
   `e_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `schedule`
---
-
-INSERT INTO `schedule` (`id`, `emp_id`, `time_in`, `time_out`, `s_date`, `e_date`) VALUES
-(36, 'itspatnotrick', '22:25:00', '05:26:00', '2022-11-20', '2022-11-20');
-
 -- --------------------------------------------------------
 
 --
@@ -303,19 +252,6 @@ CREATE TABLE `tardy` (
   `diff` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tardy`
---
-
-INSERT INTO `tardy` (`id`, `emp_id`, `date`, `diff`) VALUES
-(10, 'itspatnotrick', '2022-11-20', '00:55:00'),
-(11, 'itspatnotrick', '2022-11-20', '00:18:00'),
-(12, 'itspatnotrick', '2022-11-20', '00:05:00'),
-(13, 'itspatnotrick', '2022-12-31', '01:59:06'),
-(14, 'itspatnotrick', '2022-12-31', '01:57:53'),
-(15, 'itspatnotrick', '2022-12-31', '01:57:38'),
-(16, 'itspatnotrick', '2022-12-31', '00:58:57');
-
 -- --------------------------------------------------------
 
 --
@@ -328,15 +264,6 @@ CREATE TABLE `undertime` (
   `date` date NOT NULL,
   `diff` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `undertime`
---
-
-INSERT INTO `undertime` (`id`, `emp_id`, `date`, `diff`) VALUES
-(4, 'itspatnotrick', '2022-11-20', '02:22:00'),
-(5, 'itspatnotrick', '2022-11-20', '01:21:00'),
-(6, 'itspatnotrick', '2022-11-20', '00:26:00');
 
 -- --------------------------------------------------------
 
@@ -355,11 +282,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `pw`, `type`) VALUES
-('1234', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'emp'),
 ('admin', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'admin'),
-('asda', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'emp'),
-('demo', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'emp'),
-('itspatnotrick', '4e108bcdb47f1221a9f90a13ca941fed3b6ceb27ae4fd503b033ec41b8434b50', 'emp');
+('patrick', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'emp');
 
 --
 -- Indexes for dumped tables
@@ -458,7 +382,7 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `leaves`
@@ -476,19 +400,19 @@ ALTER TABLE `recovery_code`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `tardy`
 --
 ALTER TABLE `tardy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `undertime`
 --
 ALTER TABLE `undertime`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
