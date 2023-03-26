@@ -256,12 +256,20 @@ class DateAndTime_model extends CI_Model{
     }
 
     // add dtr
-    public function add_dtr(){
+    private function insert_dtr($extra){
         // $this->compute_tardy();
 
-        $time_in = $this->input->post('time_in');
-        $time_out = $this->input->post('time_out');
-        $s_date = $this->input->post('date');
+        if($extra > 0){
+            $time_in = $this->input->post('time_in'.$extra);
+            $time_out = $this->input->post('time_out'.$extra);
+            $s_date = $this->input->post('date'.$extra);
+
+        } else {
+            $time_in = $this->input->post('time_in');
+            $time_out = $this->input->post('time_out');
+            $s_date = $this->input->post('date'); 
+        }
+
 
         if ($time_out < $time_in){
             $e_date = date('Y-m-d', strtotime($s_date . ' + 1 day'));
@@ -272,13 +280,13 @@ class DateAndTime_model extends CI_Model{
 
         $data = array(
             'emp_id'   => $this->input->post('employee'),
-            's_date'   => $this->input->post('date'),
+            's_date'   => $s_date,
             'e_date'   => $e_date,
             'time_in'  => $time_in,
             'time_out' => $time_out,
         );
 
-        $schedules = $this->db->where('s_date', $this->input->post('date'))
+        $schedules = $this->db->where('s_date', $s_date)
                               ->where('emp_id', $this->input->post('employee'))
                               ->get('schedule')
                               ->num_rows();
@@ -299,7 +307,22 @@ class DateAndTime_model extends CI_Model{
             };
 
         } else {
-            $this->session->set_flashdata('error', "Employee schedule doesn't exists. DTR not added");
+            $this->session->set_flashdata('error', "Employee Schedule Doesn't Exists. DTR Not Added");
+        }
+    }
+
+    public function add_dtr(){
+        $extra_dates = $this->input->post('extra_dates');
+
+        if($extra_dates > 0){
+            $this->insert_dtr(0);
+
+            for($i = 1; $i <= $extra_dates; $i++){
+                $this->insert_dtr($i);
+            }
+            
+        } else {
+            $this->insert_dtr(0);
         }
     }
 

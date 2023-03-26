@@ -53,7 +53,6 @@
           <div class="mb-3">
           <label for="id" class="form-label">Employee ID:</label>
           <input type="text" name="id" id="id" class="form-control" placeholder="Employee ID" onkeyup="check_id()" required></div>
-          <p id="id_warn" style="color: red; display: none">employee id already exists</p>
 
           <div class="mb-3">
           <label for="l_name" class="form-label">Employee Surname:</label>
@@ -86,16 +85,16 @@
           <div class="mb-3">
           <label for="status" class="form-label">Employment Status:</label>
           <select id="status" class="form-control" name="status" onchange="disablePlantilla()" required>
-            <option value="regular">Permanent</option>
-            <option value="irregular">JO</option>
-            <option value="casual">Casual</option>
+            <option value="Regular">Permanent</option>
+            <option value="Irregular">JO</option>
+            <option value="Casual">Casual</option>
           </select></div>
 
           <div class="mb-3">
           <label for="sex" class="form-label">Sex:</label>
           <select id="sex" class="form-control" name="sex" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
           </select></div>
 
           <div class="mb-3">
@@ -133,11 +132,11 @@
           <label class="form-label" for="education">Education:</label>
           <div class="col-auto">
           <select class="form-control" name="education" id="education" required>
-            <option value="elem">Elementary</option>
-            <option value="jhs">Junior High</option>
-            <option value="shs">Senior High</option>
-            <option value="bachelors">Bachelor's Degree</option>
-            <option value="post_grad">Post Graduate Degree</option>
+            <option value="Elementary">Elementary</option>
+            <option value="JHS">JHS</option>
+            <option value="SHS">SHS</option>
+            <option value="Bachelors">Bachelors</option>
+            <option value="Post Graduate">Post Graduate</option>
           </select></div>
 
           <div class="col-auto">
@@ -169,11 +168,11 @@
           <div class="mb-3">
           <label for="marital_status" class="form-label">Marital Status:</label>
           <select name="marital_status" id="marital_status" class="form-control" required>
-            <option value="single">Single</option>
-            <option value="married">Married</option>
-            <option value="separated">Separated</option>
-            <option value="divorced">Divorced</option>
-            <option value="widowed">Widowed</option>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Separated">Separated</option>
+            <option value="Divorced">Divorced</option>
+            <option value="Widowed">Widowed</option>
           </select></div>
 
           <div class="mb-3">
@@ -215,7 +214,7 @@
 
           <div class="mb-3">
           <label for="remarks" class="form-label">Remarks:</label>
-          <textarea name="remarks" class="form-control" cols="30" rows="10" placeholder="remarks"></textarea></div>
+          <textarea name="remarks" class="form-control" cols="30" rows="10" placeholder="Remarks"></textarea></div>
 
         </div>
 
@@ -340,7 +339,7 @@
                   <td>Department:</td>
                   <td>            
                     <select class="form-control" id="departments" name="department" required>
-                    <option value="<?= $emp['department_id']?>" selected><?= $this->Users_model->get_department_name($emp['department_id'])['name']?></option>
+                    <option value="<?= $emp['department_id']?>" selected hidden><?= $this->Users_model->get_department_name($emp['department_id'])['name']?></option>
                       <?php foreach($departments as $department):
                         if($department['id'] != $emp['department_id']){?>
                         <option value="<?= $department['id']?>"><?= $department['name']?></option>
@@ -352,7 +351,7 @@
                   <td>Designation:</td>
                   <td>
                     <select class="form-control" id="designation" name ="designation" required>
-                      <option value="<?= $emp['designation_id']?>" selected><?= $this->Users_model->get_designation_name($emp['designation_id'])['name']?></option>
+                      <option value="<?= $emp['designation_id']?>" selected hidden><?= $this->Users_model->get_designation_name($emp['designation_id'])['name']?></option>
                       <?php foreach($designations as $designation):
                         if($designation['id'] != $emp['designation_id']) {?>
                           <option value="<?= $designation['id']?>"><?= $designation['name']?></option>
@@ -364,10 +363,10 @@
                   <td>Employment Status:</td>
                   <td>
                     <select class="form-control" id="status_edit" name="status" required>
-                      <option value="<?=$emp['status']?>" selected>Current: <?= $emp['status']?></option>
-                      <option value="regular">Permanent</option>
-                      <option value="irregular">JO</option>
-                      <option value="casual">Casual</option>
+                      <option value="<?=$emp['status']?>" selected hidden><?= $emp['status']?></option>
+                      <option value="Regular">Permanent</option>
+                      <option value="Irregular">JO</option>
+                      <option value="Casual">Casual</option>
                     </select>
                   </td>
                 </tr>
@@ -375,9 +374,9 @@
                   <td>Sex:</td>
                   <td>
                     <select class="form-control" id="sex" name="sex" required>
-                      <option value="<?=$emp['sex']?>" selected>Current: <?= $emp['sex']?></option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
+                      <option value="<?=$emp['sex']?>" selected hidden><?= $emp['sex']?></option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
                     </select>
                   </td>
                 </tr>
@@ -421,11 +420,12 @@
                   <td>Education:</td>
                   <td>
                     <select class="form-control" name="education" id="education" required>
-                      <option value="elem">Elementary</option>
-                      <option value="jhs">Junior High</option>
-                      <option value="shs">Senior High</option>
-                      <option value="bachelors">Bachelor's Degree</option>
-                      <option value="post_grad">Post Graduate Degree</option>
+                      <option value="<?=$emp['education']?>" selected hidden><?= $emp['education']?></option>
+                      <option value="Elementary">Elementary</option>
+                      <option value="JHS">JHS</option>
+                      <option value="SHS">SHS</option>
+                      <option value="Bachelors">Bachelors</option>
+                      <option value="Post Graduate">Post Graduate</option>
                     </select>
                   </td>
                 </tr>
@@ -457,11 +457,12 @@
                   <td>Marital Status:</td>
                   <td>
                     <select class="form-control" name="marital_status" id="marital_status" required>
-                      <option value="single">Single</option>
-                      <option value="married">Married</option>
-                      <option value="separated">Separated</option>
-                      <option value="divorced">Divorced</option>
-                      <option value="widowed">Widowed</option>
+                      <option value="<?=$emp['marital_status']?>" selected hidden><?= $emp['marital_status']?></option>
+                      <option value="Single">Single</option>
+                      <option value="Married">Married</option>
+                      <option value="Separated">Separated</option>
+                      <option value="Divorced">Divorced</option>
+                      <option value="Widowed">Widowed</option>
                     </select>
                   </td>
                 </tr>
@@ -489,6 +490,7 @@
                   <td>Blood Type:</td>
                   <td>
                     <select class="form-control" name="blood_type" required>
+                      <option value="<?=$emp['blood_type']?>" selected hidden><?= $emp['blood_type']?></option>
                       <option value="A+">A+</option>
                       <option value="A-">A-</option>
                       <option value="B+">B+</option>
@@ -506,7 +508,7 @@
                 </tr>
                 <tr>
                   <td>Remarks:</td>
-                  <td><textarea class="form-control" name="remarks" cols="30" rows="10" placeholder="remarks"><?= $emp['remarks']?></textarea></td>
+                  <td><textarea class="form-control" name="remarks" cols="30" rows="10" placeholder="Remarks"><?= $emp['remarks']?></textarea></td>
                 </tr>
               </tbody>
             </table>

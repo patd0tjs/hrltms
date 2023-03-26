@@ -139,7 +139,7 @@
               <td>
                   <form action="<?= base_url()?>dateandtime/approve_leave" method="post">
                       <input type="hidden" name="id" value="<?= $request['id']?>">
-                      <button class="btn btn-success btn-sm" onclick="return confirm('Confirm leave approval?')" style="margin-bottom: 5px;">Approve</button>
+                      <button class="btn btn-success btn-sm" onclick="return confirm('Confirm Leave Approval?')" style="margin-bottom: 5px;">Approve</button>
                   </form>
         
                 <?= form_open('dateandtime/delete_leave');?>

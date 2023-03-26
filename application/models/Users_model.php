@@ -389,7 +389,7 @@ class Users_model extends CI_Model{
     // add employee details to emp_details table
     private function add_emp_details(){   
         if(empty($_FILES['profile_pic']['name'])){
-            $photo = base_url() . 'assets/img/null_pic.jpg';
+            $photo = base_url() . 'assets/img/id/null_pic.jpg';
             
         } else {
             $photo = $this->uploadPhoto();;
