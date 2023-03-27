@@ -60,9 +60,14 @@
                 <tr>
                   <td>
                     <input type="hidden" name="extra_dates" value="0" id="extra_dates">
-                  <button type="button" onclick="add_dtr_date()">
-                    Add More
-                  </button>
+                    <button type="button" onclick="add_dtr_date()">
+                      Add More
+                    </button>
+                  </td>
+                  <td>
+                    <button type="button" id="remove" style="display:none" onclick="remove_dtr_date()">
+                      Remove
+                    </button>
                   </td>
                 </tr>
               </tfoot>
@@ -191,6 +196,19 @@
     const extra_date = document.getElementById('dtr_list');
 
     extra_date.appendChild(extra);
-}
+    document.getElementById("remove").style.display = 'block';
+  }
+
+  function remove_dtr_date(){
+      document.getElementById('extra_dates').value--;
+      let remove = document.getElementById("remove").style;
+      const extras = document.getElementsByClassName("extras");
+
+      extras[extras.length - 1].remove();
+
+      if(extras.length <= 0){
+        remove.display = "none";
+      }
+    }
 </script>
 
