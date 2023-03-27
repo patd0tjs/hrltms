@@ -291,23 +291,33 @@ class DateAndTime_model extends CI_Model{
                               ->get('schedule')
                               ->num_rows();
 
-        if($schedules > 0){
-            $this->db->insert('dtr', $data);
+        $dtr_exists = $this->db->where('s_date', $s_date)
+                               ->where('e_date', $e_date)
+                               ->where('emp_id', $this->input->post('employee'))
+                               ->get('dtr')
+                               ->num_rows();
 
-            if($this->compute_tardy()){
-                $tardy = $this->compute_tardy();
-                $this->add_tardy($tardy);
-                $this->count_tardy($tardy);
-            };
+        if($dtr_exists <= 0){
+            if($schedules > 0){
+                $this->db->insert('dtr', $data);
     
-            if($this->compute_undertime()){
-                $undertime = $this->compute_undertime();
-                $this->add_undertime($undertime);
-                $this->count_tardy($undertime);
-            };
-
+                if($this->compute_tardy()){
+                    $tardy = $this->compute_tardy();
+                    $this->add_tardy($tardy);
+                    $this->count_tardy($tardy);
+                };
+        
+                if($this->compute_undertime()){
+                    $undertime = $this->compute_undertime();
+                    $this->add_undertime($undertime);
+                    $this->count_tardy($undertime);
+                };
+    
+            } else {
+                $this->session->set_flashdata('error', "Employee Schedule Doesn't Exists. DTR Not Added");
+            }
         } else {
-            $this->session->set_flashdata('error', "Employee Schedule Doesn't Exists. DTR Not Added");
+            $this->session->set_flashdata('error', "Employee Schedule Already Exists. DTR Not Added");
         }
     }
 
