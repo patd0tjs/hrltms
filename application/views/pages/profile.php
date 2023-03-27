@@ -3,7 +3,7 @@
     <table>
         <tr>
             <td style="padding: 10px">
-                Name: <?= $my_info['l_name']. ', ' . $my_info['f_name']. ' ' . $my_info['m_name'];?>
+                Name: <?= ucfirst($my_info['l_name']). ', ' . ucfirst($my_info['f_name']). ' ' . ucfirst($my_info['m_name']);?>
                 <br>
                 Employee ID: <?= $my_info['id']?>
             </td>
@@ -55,23 +55,23 @@
     </div>
     <div class="col">
         <label class="form-label" for="">Birth Place: </label>
-        <input class="form-control" type="text" value="<?= $my_info['birth_place']?>" disabled>
+        <input class="form-control" type="text" value="<?= ucfirst($my_info['birth_place'])?>" disabled>
     </div>
     <div class="col">
         <label class="form-label" for="">Purok: </label>
-        <input class="form-control" type="text" value="<?= $my_info['purok']?>" disabled>
+        <input class="form-control" type="text" value="<?= ucfirst($my_info['purok'])?>" disabled>
     </div>
     <div class="col">
         <label class="form-label" for="">Barangay: </label>
-        <input class="form-control" type="text" value="<?= $my_info['brgy']?>" disabled>
+        <input class="form-control" type="text" value="<?= ucfirst($my_info['brgy'])?>" disabled>
     </div>
     <div class="col">
         <label class="form-label" for="">Municipality: </label>
-        <input class="form-control" type="text" value="<?= $my_info['municipality']?>" disabled>
+        <input class="form-control" type="text" value="<?= ucfirst($my_info['municipality'])?>" disabled>
     </div>
     <div class="col">
         <label class="form-label" for="">Province: </label>
-        <input class="form-control" type="text" value="<?= $my_info['province']?>" disabled>
+        <input class="form-control" type="text" value="<?= ucfirst($my_info['province'])?>" disabled>
     </div>
     <div class="col">
         <label class="form-label" for="">ZIP: </label>

@@ -272,9 +272,9 @@
     <?php foreach($employees as $emp):?>
       <tr>
         <td><?=$emp['id']?></td>
-        <td><?=$emp['l_name']?></td>
-        <td><?=$emp['f_name']?></td>
-        <td><?=$emp['m_name']?></td>
+        <td><?=ucfirst($emp['l_name'])?></td>
+        <td><?=ucfirst($emp['f_name'])?></td>
+        <td><?=ucfirst($emp['m_name'])?></td>
         <td><?=$emp['sex']?></td>
         <td><?= $emp['designation_name']?></td>
         <td><?= $emp['department_name']?></td>
@@ -325,15 +325,15 @@
               <tbody>
                 <tr>
                   <td>Surname:</td>
-                  <td><input class="form-control" type="text" name="l_name" placeholder="surname" value="<?= $emp['l_name']?>" required></td>
+                  <td><input class="form-control" type="text" name="l_name" placeholder="surname" value="<?= ucfirst($emp['l_name'])?>" required></td>
                 </tr>
                 <tr>
                   <td>First Name:</td>
-                  <td><input class="form-control" type="text" name="f_name" placeholder="first name" value="<?= $emp['f_name']?>" required></td>
+                  <td><input class="form-control" type="text" name="f_name" placeholder="first name" value="<?= ucfirst($emp['f_name'])?>" required></td>
                 </tr>
                 <tr>
                   <td>Middle Name:</td>
-                  <td><input class="form-control" type="text" name="m_name" placeholder="middle name" value="<?= $emp['m_name']?>"></td>
+                  <td><input class="form-control" type="text" name="m_name" placeholder="middle name" value="<?= ucfirst($emp['m_name'])?>"></td>
                 </tr>
                 <tr>
                   <td>Department:</td>
@@ -386,23 +386,23 @@
                 </tr>
                 <tr>
                   <td>Place of Birth:</td>
-                  <td><input class="form-control" type="text" name="birth_place" placeholder="Place of Birth" value="<?= $emp['birth_place']?>" required></td>
+                  <td><input class="form-control" type="text" name="birth_place" placeholder="Place of Birth" value="<?= ucfirst($emp['birth_place'])?>" required></td>
                 </tr>
                 <tr>
                   <td>Purok:</td>
-                  <td><input class="form-control" type="text" name="purok" placeholder="purok" value="<?= $emp['purok']?>"></td>
+                  <td><input class="form-control" type="text" name="purok" placeholder="purok" value="<?= ucfirst($emp['purok'])?>"></td>
                 </tr>
                 <tr>
                   <td>Barangay:</td>
-                  <td><input class="form-control" type="text" name="brgy" placeholder="barangay" value="<?= $emp['brgy']?>" required></td>
+                  <td><input class="form-control" type="text" name="brgy" placeholder="barangay" value="<?= ucfirst($emp['brgy'])?>" required></td>
                 </tr>
                 <tr>
                   <td>Municipality:</td>
-                  <td><input class="form-control" type="text" name="municipality" placeholder="municipality" value="<?= $emp['municipality']?>" required></td>
+                  <td><input class="form-control" type="text" name="municipality" placeholder="municipality" value="<?= ucfirst($emp['municipality'])?>" required></td>
                 </tr>
                 <tr>
                   <td>Province:</td>
-                  <td><input class="form-control" type="text" name="province" placeholder="province" value="<?= $emp['province']?>" required></td>
+                  <td><input class="form-control" type="text" name="province" placeholder="province" value="<?= ucfirst($emp['province'])?>" required></td>
                 </tr>
                 <tr>
                   <td>ZIP Code:</td>

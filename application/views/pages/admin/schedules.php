@@ -41,7 +41,7 @@
           <label class="form-label" for="employee">Select Employee:</label>
           <select class="form-control" name="employee" id="emnployee" required>
             <?php foreach($employees as $employee):?>
-              <option value="<?= $employee['id']?>"><?= $employee['l_name'] . ', ' . $employee['f_name'] .  ' ' . $employee['m_name']?></option>
+              <option value="<?= $employee['id']?>"><?= ucfirst($employee['l_name']) . ', ' . ucfirst($employee['f_name']) .  ' ' . ucfirst($employee['m_name'])?></option>
             <?php endforeach?>
           </select></div>
 
@@ -118,7 +118,7 @@
     <?php foreach($schedules as $schedule):?>
       <tr>
         <td><?= $schedule['emp_id']?></td>
-        <td><?= $schedule['l_name'] . ', ' . $schedule['f_name'] . ' ' . $schedule['m_name']?></td>
+        <td><?= ucfirst($schedule['l_name']) . ', ' . ucfirst($schedule['f_name']) . ' ' . ucfirst($schedule['m_name'])?></td>
         <td><?= $schedule['designation']?></td>
         <?php 
           $s_date = strtotime($schedule['s_date']);
@@ -166,7 +166,7 @@
           <!-- select employee -->
           <div class="mb-3">
             <label class="form-label" for="employee">Employee:</label>
-            <input class="form-control" type="text" value="<?= $schedule['l_name'] . ', ' . $schedule['f_name'] .  ' ' . $schedule['m_name']?>" disabled></div>
+            <input class="form-control" type="text" value="<?= ucfirst($schedule['l_name']) . ', ' . ucfirst($schedule['f_name']) .  ' ' . ucfirst($schedule['m_name'])?>" disabled></div>
 
             <div class="mb-3">
             <label class="form-label" for="datePick">Start Date: </label>

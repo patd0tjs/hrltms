@@ -115,7 +115,7 @@
           <tr>
               <td><?= $request['emp_id']?></td>
               <td>
-                  <?= $request['l_name'] . ', ' . $request['f_name'] . ' ' . $request['m_name']?>
+                  <?= ucfirst($request['l_name']) . ', ' . ucfirst($request['f_name']) . ' ' . ucfirst($request['m_name'])?>
               </td>
               <td><?= $request['designation']?></td>
               <td><?= $request['nature']?></td>

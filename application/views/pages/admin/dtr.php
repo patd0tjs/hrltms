@@ -127,7 +127,7 @@
         <?php foreach($dtr as $emp_dtr):?>
             <tr>
                 <td><?= $emp_dtr['emp_id']?></td>
-                <td><?= $emp_dtr['l_name'] . ', ' . $emp_dtr['f_name'] . ' ' . $emp_dtr['m_name']?></td>
+                <td><?= ucfirst($emp_dtr['l_name']) . ', ' . ucfirst($emp_dtr['f_name']) . ' ' . ucfirst($emp_dtr['m_name'])?></td>
                 <td><?= $emp_dtr['designation']?></td>
                 <?php 
                 $time = strtotime($emp_dtr['s_date']);

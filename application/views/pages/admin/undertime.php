@@ -54,7 +54,7 @@
     <?php foreach($undertimes as $undertime):?>
       <tr>
         <td><?= $undertime['emp_id']?></td>
-        <td><?= $undertime['l_name'] . ', ' . $undertime['f_name'] . ' ' . $undertime['m_name']?></td>
+        <td><?= ucfirst($undertime['l_name']) . ', ' . ucfirst($undertime['f_name']) . ' ' . ucfirst($undertime['m_name'])?></td>
         <td><?= $undertime['designation']?></td>
         <?php 
           $time = strtotime($undertime['date']);
