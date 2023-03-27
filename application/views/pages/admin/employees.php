@@ -135,7 +135,7 @@
             <option value="Elementary">Elementary</option>
             <option value="JHS">JHS</option>
             <option value="SHS">SHS</option>
-            <option value="Bachelors">Bachelors</option>
+            <option value="Bachelor's Degree">Bachelor's Degree</option>
             <option value="Post Graduate">Post Graduate</option>
           </select></div>
 
@@ -424,7 +424,7 @@
                       <option value="Elementary">Elementary</option>
                       <option value="JHS">JHS</option>
                       <option value="SHS">SHS</option>
-                      <option value="Bachelors">Bachelors</option>
+                      <option value="Bachelor's Degree">Bachelor's Degree</option>
                       <option value="Post Graduate">Post Graduate</option>
                     </select>
                   </td>
