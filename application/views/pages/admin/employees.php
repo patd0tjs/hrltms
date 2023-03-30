@@ -431,7 +431,7 @@
                 </tr>
                 <tr>
                   <td>School Name:</td>
-                  <td><input class="form-control" type="text" name="school" placeholder="School Name" value="<?= $emp['school']?>" required></td>
+                  <td><input class="form-control" type="text" name="school" placeholder="School Name" value="<?= ucwords($emp['school'])?>" required></td>
                 </tr>
                 <tr>
                   <td>PRC Number:</td>

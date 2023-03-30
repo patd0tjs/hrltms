@@ -936,6 +936,7 @@ class Report_model extends CI_Model{
     public function employee_data_report(){
         $employee = $this->Users_model->get_employees_data(); 
 
+        $school = ucwords($employee['school']);
         // set table
         $table = <<<EOD
             <br>
@@ -1022,7 +1023,7 @@ class Report_model extends CI_Model{
                 </tr>
                 <tr>
                     <td>School Name:</td>
-                    <td>$employee[school]</td>
+                    <td>$school</td>
                 </tr>
                 <tr>
                     <td>PRC Number:</td>

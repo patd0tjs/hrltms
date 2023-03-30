@@ -102,7 +102,7 @@
     </div>
     <div class="col">
         <label class="form-label" for="">School: </label>
-        <input class="form-control" type="text" value="<?= $my_info['school']?>" disabled>
+        <input class="form-control" type="text" value="<?= ucwords($my_info['school'])?>" disabled>
     </div>
     <div class="col">
         <label class="form-label" for="">PRC License No. : </label>
