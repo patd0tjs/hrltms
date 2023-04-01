@@ -69,6 +69,8 @@
 
  <script>
 $(document).ready(function () {
-    $('#undertime').DataTable();
+    $('#undertime').DataTable({
+      "order": [],
+    });
 });
 </script>

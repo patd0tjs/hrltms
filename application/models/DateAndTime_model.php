@@ -26,6 +26,7 @@ class DateAndTime_model extends CI_Model{
                         ->join('employees', 'schedule.emp_id=employees.id')
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->order_by('schedule.id', 'DESC')
                         ->get()
                         ->result_array();
     }
@@ -67,6 +68,7 @@ class DateAndTime_model extends CI_Model{
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
                         ->where('schedule.emp_id', $this->session->id)
+                        ->order_by('schedule.id', 'DESC')
                         ->get()
                         ->result_array();
     }
@@ -109,6 +111,7 @@ class DateAndTime_model extends CI_Model{
                         ->join('employees', 'tardy.emp_id=employees.id')
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->order_by('tardy.id', 'DESC')
                         ->get()
                         ->result_array();
     }
@@ -143,6 +146,7 @@ class DateAndTime_model extends CI_Model{
                         ->join('employees', 'undertime.emp_id=employees.id')
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->order_by('undertime.id', 'DESC')
                         ->get()
                         ->result_array();
     }
@@ -167,12 +171,14 @@ class DateAndTime_model extends CI_Model{
 
     public function my_tardy(){
         return $this->db->where('emp_id', $this->session->id)
+                        ->order_by('id', 'DESC')
                         ->get('tardy')
                         ->result_array();
     }
 
     public function my_undertime(){
         return $this->db->where('emp_id', $this->session->id)
+                        ->order_by('id', 'DESC')
                         ->get('undertime')
                         ->result_array();
     }
@@ -231,6 +237,7 @@ class DateAndTime_model extends CI_Model{
                         ->join('employees', 'dtr.emp_id=employees.id')
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->order_by('dtr.id', 'DESC')
                         ->get()
                         ->result_array();
     }
@@ -256,10 +263,7 @@ class DateAndTime_model extends CI_Model{
     }
 
     // add dtr
-
-    public $insert_id;
     private function insert_dtr($extra){
-        // $this->compute_tardy();
 
         if($extra > 0){
             $time_in = $this->input->post('time_in'.$extra);
@@ -277,7 +281,6 @@ class DateAndTime_model extends CI_Model{
             $e_date = date('Y-m-d', strtotime($s_date . ' + 1 day'));
         } else {
             $e_date = $s_date;
-            //$e_date = $date[$i];
         }
 
         $data = array(
@@ -448,12 +451,14 @@ class DateAndTime_model extends CI_Model{
 
     public function get_leaves(){
         return $this->db->get('leaves')
+                        ->order_by('id', 'DESC')
                         ->result_array();
     }
 
     public function my_pending_leaves(){
         return $this->db->where('emp_id', $this->session->id)
                         ->where('status', 'pending')
+                        ->order_by('id', 'DESC')
                         ->get('leaves')
                         ->result_array();
     }
@@ -461,6 +466,7 @@ class DateAndTime_model extends CI_Model{
     public function my_approved_leaves(){
         return $this->db->where('emp_id', $this->session->id)
                         ->where('status', 'approved')
+                        ->order_by('id', 'DESC')
                         ->get('leaves')
                         ->result_array();
     }
@@ -482,6 +488,7 @@ class DateAndTime_model extends CI_Model{
                         ->join('employee_details', 'leaves.emp_id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
                         ->where('leaves.status', 'pending')
+                        ->order_by('leaves.id', 'DESC')
                         ->get()
                         ->result_array();
     }
@@ -502,6 +509,7 @@ class DateAndTime_model extends CI_Model{
                         ->join('employee_details', 'leaves.emp_id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
                         ->where('leaves.status', 'approved')
+                        ->order_by('leaves.id', 'DESC')
                         ->get()
                         ->result_array();
     }

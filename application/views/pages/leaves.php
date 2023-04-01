@@ -146,11 +146,15 @@
 
 <script>
 $(document).ready(function () {
-  $('#pending').DataTable();
+  $('#pending').DataTable({
+      "order": [],
+    });
 });
 
 $(document).ready(function () {
-  $('#approved').DataTable();
+  $('#approved').DataTable({
+      "order": [],
+    });
 });
 
 function others(){

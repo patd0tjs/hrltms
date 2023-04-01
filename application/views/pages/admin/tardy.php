@@ -70,6 +70,8 @@
 
  <script>
 $(document).ready(function () {
-    $('#tardy').DataTable();
+    $('#tardy').DataTable({
+      "order": [],
+    });
 });
 </script>

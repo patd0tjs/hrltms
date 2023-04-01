@@ -204,7 +204,9 @@
     });
 
     $(document).ready(function () {
-      $('#schedules').DataTable() ;
+      $('#schedules').DataTable({
+      "order": [],
+    }) ;
     });
 </script>
 

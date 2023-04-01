@@ -154,7 +154,9 @@
 
 <script>
   $(document).ready(function () {
-      $('#dtr').DataTable();
+      $('#dtr').DataTable({
+      "order": [],
+    });
   });
 
   function add_dtr_date(){
