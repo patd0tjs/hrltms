@@ -236,7 +236,7 @@ class Users_model extends CI_Model{
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
                         ->join('departments', 'employee_details.department_id=departments.id')
-                        ->order_by('id', 'DESC')
+                        ->order_by('id')
                         ->get()
                         ->result_array();
     }
@@ -339,6 +339,7 @@ class Users_model extends CI_Model{
                         ->join('departments', 'employee_details.department_id=departments.id')
                         ->where('employee_details.department_id', $department)
                         ->where('employee_details.sex', $gender)
+                        ->order_by('id')
                         ->get()
                         ->result_array();
     }
