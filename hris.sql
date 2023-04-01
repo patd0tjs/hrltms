@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2023 at 02:05 PM
+-- Generation Time: Apr 01, 2023 at 03:14 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -175,7 +175,7 @@ CREATE TABLE `employee_details` (
   `zip` int(11) NOT NULL,
   `date_hired` date NOT NULL,
   `plantilla` int(11) NOT NULL,
-  `education` enum('Elementary','JHS','SHS','Bachelors','Post Graduate') NOT NULL,
+  `education` enum('Elementary','JHS','SHS','Bachelor''s Degree','Post Graduate') NOT NULL,
   `school` varchar(255) NOT NULL,
   `prc` int(11) DEFAULT NULL,
   `prc_reg` date DEFAULT NULL,
