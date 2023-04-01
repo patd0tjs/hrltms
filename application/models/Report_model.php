@@ -343,7 +343,7 @@ class Report_model extends CI_Model{
                 <tr>
                     <td align="right">
                         <div>
-                            <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                            <img src="assets/img/pdf_logo_3.jpg" style="width: 75px;">
                         </div>  
                     </td>
                     <td>
@@ -355,7 +355,7 @@ class Report_model extends CI_Model{
                     </td>
                     <td align="left">
                         <div>
-                            <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                            <img src="assets/img/logo-2.jpg" style="width: 80px">
                         </div>
                     </td>
                 </tr>
@@ -490,7 +490,7 @@ class Report_model extends CI_Model{
                 <tr>
                     <td align="right">
                         <div>
-                            <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                            <img src="assets/img/pdf_logo_3.jpg" style="width: 75px;">
                         </div>  
                     </td>
                     <td>
@@ -502,7 +502,7 @@ class Report_model extends CI_Model{
                     </td>
                     <td align="left">
                         <div>
-                            <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                            <img src="assets/img/logo-2.jpg" style="width: 80px">
                         </div>
                     </td>
                 </tr>
@@ -619,7 +619,7 @@ class Report_model extends CI_Model{
                 <tr>
                     <td align="right">
                         <div>
-                            <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                            <img src="assets/img/pdf_logo_3.jpg" style="width: 75px;">
                         </div>  
                     </td>
                     <td>
@@ -631,7 +631,7 @@ class Report_model extends CI_Model{
                     </td>
                     <td align="left">
                         <div>
-                            <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                            <img src="assets/img/logo-2.jpg" style="width: 80px">
                         </div>
                     </td>
                 </tr>
@@ -760,7 +760,7 @@ class Report_model extends CI_Model{
                     <tr>
                         <td align="right">
                             <div>
-                                <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                                <img src="assets/img/pdf_logo_3.jpg" style="width: 75px;">
                             </div>  
                         </td>
                         <td>
@@ -772,7 +772,7 @@ class Report_model extends CI_Model{
                         </td>
                         <td align="left">
                             <div>
-                                <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                                <img src="assets/img/logo-2.jpg" style="width: 80px">
                             </div>
                         </td>
                     </tr>
@@ -888,7 +888,7 @@ class Report_model extends CI_Model{
                 <tr>
                     <td align="right">
                         <div>
-                            <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                            <img src="assets/img/pdf_logo_3.jpg" style="width: 75px;">
                         </div>  
                     </td>
                     <td>
@@ -900,7 +900,7 @@ class Report_model extends CI_Model{
                     </td>
                     <td align="left">
                         <div>
-                            <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                            <img src="assets/img/logo-2.jpg" style="width: 80px">
                         </div>
                     </td>
                 </tr>
@@ -1091,7 +1091,7 @@ class Report_model extends CI_Model{
                     <tr>
                         <td align="right">
                             <div>
-                                <img src="assets/img/pdf_logo_1.jpg" style="width: 75px;">
+                                <img src="assets/img/pdf_logo_3.jpg" style="width: 75px;">
                             </div>  
                         </td>
                         <td>
@@ -1103,7 +1103,7 @@ class Report_model extends CI_Model{
                         </td>
                         <td align="left">
                             <div>
-                                <img src="assets/img/pdf_logo_2.jpg" style="width: 80px">
+                                <img src="assets/img/logo-2.jpg" style="width: 80px">
                             </div>
                         </td>
                     </tr>

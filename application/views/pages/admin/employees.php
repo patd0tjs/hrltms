@@ -531,7 +531,9 @@ function filter(){
 }
 
 $(document).ready(function () {
-    $('#employee_tbl').DataTable();
+    $('#employee_tbl').DataTable({
+      "order": [],
+    });
 });
 
 function disablePlantilla(){

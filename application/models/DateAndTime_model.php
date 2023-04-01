@@ -256,6 +256,8 @@ class DateAndTime_model extends CI_Model{
     }
 
     // add dtr
+
+    public $insert_id;
     private function insert_dtr($extra){
         // $this->compute_tardy();
 
@@ -300,7 +302,8 @@ class DateAndTime_model extends CI_Model{
         if($dtr_exists <= 0){
             if($schedules > 0){
                 $this->db->insert('dtr', $data);
-    
+
+                $this->insert_id = $this->db->insert_id();
                 if($this->compute_tardy()){
                     $tardy = $this->compute_tardy();
                     $this->add_tardy($tardy);
@@ -589,4 +592,6 @@ class DateAndTime_model extends CI_Model{
         $mail->send();
 
     }
+
+
 }

@@ -236,6 +236,7 @@ class Users_model extends CI_Model{
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
                         ->join('departments', 'employee_details.department_id=departments.id')
+                        ->order_by('id', 'DESC')
                         ->get()
                         ->result_array();
     }
@@ -411,7 +412,7 @@ class Users_model extends CI_Model{
             'date_hired'     => $this->input->post('date_hired'),
             'plantilla'      => $this->input->post('philhealth'),
             'education'      => $this->input->post('education'),
-            'school'         => $this->input->post('school'),
+            'school'         => ucwords(strtolower($this->input->post('school'))),
             'prc'            => $this->input->post('prc'),
             'prc_reg'        => $this->input->post('prc_reg'),
             'prc_exp'        => $this->input->post('prc_exp'),
@@ -538,7 +539,7 @@ class Users_model extends CI_Model{
             'date_hired'     => $this->input->post('date_hired'),
             'plantilla'      => $this->input->post('philhealth'),
             'education'      => $this->input->post('education'),
-            'school'         => $this->input->post('school'),
+            'school'         => ucwords(strtolower($this->input->post('school'))),
             'prc'            => $this->input->post('prc'),
             'prc_reg'        => $this->input->post('prc_reg'),
             'prc_exp'        => $this->input->post('prc_exp'),
