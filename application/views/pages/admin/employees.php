@@ -86,8 +86,8 @@
           <div class="mb-3">
           <label for="status" class="form-label">Employment Status:</label>
           <select id="status" class="form-control" name="status" onchange="disablePlantilla()" required>
-            <option value="Regular">Permanent</option>
-            <option value="Irregular">JO</option>
+            <option value="Permanent">Permanent</option>
+            <option value="JO">JO</option>
             <option value="Casual">Casual</option>
           </select></div>
 
@@ -234,7 +234,7 @@
 <table>
   <tr>
     <td>
-      <select name="department" class="form-control" style="max-width: 200px;" required>
+      <select name="department" class="form-control" style="max-width: 200px;">
         <option value="" disabled selected hidden>Select Department</option>
         <?php foreach($departments as $department):?>
           <option value="<?= $department['id']?>"><?= $department['name']?></option>
@@ -242,10 +242,10 @@
       </select>
     </td>
     <td>
-      <select name="gender" class="form-control" style="max-width: 200px;" required>
+      <select name="gender" class="form-control" style="max-width: 200px;">
         <option value="" disabled selected hidden>Select Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
       </select>
     </td>
     <td>
@@ -365,8 +365,8 @@
                   <td>
                     <select class="form-control" name="status" required>
                       <option value="<?=$emp['status']?>" selected hidden><?= $emp['status']?></option>
-                      <option value="Regular">Permanent</option>
-                      <option value="Irregular">JO</option>
+                      <option value="Permanent">Permanent</option>
+                      <option value="JO">JO</option>
                       <option value="Casual">Casual</option>
                     </select>
                   </td>
@@ -541,7 +541,7 @@ function disablePlantilla(){
   let status = document.getElementById('status').value;
   let plantilla = document.getElementById('plantilla').style;
 
-  if(status != "Regular"){
+  if(status == "JO"){
     plantilla.display = "none";
   } else {
     plantilla.display = "block";

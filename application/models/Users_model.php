@@ -236,7 +236,7 @@ class Users_model extends CI_Model{
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
                         ->join('departments', 'employee_details.department_id=departments.id')
-                        ->order_by('id')
+                        ->order_by('employees.timestamp', 'desc')
                         ->get()
                         ->result_array();
     }
@@ -286,62 +286,71 @@ class Users_model extends CI_Model{
     }
 
     public function filter_employees(){
-        if($this->input->get('gender') != NULL){
-            $gender = $this->input->get('gender'); 
+        $filter = $this->db->select('employees.id as id')
+                    ->select('employees.f_name as f_name')
+                    ->select('employees.m_name as m_name')
+                    ->select('employees.l_name as l_name')
+                    ->select('employee_details.id_pic as id_pic')
+                    ->select('departments.name as department_name')
+                    ->select('designations.name as designation_name')
+                    ->select('employee_details.designation_id as designation_id')
+                    ->select('employee_details.department_id as department_id')
+                    ->select('employee_details.status as status')
+                    ->select('employee_details.sex as sex')
+                    ->select('employee_details.bday as bday')
+                    ->select('employee_details.birth_place as birth_place')
+                    ->select('employee_details.purok as purok')
+                    ->select('employee_details.brgy as brgy')
+                    ->select('employee_details.municipality as municipality')
+                    ->select('employee_details.province as province')
+                    ->select('employee_details.zip as zip')
+                    ->select('employee_details.date_hired as date_hired')
+                    ->select('employee_details.plantilla as plantilla')
+                    ->select('employee_details.education as education')
+                    ->select('employee_details.school as school')
+                    ->select('employee_details.prc as prc')
+                    ->select('employee_details.prc_reg as prc_reg')
+                    ->select('employee_details.prc_exp as prc_exp')
+                    ->select('employee_details.philhealth as philhealth')
+                    ->select('employee_details.phone as phone')
+                    ->select('employee_details.marital_status as marital_status')
+                    ->select('employee_details.gsis as gsis')
+                    ->select('employee_details.sss as sss')
+                    ->select('employee_details.pag_ibig as pag_ibig')
+                    ->select('employee_details.tin as tin')
+                    ->select('employee_details.atm as atm')
+                    ->select('employee_details.blood_type as blood_type')
+                    ->select('employee_details.email as email')
+                    ->select('employee_details.remarks as remarks')
+                    ->from('employees')
+                    ->join('employee_details', 'employees.id=employee_details.id')
+                    ->join('designations', 'employee_details.designation_id=designations.id')
+                    ->join('departments', 'employee_details.department_id=departments.id');
+
+        if($this->input->get('gender') && $this->input->get('department')){
+            return $filter->where('employee_details.department_id', $this->input->get('department'))
+                          ->where('employee_details.sex', $this->input->get('gender'))
+                          ->order_by('employees.timestamp', 'desc')
+                          ->get()
+                          ->result_array();
+
+        } elseif($this->input->get('gender')) {
+            return $filter->where('employee_details.sex', $this->input->get('gender'))
+                          ->order_by('employees.timestamp', 'desc')
+                          ->get()
+                          ->result_array();  
+
+        } elseif ($this->input->get('department')) {
+            return $filter->where('employee_details.department_id', $this->input->get('department'))
+                          ->order_by('employees.timestamp', 'desc')
+                          ->get()
+                          ->result_array();
+
         } else {
-            $gender = '';
-        }
-        
-        if($this->input->get('department') != NULL){
-            $department = $this->input->get('department');
-        } else {
-            $department = $this->input->get('');
-        }
-        return $this->db->select('employees.id as id')
-                        ->select('employees.f_name as f_name')
-                        ->select('employees.m_name as m_name')
-                        ->select('employees.l_name as l_name')
-                        ->select('employee_details.id_pic as id_pic')
-                        ->select('departments.name as department_name')
-                        ->select('designations.name as designation_name')
-                        ->select('employee_details.designation_id as designation_id')
-                        ->select('employee_details.department_id as department_id')
-                        ->select('employee_details.status as status')
-                        ->select('employee_details.sex as sex')
-                        ->select('employee_details.bday as bday')
-                        ->select('employee_details.birth_place as birth_place')
-                        ->select('employee_details.purok as purok')
-                        ->select('employee_details.brgy as brgy')
-                        ->select('employee_details.municipality as municipality')
-                        ->select('employee_details.province as province')
-                        ->select('employee_details.zip as zip')
-                        ->select('employee_details.date_hired as date_hired')
-                        ->select('employee_details.plantilla as plantilla')
-                        ->select('employee_details.education as education')
-                        ->select('employee_details.school as school')
-                        ->select('employee_details.prc as prc')
-                        ->select('employee_details.prc_reg as prc_reg')
-                        ->select('employee_details.prc_exp as prc_exp')
-                        ->select('employee_details.philhealth as philhealth')
-                        ->select('employee_details.phone as phone')
-                        ->select('employee_details.marital_status as marital_status')
-                        ->select('employee_details.gsis as gsis')
-                        ->select('employee_details.sss as sss')
-                        ->select('employee_details.pag_ibig as pag_ibig')
-                        ->select('employee_details.tin as tin')
-                        ->select('employee_details.atm as atm')
-                        ->select('employee_details.blood_type as blood_type')
-                        ->select('employee_details.email as email')
-                        ->select('employee_details.remarks as remarks')
-                        ->from('employees')
-                        ->join('employee_details', 'employees.id=employee_details.id')
-                        ->join('designations', 'employee_details.designation_id=designations.id')
-                        ->join('departments', 'employee_details.department_id=departments.id')
-                        ->where('employee_details.department_id', $department)
-                        ->where('employee_details.sex', $gender)
-                        ->order_by('id')
-                        ->get()
-                        ->result_array();
+            return $filter->order_by('employees.timestamp', 'desc')
+                          ->get()
+                          ->result_array();
+        }                
     }
 
     // add employee main function
