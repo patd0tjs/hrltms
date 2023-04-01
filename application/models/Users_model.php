@@ -347,9 +347,9 @@ class Users_model extends CI_Model{
         if($this->add_emp_acc()){
             $data = array(
                 'id'     => $this->input->post('id'),
-                'l_name' => $this->input->post('l_name'),
-                'f_name' => $this->input->post('f_name'),
-                'm_name' => $this->input->post('m_name'),
+                'l_name' => ucwords(strtolower($this->input->post('l_name'))),
+                'f_name' => ucwords(strtolower($this->input->post('f_name'))),
+                'm_name' => ucwords(strtolower($this->input->post('m_name'))),
             );
             $this->db->insert('employees', $data);
             $this->add_emp_details();
@@ -402,11 +402,11 @@ class Users_model extends CI_Model{
             'status'         => $this->input->post('status'),
             'sex'            => $this->input->post('sex'),
             'bday'           => $this->input->post('bday'),
-            'birth_place'    => $this->input->post('birth_place'),
-            'purok'          => $this->input->post('purok'),
-            'brgy'           => $this->input->post('brgy'),
-            'municipality'   => $this->input->post('municipality'),
-            'province'       => $this->input->post('province'),
+            'birth_place'    => ucwords(strtolower($this->input->post('birth_place'))),
+            'purok'          => ucwords(strtolower($this->input->post('purok'))),
+            'brgy'           => ucwords(strtolower($this->input->post('brgy'))),
+            'municipality'   => ucwords(strtolower($this->input->post('municipality'))),
+            'province'       => ucwords(strtolower($this->input->post('province'))),
             'zip'            => $this->input->post('zip'),
             'date_hired'     => $this->input->post('date_hired'),
             'plantilla'      => $this->input->post('philhealth'),
@@ -503,9 +503,9 @@ class Users_model extends CI_Model{
     // add employee main function
     public function edit_employee(){
         $data = array(
-            'l_name' => $this->input->post('l_name'),
-            'f_name' => $this->input->post('f_name'),
-            'm_name' => $this->input->post('m_name'),
+            'l_name' => ucwords(strtolower($this->input->post('l_name'))),
+            'f_name' => ucwords(strtolower($this->input->post('f_name'))),
+            'm_name' => ucwords(strtolower($this->input->post('m_name'))),
         );
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('employees', $data);
@@ -529,11 +529,11 @@ class Users_model extends CI_Model{
             'status'         => $this->input->post('status'),
             'sex'            => $this->input->post('sex'),
             'bday'           => $this->input->post('bday'),
-            'birth_place'    => $this->input->post('birth_place'),
-            'purok'          => $this->input->post('purok'),
-            'brgy'           => $this->input->post('brgy'),
-            'municipality'   => $this->input->post('municipality'),
-            'province'       => $this->input->post('province'),
+            'birth_place'    => ucwords(strtolower($this->input->post('birth_place'))),
+            'purok'          => ucwords(strtolower($this->input->post('purok'))),
+            'brgy'           => ucwords(strtolower($this->input->post('brgy'))),
+            'municipality'   => ucwords(strtolower($this->input->post('municipality'))),
+            'province'       => ucwords(strtolower($this->input->post('province'))),
             'zip'            => $this->input->post('zip'),
             'date_hired'     => $this->input->post('date_hired'),
             'plantilla'      => $this->input->post('philhealth'),
