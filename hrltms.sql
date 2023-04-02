@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2023 at 03:14 AM
+-- Generation Time: Apr 03, 2023 at 12:47 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hris`
+-- Database: `hrltms`
 --
 
 -- --------------------------------------------------------
@@ -125,13 +125,6 @@ CREATE TABLE `dtr` (
   `e_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `dtr`
---
-
-INSERT INTO `dtr` (`id`, `emp_id`, `time_in`, `time_out`, `s_date`, `e_date`) VALUES
-(30, 'patrick', '08:23:00', '09:23:00', '2023-03-28', '2023-03-28');
-
 -- --------------------------------------------------------
 
 --
@@ -151,7 +144,8 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `f_name`, `m_name`, `l_name`, `timestamp`) VALUES
-('patrick', 'dsfgdsfgs', 'sdfgdsgdfsgd', 'dfsgsdfg', '2023-03-26 12:40:14');
+('delacruz', 'Juan', 'Miguel', 'De La Cruz', '2023-04-01 15:03:53'),
+('dfgshb', 'Ghjkgfzdfsxghj', 'Gfdzhjghkm', 'Dfghdfgshb Dfgs', '2023-04-01 15:05:43');
 
 -- --------------------------------------------------------
 
@@ -164,7 +158,7 @@ CREATE TABLE `employee_details` (
   `id_pic` varchar(255) DEFAULT NULL,
   `department_id` int(11) NOT NULL,
   `designation_id` int(11) NOT NULL,
-  `status` enum('Regular','Irregular','Casual') NOT NULL,
+  `status` enum('Permanent','JO','Casual') NOT NULL,
   `sex` enum('Male','Female') NOT NULL,
   `bday` date NOT NULL,
   `birth_place` varchar(255) NOT NULL,
@@ -198,7 +192,8 @@ CREATE TABLE `employee_details` (
 --
 
 INSERT INTO `employee_details` (`id`, `id_pic`, `department_id`, `designation_id`, `status`, `sex`, `bday`, `birth_place`, `purok`, `brgy`, `municipality`, `province`, `zip`, `date_hired`, `plantilla`, `education`, `school`, `prc`, `prc_reg`, `prc_exp`, `philhealth`, `phone`, `marital_status`, `gsis`, `sss`, `pag_ibig`, `tin`, `atm`, `blood_type`, `email`, `remarks`) VALUES
-('patrick', 'http://localhost/hrmis/assets/img/id/macos-ventura-macos-13-macos-2022-stock-dark-mode-5k-retina-1920x1080-8133.jpg', 16, 17, 'Casual', 'Female', '2023-03-03', 'sadfgdsfgdasf', 'dfghsfgh', 'dfgsdfgds', 'dsfgsg', 'sdfgs', 3456345, '2023-04-06', 2147483647, 'JHS', 'asdfasdfsa', 2147483647, '2023-03-14', '2023-03-31', 2147483647, 324523452, 'Single', 2147483647, 4563453, 6345634, 2147483647, 2147483647, 'A+', '34563632@GMAIL.COM', 'defgsdfgadsfgsdfgsdfgdsaesdfadsfa');
+('delacruz', 'http://localhost/hrmis/assets/img/id/null_pic.jpg', 16, 16, 'JO', 'Male', '1996-07-01', 'Sampaloc, Manila', 'Sdfg', 'Sfghdfsg', 'Sdfgsdfg', 'Sdfgsd', 67374, '2023-04-01', 0, 'Bachelor\'s Degree', 'Ust', 2147483647, '2023-04-03', '2023-04-27', 2147483647, 2147483647, 'Married', 2147483647, 2147483647, 23452345, 2147483647, 2147483647, 'B-', 'entertainment.pgbalanza@gmail.com', 'srtghsdfgetyjsrythsrghsw'),
+('dfgshb', 'http://localhost/hrmis/assets/img/id/null_pic.jpg', 16, 1, 'JO', 'Male', '2023-04-02', 'Gdhjddfszghjknd', 'Dfsghhfds', 'Hfdsgh', 'Dfgshh', 'Dfghddsghfd', 67345634, '2023-04-04', 0, 'JHS', 'Fgdhjdfdsg', 2147483647, '2023-04-05', '2023-04-03', 1, 2, 'Married', 3, 4, 5, 6, 7, 'O+', 'gsdfg@maghsa.com', 'dfhghghs');
 
 -- --------------------------------------------------------
 
@@ -216,6 +211,14 @@ CREATE TABLE `leaves` (
   `date_filed` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `reason` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `leaves`
+--
+
+INSERT INTO `leaves` (`id`, `emp_id`, `status`, `s_date`, `e_date`, `nature`, `date_filed`, `reason`) VALUES
+(14, 'dfgshb', 'approved', '2023-04-03', '2023-04-07', 'Vacation Leave', '2023-04-01 15:08:19', ''),
+(15, 'delacruz', 'approved', '2023-04-01', '2023-05-04', 'Others', '2023-04-01 15:11:19', 'test');
 
 -- --------------------------------------------------------
 
@@ -246,13 +249,6 @@ CREATE TABLE `schedule` (
   `e_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `schedule`
---
-
-INSERT INTO `schedule` (`id`, `emp_id`, `time_in`, `time_out`, `s_date`, `e_date`) VALUES
-(40, 'patrick', '07:00:00', '15:00:00', '2023-03-28', '2023-03-28');
-
 -- --------------------------------------------------------
 
 --
@@ -266,13 +262,6 @@ CREATE TABLE `tardy` (
   `diff` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tardy`
---
-
-INSERT INTO `tardy` (`id`, `emp_id`, `date`, `diff`) VALUES
-(27, 'patrick', '2023-03-28', '01:23:00');
-
 -- --------------------------------------------------------
 
 --
@@ -285,13 +274,6 @@ CREATE TABLE `undertime` (
   `date` date NOT NULL,
   `diff` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `undertime`
---
-
-INSERT INTO `undertime` (`id`, `emp_id`, `date`, `diff`) VALUES
-(20, 'patrick', '2023-03-28', '05:37:00');
 
 -- --------------------------------------------------------
 
@@ -311,7 +293,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`username`, `pw`, `type`) VALUES
 ('admin', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'admin'),
-('patrick', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'emp');
+('delacruz', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'emp'),
+('dfgshb', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'emp');
 
 --
 -- Indexes for dumped tables
@@ -410,13 +393,13 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `recovery_code`
@@ -434,13 +417,13 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `tardy`
 --
 ALTER TABLE `tardy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `undertime`
 --
 ALTER TABLE `undertime`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
