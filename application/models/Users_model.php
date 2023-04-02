@@ -381,7 +381,7 @@ class Users_model extends CI_Model{
             );
 
             $this->db->insert('users', $data);
-            $this->session->set_flashdata('success', 'employee added');
+            $this->session->set_flashdata('success', 'Employee Added');
             return TRUE;
 
         } else {
@@ -420,7 +420,7 @@ class Users_model extends CI_Model{
             'province'       => ucwords(strtolower($this->input->post('province'))),
             'zip'            => $this->input->post('zip'),
             'date_hired'     => $this->input->post('date_hired'),
-            'plantilla'      => $this->input->post('philhealth'),
+            'plantilla'      => $this->input->post('plantilla'),
             'education'      => $this->input->post('education'),
             'school'         => ucwords(strtolower($this->input->post('school'))),
             'prc'            => $this->input->post('prc'),
@@ -547,7 +547,7 @@ class Users_model extends CI_Model{
             'province'       => ucwords(strtolower($this->input->post('province'))),
             'zip'            => $this->input->post('zip'),
             'date_hired'     => $this->input->post('date_hired'),
-            'plantilla'      => $this->input->post('philhealth'),
+            'plantilla'      => $this->input->post('plantilla'),
             'education'      => $this->input->post('education'),
             'school'         => ucwords(strtolower($this->input->post('school'))),
             'prc'            => $this->input->post('prc'),

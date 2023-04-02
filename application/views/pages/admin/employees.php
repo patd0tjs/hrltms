@@ -543,6 +543,7 @@ function disablePlantilla(){
 
   if(status == "JO"){
     plantilla.display = "none";
+
   } else {
     plantilla.display = "block";
   }

@@ -3,9 +3,9 @@
     <table>
         <tr>
             <td style="padding: 10px">
-                Name: <?= ucfirst($my_info['l_name']). ', ' . ucfirst($my_info['f_name']). ' ' . ucfirst($my_info['m_name']);?>
+                <strong>Name: <?= ucfirst($my_info['l_name']). ', ' . ucfirst($my_info['f_name']). ' ' . ucfirst($my_info['m_name']);?></strong>
                 <br>
-                Employee ID: <?= $my_info['id']?>
+                <strong>Employee ID: <?= $my_info['id']?></strong>
             </td>
             <td>
                 <img style="height: 150px;  border-radius: 5px; float: right;" src="<?= $my_info['id_pic']?>" alt="user profile">

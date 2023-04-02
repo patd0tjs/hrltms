@@ -75,7 +75,7 @@
                 <option value="Others">Others</option>
               </select></div>
 
-              <textarea class="form-control" name="reason" id="reason" cols="30" rows="10" style="display: none" placeholder="Reason" required></textarea>
+              <textarea class="form-control" name="reason" id="reason" cols="30" rows="10" style="display: none" placeholder="Reason"></textarea>
 
               <div class="mb-3">
               <label class="form-label" for="s_date">Start Date: </label>

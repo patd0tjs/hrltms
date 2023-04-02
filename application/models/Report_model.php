@@ -154,8 +154,8 @@ class Report_model extends CI_Model{
             $row .= 
             <<<EOD
                 <tr>
-                    <td>$table[0]</td>
-                    <td>$table[1]</td>
+                    <td style="width: 5%">$table[0]</td>
+                    <td style="width: 20%">$table[1]</td>
                     <td>$table[2]</td>
                     <td>$table[3]</td>
                     <td>$table[4]</td>
@@ -178,21 +178,26 @@ class Report_model extends CI_Model{
             <table id="main" style="font-size: 11px; text-align: center">
                 <thead>
                     <tr>
-                        <td>
+                        <td rowspan="2" style="width: 5%">
                             No.
                         </td>
-                        <td>
-                            NAME
+                        <td rowspan="2" style="width: 20%">
+                            NAME OF EMPLOYEES
                         </td>
-                        <td>
+                        <td rowspan="2">
                             DESIGNATION
                         </td>
-                        <td>
+                        <td rowspan="2">
                             NO. OF TIMES TARDY
                         </td>
-                        <td>
+                        <td rowspan="2">
                             NO. OF TIMES UNDERTIME
                         </td>
+                        <td colspan="2">
+                            TOTAL NO. OF
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             HOURS
                         </td>
@@ -252,7 +257,7 @@ class Report_model extends CI_Model{
                             </p>
                         </td>
                         <td>
-                            <p align="right" style="font-size: 12px">
+                            <p align="center" style="font-size: 12px">
                                 Approved by:
                                 <br>
                                 <br>
@@ -283,7 +288,7 @@ class Report_model extends CI_Model{
         for($i = 0; $i < count($employees); $i++){
             $record = array();
 
-            array_push($record, $i+1, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'], $employees[$i]['designation'], date("M d", strtotime($employees[$i]['s_date'])) . ' - ' . date("d, Y", strtotime($employees[$i]['e_date'])), $employees[$i]['nature']);
+            array_push($record, $i+1, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'], $employees[$i]['designation'], date("M d", strtotime($employees[$i]['s_date'])) . ' - ' . date("d, Y", strtotime($employees[$i]['e_date'])), $employees[$i]['nature'] . '<br />' . $employees[$i]['reason']);
             array_push($table_data, $record);
         }
 
@@ -293,8 +298,8 @@ class Report_model extends CI_Model{
             $row .= 
             <<<EOD
                 <tr>
-                    <td>$table[0]</td>
-                    <td>$table[1]</td>
+                    <td style="width: 5%">$table[0]</td>
+                    <td style="width: 20%">$table[1]</td>
                     <td>$table[2]</td>
                     <td>$table[3]</td>
                     <td>$table[4]</td>
@@ -315,11 +320,11 @@ class Report_model extends CI_Model{
             <table id="main" style="font-size: 11px; text-align: center">
                 <thead>
                     <tr>
-                        <td>
+                        <td style="width: 5%">
                             No.
                         </td>
-                        <td>
-                            NAME
+                        <td style="width: 20%">
+                            NAME OF EMPLOYEES
                         </td>
                         <td>
                             DESIGNATION
@@ -403,7 +408,7 @@ class Report_model extends CI_Model{
                             </p>
                         </td>
                         <td>
-                            <p align="right" style="font-size: 12px">
+                            <p align="center" style="font-size: 12px">
                                 Approved by:
                                 <br>
                                 <br>
@@ -532,7 +537,7 @@ class Report_model extends CI_Model{
                             </p>
                         </td>
                         <td>
-                            <p align="right" style="font-size: 12px">
+                            <p align="center" style="font-size: 12px">
                                 Approved by:
                                 <br>
                                 <br>
@@ -661,7 +666,7 @@ class Report_model extends CI_Model{
                             </p>
                         </td>
                         <td>
-                            <p align="right" style="font-size: 12px">
+                            <p align="center" style="font-size: 12px">
                                 Approved by:
                                 <br>
                                 <br>
