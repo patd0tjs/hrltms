@@ -288,7 +288,7 @@ class Report_model extends CI_Model{
         for($i = 0; $i < count($employees); $i++){
             $record = array();
 
-            array_push($record, $i+1, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'], $employees[$i]['designation'], date("M d", strtotime($employees[$i]['s_date'])) . ' - ' . date("d, Y", strtotime($employees[$i]['e_date'])), $employees[$i]['nature'] . '<br />' . $employees[$i]['reason']);
+            array_push($record, $i+1, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'], $employees[$i]['designation'], date("M d", strtotime($employees[$i]['s_date'])) . ' - ' . date("M d, Y", strtotime($employees[$i]['e_date'])), $employees[$i]['nature'] . '<br />' . $employees[$i]['reason']);
             array_push($table_data, $record);
         }
 

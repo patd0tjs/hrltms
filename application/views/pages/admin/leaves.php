@@ -57,6 +57,7 @@
               <div class="mb-3">
               <label class="form-label" for="nature">Nature of Leave: </label>
               <select class="form-control" name="nature" id="nature" required onchange="others()">
+                <option value="" selected hidden disabled>Select Type of Leave</option>
                 <option value="Vacation Leave">Vacation Leave - Any Date</option>
                 <option value="Maandatory/Force Leave">Maandatory/Force Leave - Any Date</option>
                 <option value="Sick Leave">Sick Leave - Any Date</option>
