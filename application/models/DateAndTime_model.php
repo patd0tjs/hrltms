@@ -531,8 +531,8 @@ class DateAndTime_model extends CI_Model{
                         ->join('employee_details', 'leaves.emp_id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
                         ->where('leaves.status', 'approved')
-                        ->where('date_filed >=', $s_date)
-                        ->where('date_filed <=', $e_date)
+                        ->where('date(date_filed) >=', $s_date)
+                        ->where('date(date_filed) <=', $e_date)
                         ->get()
                         ->result_array();
     }
