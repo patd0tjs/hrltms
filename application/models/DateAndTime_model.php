@@ -316,7 +316,7 @@ class DateAndTime_model extends CI_Model{
                 if($this->compute_undertime()){
                     $undertime = $this->compute_undertime();
                     $this->add_undertime($undertime);
-                    $this->count_tardy($undertime);
+                    // $this->count_tardy($undertime);
                 };
     
             } else {
@@ -356,18 +356,18 @@ class DateAndTime_model extends CI_Model{
         } 
     }
 
-    private function count_undertime(){
-        $employee = $this->db->select('employee_details.email as email')
-                             ->from('undertime')
-                             ->join('employee_details', 'undertime.emp_id=employee_details.id')
-                             ->where('emp_id', $this->input->post('employee'))
-                             ->get()
-                             ->result_array();
+    // private function count_undertime(){
+    //     $employee = $this->db->select('employee_details.email as email')
+    //                          ->from('undertime')
+    //                          ->join('employee_details', 'undertime.emp_id=employee_details.id')
+    //                          ->where('emp_id', $this->input->post('employee'))
+    //                          ->get()
+    //                          ->result_array();
 
-        if (count($employee) > 10){
-            $this->send_warning($employee[0]['email'], 'undertime');
-        } 
-    }
+    //     if (count($employee) > 10){
+    //         $this->send_warning($employee[0]['email'], 'undertime');
+    //     } 
+    // }
     // compute tardy main logic
     private function compute_tardy(){
         $time_in = $this->input->post('time_in');
