@@ -143,9 +143,10 @@ class Report_model extends CI_Model{
             $total_hours = $this->get_hours($total);
             $total_minutes = $this->get_minutes($total);
 
-
-            array_push($record, $i+1, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'], $employees[$i]['designation_name'], $tardy['num_tardy'], $undertime['num_undertime'], $total_hours, $total_minutes);
-            array_push($table_data, $record);
+            if($total_hours > 0 || $total_minutes > 0){
+                array_push($record, $i+1, $employees[$i]['l_name'] . ', ' . $employees[$i]['f_name'], $employees[$i]['designation_name'], $tardy['num_tardy'], $undertime['num_undertime'], $total_hours, $total_minutes);
+                array_push($table_data, $record);
+            }
         }
 
         // set an empty row

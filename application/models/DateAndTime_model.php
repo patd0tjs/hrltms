@@ -307,16 +307,16 @@ class DateAndTime_model extends CI_Model{
                 $this->db->insert('dtr', $data);
 
                 $this->insert_id = $this->db->insert_id();
-                if($this->compute_tardy()){
-                    $tardy = $this->compute_tardy();
-                    $this->add_tardy($tardy);
+                if($this->compute_tardy($s_date, $time_in)){
+                    $tardy = $this->compute_tardy($s_date, $time_in);
+                    $this->add_tardy($tardy, $s_date);
                     $this->count_tardy($tardy);
                 };
         
-                if($this->compute_undertime()){
-                    $undertime = $this->compute_undertime();
-                    $this->add_undertime($undertime);
-                    // $this->count_tardy($undertime);
+                if($this->compute_undertime($s_date, $time_out)){
+                    $undertime = $this->compute_undertime($s_date, $time_out);
+                    $this->add_undertime($undertime, $s_date);
+                    $this->count_tardy($undertime);
                 };
     
             } else {
@@ -356,27 +356,26 @@ class DateAndTime_model extends CI_Model{
         } 
     }
 
-    // private function count_undertime(){
-    //     $employee = $this->db->select('employee_details.email as email')
-    //                          ->from('undertime')
-    //                          ->join('employee_details', 'undertime.emp_id=employee_details.id')
-    //                          ->where('emp_id', $this->input->post('employee'))
-    //                          ->get()
-    //                          ->result_array();
+    private function count_undertime(){
+        $employee = $this->db->select('employee_details.email as email')
+                             ->from('undertime')
+                             ->join('employee_details', 'undertime.emp_id=employee_details.id')
+                             ->where('emp_id', $this->input->post('employee'))
+                             ->get()
+                             ->result_array();
 
-    //     if (count($employee) > 10){
-    //         $this->send_warning($employee[0]['email'], 'undertime');
-    //     } 
-    // }
+        if (count($employee) > 10){
+            $this->send_warning($employee[0]['email'], 'undertime');
+        } 
+    }
+
     // compute tardy main logic
-    private function compute_tardy(){
-        $time_in = $this->input->post('time_in');
-
+    private function compute_tardy($s_date, $time_in){
         $employee = $this->db->select('time_in')
                              ->select('time_out')
                              ->select('s_date')
                              ->where('emp_id', $this->input->post('employee'))
-                             ->where('s_date', $this->input->post('date'))
+                             ->where('s_date', $s_date)
                              ->get('schedule')
                              ->row_array();
                  
@@ -393,13 +392,11 @@ class DateAndTime_model extends CI_Model{
     }
 
     // undertime main logic
-    private function compute_undertime(){
-        $time_out = $this->input->post('time_out');
-
+    private function compute_undertime($s_date, $time_out){
         $employee = $this->db->select('time_out')
                              ->select('s_date')
                              ->where('emp_id', $this->input->post('employee'))
-                             ->where('s_date', $this->input->post('date'))
+                             ->where('s_date', $s_date)
                              ->get('schedule')
                              ->row_array();
 
@@ -416,10 +413,10 @@ class DateAndTime_model extends CI_Model{
     }
 
     // add tardy to db
-    private function add_tardy($diff){
+    private function add_tardy($diff, $s_date){
         $data = array(
             'emp_id' => $this->input->post('employee'),
-            'date'   => $this->input->post('date'),
+            'date'   => $s_date,
             'diff'   => $diff
         );
 
@@ -427,10 +424,10 @@ class DateAndTime_model extends CI_Model{
     }
 
     // add undertime to db
-    private function add_undertime($diff){
+    private function add_undertime($diff, $s_date){
         $data = array(
             'emp_id' => $this->input->post('employee'),
-            'date'   => $this->input->post('date'),
+            'date'   => $s_date,
             'diff'   => $diff
         );
 
