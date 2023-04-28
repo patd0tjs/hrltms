@@ -316,7 +316,7 @@ class DateAndTime_model extends CI_Model{
                 if($this->compute_undertime($s_date, $time_out)){
                     $undertime = $this->compute_undertime($s_date, $time_out);
                     $this->add_undertime($undertime, $s_date);
-                    $this->count_tardy($undertime);
+                    $this->count_undertime($undertime);
                 };
     
             } else {

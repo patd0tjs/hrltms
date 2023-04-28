@@ -21,6 +21,8 @@ class Report_model extends CI_Model{
                         ->from('employees')
                         ->join('employee_details', 'employees.id=employee_details.id')
                         ->join('designations', 'employee_details.designation_id=designations.id')
+                        ->order_by('employees.l_name')
+                        ->order_by('employees.f_name')
                         ->get()
                         ->result_array();
     }
