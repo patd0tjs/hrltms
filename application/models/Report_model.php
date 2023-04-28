@@ -285,7 +285,7 @@ class Report_model extends CI_Model{
         $today = date("F d, Y");
 
 
-        $employees = $this->DateAndTime_model->get_approved_leaves_data($s_date, $e_date); 
+        $employees = $this->DateAndTime_model->get_approved_leaves_report_data($s_date, $e_date); 
 
         $table_data = array();
         for($i = 0; $i < count($employees); $i++){

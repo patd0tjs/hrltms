@@ -281,6 +281,8 @@ class Users_model extends CI_Model{
                         ->join('designations', 'employee_details.designation_id=designations.id')
                         ->join('departments', 'employee_details.department_id=departments.id')
                         ->where('employees.id', $this->input->post('id'))
+                        ->order_by('employees.l_name')
+                        ->order_by('employees.f_name')
                         ->get()
                         ->row_array();
     }
