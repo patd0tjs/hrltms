@@ -175,12 +175,12 @@ class Users_model extends CI_Model{
                 return TRUE;
 
             } else {
-                $this->session->set_flashdata('error', "username or password doesn't match");
+                $this->session->set_flashdata('error', "Username or password doesn't match");
                 return FALSE;    
             }
 
         } else {
-            $this->session->set_flashdata('error', "username or password doesn't match");
+            $this->session->set_flashdata('error', "Username or password doesn't match");
             return FALSE;
         
         }
@@ -387,7 +387,7 @@ class Users_model extends CI_Model{
             return TRUE;
 
         } else {
-            $this->session->set_flashdata('error', 'employee id already exists');
+            $this->session->set_flashdata('error', 'Employee ID Already Exists');
             return FALSE;
         }
     }
