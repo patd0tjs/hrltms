@@ -318,13 +318,13 @@ class DateAndTime_model extends CI_Model{
                 if($this->compute_tardy($s_date, $time_in)){
                     $tardy = $this->compute_tardy($s_date, $time_in);
                     $this->add_tardy($tardy, $s_date);
-                    $this->count_tardy($tardy);
+                    $this->count_tardy();
                 };
         
                 if($this->compute_undertime($s_date, $time_out)){
                     $undertime = $this->compute_undertime($s_date, $time_out);
                     $this->add_undertime($undertime, $s_date);
-                    $this->count_undertime($undertime);
+                    $this->count_undertime();
                 };
     
             } else {
@@ -589,7 +589,7 @@ class DateAndTime_model extends CI_Model{
        
         $mail->addAddress($email);
 
-        $mail->Subject = 'Exceeded Number of lates/tardies';
+        $mail->Subject = 'Exceeded Number of undertime/tardies';
        
 
         $mailContent = "You have exceeded the amount of $violation. Please visit the HR office immediately";
