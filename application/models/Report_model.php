@@ -834,7 +834,7 @@ class Report_model extends CI_Model{
             $row .= 
             <<<EOD
                 <tr>
-                    <td>$table[0]</td>
+                    <td style="width: 5%">$table[0]</td>
                     <td>$table[1]</td>
                     <td>$table[2]</td>
                     <td>$table[3]</td>
@@ -859,7 +859,7 @@ class Report_model extends CI_Model{
             <table id="main" style="font-size: 11px; text-align: center">
                 <thead>
                     <tr>
-                        <td>
+                        <td style="width: 5%">
                             No.
                         </td>
                         <td>
