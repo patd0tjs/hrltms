@@ -359,7 +359,7 @@ class DateAndTime_model extends CI_Model{
                              ->get()
                              ->result_array();
 
-        if (count($employee) > 10){
+        if (count($employee) >= 10){
             $this->send_warning($employee[0]['email'], 'tardies');
         } 
     }
@@ -372,7 +372,7 @@ class DateAndTime_model extends CI_Model{
                              ->get()
                              ->result_array();
 
-        if (count($employee) > 10){
+        if (count($employee) >= 10){
             $this->send_warning($employee[0]['email'], 'undertime');
         } 
     }
