@@ -447,8 +447,8 @@ class Report_model extends CI_Model{
             $row .= 
             <<<EOD
                 <tr>
-                    <td>$table[0]</td>
-                    <td>$table[1]</td>
+                    <td style="width: 5%">$table[0]</td>
+                    <td style="width: 20%">$table[1]</td>
                     <td>$table[2]</td>
                     <td>$table[3]</td>
                     <td>$table[4]</td>
@@ -467,13 +467,13 @@ class Report_model extends CI_Model{
                 border-collapse: collapse;
                 }
             </style>
-            <table id="main" style="font-size: 11px; text-align: center">
+            <table id="main" style="font-size: 11px; text-align: center;">
                 <thead>
                     <tr>
-                        <td>
+                        <td style="width: 5%">
                             No.
                         </td>
-                        <td>
+                        <td style="width: 20%">
                             NAME
                         </td>
                         <td>
@@ -576,8 +576,8 @@ class Report_model extends CI_Model{
             $row .= 
             <<<EOD
                 <tr>
-                    <td>$table[0]</td>
-                    <td>$table[1]</td>
+                    <td style="width: 5%">$table[0]</td>
+                    <td style="width: 20%">$table[1]</td>
                     <td>$table[2]</td>
                     <td>$table[3]</td>
                     <td>$table[4]</td>
@@ -599,10 +599,10 @@ class Report_model extends CI_Model{
             <table id="main" style="font-size: 11px; text-align: center">
                 <thead>
                     <tr>
-                        <td>
+                        <td style="width: 5%">
                             No.
                         </td>
-                        <td>
+                        <td style="width: 20%">
                             NAME
                         </td>
                         <td>
@@ -949,14 +949,15 @@ class Report_model extends CI_Model{
         $table = <<<EOD
             <br>
             <br>
-            <style>
-                table#main, table#main th, table#main td {
-                border: 1px solid black;
-                border-collapse: collapse;
-                }
-            </style>
-            <table id="main" style="font-size: 11px; text-align: center">
+            <table id="main" style="font-size: 11px; text-align: left">
                 <tbody>
+                <tr>
+                    <td colspan="2">
+                        <center>
+                            <img src="$employee[id_pic]" style="width: 20px">
+                        </center>
+                    </td>
+                </tr>
                 <tr>
                     <td>Employee ID:</td>
                     <td>$employee[id]</td>
@@ -1116,8 +1117,8 @@ class Report_model extends CI_Model{
                         </td>
                     </tr>
                 </table>
-                <p align="left" style="font-size: 12px">
-                    EMPLOYEE DATA				
+                <p align="center" style="font-size: 12px;">
+                    <strong>EMPLOYEE DATA</strong>				
                 </p> 
             EOD;
         
