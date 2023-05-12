@@ -5,13 +5,14 @@ body{
     background-size: auto;
 }
 .login{
+    opacity: 0.8;
     width: 70%;
     margin-top: 5%;
     border-style: 1px solid black;
     padding: 5%;
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 .alert{
     width: 25%;
@@ -41,8 +42,9 @@ a{
   bottom: 0;
   width: 100%;
   height: 40px;
-  background-color: #1e6c07;
-  color: white
+  background-color: #def0f285;
+  color: white;
+  opacity: 0.8;
 }
 
 </style>
@@ -63,6 +65,8 @@ a{
 
     <div class="row">
         <div class="col">
+          <br>
+          <br>
             <div align="right">
                 <img src="<?= base_url()?>assets/img/logo-2.png" id="login-logo"> 
             </div>
@@ -70,9 +74,12 @@ a{
         </div>
          <div class="col-8">
             <div class="login">
+              <label style="font-size: 25px">BUKIDNON PROVINCIAL HOSPITAL OF KIBAWE <br/>  HUMAN RESOURCE LEAVE AND TARDY MANAGEMENT SYSTEM</label>
+              <br>
+              <br>
                 <form action="<?= base_url()?>users/login" method="post">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username" required>
+                        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username" style="background: white" required>
                         <label for="floatingInput">Username ID</label>
                     </div>
                     <div class="form-floating">

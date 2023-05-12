@@ -945,16 +945,18 @@ class Report_model extends CI_Model{
         $employee = $this->Users_model->get_employees_data(); 
 
         $school = ucwords($employee['school']);
+       
+
         // set table
         $table = <<<EOD
             <br>
             <br>
-            <table id="main" style="font-size: 11px; text-align: left">
+            <table id="main" style="font-size: 13px; text-align: left;">
                 <tbody>
                 <tr>
                     <td colspan="2">
                         <center>
-                            <img src="$employee[id_pic]" style="width: 20px">
+                            <img src="$employee[id_pic]" style="height: 100px">
                         </center>
                     </td>
                 </tr>

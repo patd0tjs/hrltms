@@ -28,6 +28,7 @@ class Users_model extends CI_Model{
                         ->select('employee_details.birth_place')
                         ->select('employee_details.purok')
                         ->select('employee_details.brgy')
+                        ->select('employee_details.region')
                         ->select('employee_details.municipality')
                         ->select('employee_details.province')
                         ->select('employee_details.zip')
@@ -213,6 +214,7 @@ class Users_model extends CI_Model{
                         ->select('employee_details.brgy as brgy')
                         ->select('employee_details.municipality as municipality')
                         ->select('employee_details.province as province')
+                        ->select('employee_details.region as region')
                         ->select('employee_details.zip as zip')
                         ->select('employee_details.date_hired as date_hired')
                         ->select('employee_details.plantilla as plantilla')
@@ -407,6 +409,7 @@ class Users_model extends CI_Model{
         } else {
             $photo = $this->uploadPhoto();;
         } 
+
         $data = array(
             'id'             => $this->input->post('id'),
             'id_pic'         => $photo,
@@ -535,6 +538,20 @@ class Users_model extends CI_Model{
         } else {
             $photo = $this->uploadPhoto();;
         }   
+
+        if($this->input->post('province')){
+            if($this->input->post('province') != $this->input->post('old_prov')){
+                $province = $this->input->post('province');
+                $city = $this->input->post('municipality');
+            } else {
+                $province = $this->input->post('old_prov');
+                $city = $this->input->post('old_city');
+            }
+        } else {
+            $province = $this->input->post('old_prov');
+            $city = $this->input->post('old_city');
+        }
+
         $data = array(
             'id_pic'         => $photo,
             'department_id'  => $this->input->post('department'),
@@ -545,8 +562,8 @@ class Users_model extends CI_Model{
             'birth_place'    => ucwords(strtolower($this->input->post('birth_place'))),
             'purok'          => ucwords(strtolower($this->input->post('purok'))),
             'brgy'           => ucwords(strtolower($this->input->post('brgy'))),
-            'municipality'   => ucwords(strtolower($this->input->post('municipality'))),
-            'province'       => ucwords(strtolower($this->input->post('province'))),
+            'municipality'   => ucwords(strtolower($city)),
+            'province'       => ucwords(strtolower($province)),
             'zip'            => $this->input->post('zip'),
             'date_hired'     => $this->input->post('date_hired'),
             'plantilla'      => $this->input->post('plantilla'),
