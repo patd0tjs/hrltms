@@ -7,7 +7,7 @@ body{
 .login{
     opacity: 0.8;
     width: 70%;
-    margin-top: 5%;
+    /* margin-top: 5%; */
     border-style: 1px solid black;
     padding: 5%;
     border-radius: 25px;
@@ -73,10 +73,9 @@ a{
              
         </div>
          <div class="col-8">
+          <br>
+         <label style="font-size: 25px; font-weight: bold">BUKIDNON PROVINCIAL HOSPITAL OF KIBAWE <br/>  HUMAN RESOURCE LEAVE AND TARDY MANAGEMENT SYSTEM</label>
             <div class="login">
-              <label style="font-size: 25px">BUKIDNON PROVINCIAL HOSPITAL OF KIBAWE <br/>  HUMAN RESOURCE LEAVE AND TARDY MANAGEMENT SYSTEM</label>
-              <br>
-              <br>
                 <form action="<?= base_url()?>users/login" method="post">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username" style="background: white" required>
@@ -102,9 +101,9 @@ a{
     <center>
         <table>
             <tr>
-                <td><a role="button" data-bs-toggle="modal" data-bs-target="#privacy">Privacy Policy</a></td>
+                <td><a role="button" data-bs-toggle="modal" data-bs-target="#privacy" style="color: black">Privacy Policy</a></td>
                 <td style="width:10%"></td>
-                <td><a role="button" data-bs-toggle="modal" data-bs-target="#terms">Terms of Use</a></td>
+                <td><a role="button" data-bs-toggle="modal" data-bs-target="#terms" style="color: black">Terms of Use</a></td>
             </tr>
         </table>
     </center>

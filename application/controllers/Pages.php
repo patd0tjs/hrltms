@@ -198,10 +198,11 @@ class Pages extends CI_Controller{
                 'title' => 'Employee Leaves',
                 'pending' => $this->DateAndTime_model->my_pending_leaves(),
                 'approved' => $this->DateAndTime_model->my_approved_leaves(),
+                'notifs'   => $this->DateAndTime_model->myNotif()
             );
             $this->load->view('components/header');
             $this->load->view('components/navbar', $data);
-            $this->load->view('pages/leaves');
+            $this->load->view('pages/leaves', $data);
             $this->load->view('components/footer');
         } else {
             $this->session->set_flashdata('error', 'You are not allowed to visit this page');

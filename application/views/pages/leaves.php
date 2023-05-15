@@ -52,7 +52,7 @@
               
               <div class="mb-3">
               <label class="form-label" for="s_date">Start Date: </label>
-              <input class="form-control" type="date" name="s_date" min="<?= date('Y-m-d', strtotime(date('Y-m-d'). '+ 5 days'))?>" id="s_date" required></div>
+              <input class="form-control" type="date" name="s_date" min="<?= date('Y-m-d', strtotime(date('Y-m-d'). '+ 4 days'))?>" id="s_date" required></div>
 
               <div class="mb-3">
               <label class="form-label" for="e_date">End Date: </label>
@@ -143,8 +143,28 @@
   </table>
 </div>
 
-
-
+<?php foreach($notifs as $notif):?>
+  <div class="modal fade" id="notif<?=$notif['id']?>" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exportLeaveLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="<?= base_url()?>dateandtime/readNotif" method="post">
+          <div class="modal-body">
+            <h3 style="text-align: center"><?=$notif['message']?></h3>
+            
+          <div class="modal-footer">
+              <input type="hidden" name="id" value="<?= $notif['id']?>">
+              <button type="submit" class="btn btn-primary">Understood</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+        $(window).on('load', function() {
+        $('#notif<?=$notif['id']?>').modal('show');
+    });
+  </script>
+<?php endforeach;?>
 <script>
 $(document).ready(function () {
   $('#pending').DataTable({

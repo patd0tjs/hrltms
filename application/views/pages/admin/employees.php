@@ -576,21 +576,21 @@
         <form action="<?= base_url()?>users/add_emp" method="post" enctype="multipart/form-data">
 
           <div class="mb-3">
-          <label for="profile_pic" class="form-label">Employee Picture:</label>
+          <label for="profile_pic" class="form-label"><span style="color: red">*</span>	Employee Picture:</label>
           <input class="form-control" type="file" type="file" name="profile_pic" accept="image/*" placeholder="profile_pic">
           </div>
           
           <div class="mb-3">
-          <label for="id" class="form-label">Employee ID:</label>
+          <label for="id" class="form-label"><span style="color: red">*</span>	Employee ID:</label>
           <input type="text" name="id" id="id" class="form-control" placeholder="Employee ID" onkeyup="check_id()" required></div>
           <p id="id_warn" style="color: red; display: none">Employee ID Already Exists</p>
 
           <div class="mb-3">
-          <label for="l_name" class="form-label">Employee Surname:</label>
+          <label for="l_name" class="form-label"><span style="color: red">*</span>	Employee Surname:</label>
           <input type="text" name="l_name" class="form-control" placeholder="Surname" required></div>
 
           <div class="mb-3">
-          <label for="f_name" class="form-label">Employee Firstname:</label>
+          <label for="f_name" class="form-label"><span style="color: red">*</span>	Employee Firstname:</label>
           <input type="text" class="form-control" name="f_name" placeholder="Firstname" required></div>
 
           <div class="mb-3">
@@ -598,7 +598,7 @@
           <input type="text" class="form-control" name="m_name" placeholder="Middlename"></div>
 
           <div class="mb-3">
-          <label for="departments" class="form-label">Department:</label>
+          <label for="departments" class="form-label"><span style="color: red">*</span>	Department:</label>
           <select class="form-control" name="department" required>
             <?php foreach($departments as $department):?>
               <option value="<?= $department['id']?>"><?= $department['name']?></option>
@@ -606,7 +606,7 @@
           </select></div>
 
           <div class="mb-3">
-          <label for="designation" class="form-label">Designation:</label>
+          <label for="designation" class="form-label"><span style="color: red">*</span>	Designation:</label>
           <select id="designation" class="form-control" name ="designation" required>
             <?php foreach($designations as $designation):?>
               <option value="<?= $designation['id']?>"><?= $designation['name']?></option>
@@ -614,7 +614,7 @@
           </select></div>
 
           <div class="mb-3">
-          <label for="status" class="form-label">Employment Status:</label>
+          <label for="status" class="form-label"><span style="color: red">*</span>	Employment Status:</label>
           <select id="status" class="form-control" name="status" onchange="disablePlantilla()" required>
             <option value="Permanent">Permanent</option>
             <option value="JO">JO</option>
@@ -622,22 +622,22 @@
           </select></div>
 
           <div class="mb-3">
-          <label for="sex" class="form-label">Sex:</label>
+          <label for="sex" class="form-label"><span style="color: red">*</span>	Sex:</label>
           <select class="form-control" name="sex" required>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select></div>
 
           <div class="mb-3">
-          <label for="bday" class="form-label">Birthday:</label>
+          <label for="bday" class="form-label"><span style="color: red">*</span>	Birthday:</label>
           <input type="date" name="bday" class="form-control" required></div>
 
           <div class="mb-3">
-          <label for="birth_place" class="form-label">Birth Place:</label>
+          <label for="birth_place" class="form-label"><span style="color: red">*</span>	Birth Place:</label>
           <input type="text" name="birth_place" class="form-control" placeholder="Place of Birth" required></div>
 
           <div class="row g-3">
-          <label for="" class="form-label">Address:</label>
+          <label for="" class="form-label"><span style="color: red">*</span>	Address:</label>
           <div class="col-auto">
           <select name="province" class="form-control" id="province" required>
           <option value="" selected hidden disabled>Province</option>
@@ -655,7 +655,7 @@
 
           <br>
           <div class="mb-3">
-          <label class="form-label" for="date_hired">Date Hired:</label>
+          <label class="form-label" for="date_hired"><span style="color: red">*</span>	Date Hired:</label>
           <input class="form-control" type="date" name="date_hired" required></div>
 
           <div class="mb-3" id="plantilla">
@@ -664,7 +664,7 @@
           </div>
 
           <div class="row g-3">
-          <label class="form-label" for="education">Education:</label>
+          <label class="form-label" for="education"><span style="color: red">*</span>	Education:</label>
           <div class="col-auto">
           <select class="form-control" name="education" required>
             <option value="Elementary">Elementary</option>
@@ -697,11 +697,11 @@
           <input class="form-control" type="number" name="philhealth" placeholder="Philhealth #"/></div>
 
           <div class="mb-3">
-          <label for="phone" class="form-label">Phone:</label>
+          <label for="phone" class="form-label"><span style="color: red">*</span>	Phone:</label>
           <input class="form-control" type="number" name="phone" placeholder="Contact #" required></div>
 
           <div class="mb-3">
-          <label for="marital_status" class="form-label">Marital Status:</label>
+          <label for="marital_status" class="form-label"><span style="color: red">*</span>	Marital Status:</label>
           <select name="marital_status" class="form-control" required>
             <option value="Single">Single</option>
             <option value="Married">Married</option>
@@ -731,7 +731,7 @@
           <input class="form-control" type="number" name="atm" placeholder="ATM #" required></div>
 
           <div class="mb-3">
-          <label for="blood_type" class="form-label">Blood Type:</label>
+          <label for="blood_type" class="form-label"><span style="color: red">*</span>	Blood Type:</label>
           <select name="blood_type" class="form-control" required>
             <option value="A+">A+</option>
             <option value="A-">A-</option>

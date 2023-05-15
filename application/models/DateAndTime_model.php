@@ -96,9 +96,47 @@ class DateAndTime_model extends CI_Model{
     }
 
     public function delete_leave(){
+        $user_id    = $this->getLeaves()['emp_id'];
+        $leave_type = $this->getLeaves()['nature'];
+
+        $this->leaveNotif($user_id, $leave_type, 'declined');
+
         $this->db->where('id', $this->input->post('id'));
         $this->db->delete('leaves');
         
+    }
+
+    private function getLeaves(){
+        return $this->db->select('nature')
+                        ->select('emp_id')
+                        ->where('id', $this->input->post('id'))
+                        ->get('leaves')
+                        ->row_array();
+    }
+
+    private function leaveNotif($user_id, $leave_type, $status){
+        $data = array(
+            'user_id' => $user_id,
+            'message' => 'Your ' . $leave_type.' request has been ' . $status,
+        );
+
+        $this->db->insert('notif', $data);
+    }
+
+    public function myNotif(){
+        return $this->db->where('user_id', $this->session->id)
+                        ->where('is_read', 0)
+                        ->get('notif')
+                        ->result_array();
+    }
+
+    public function readNotif(){
+        $data = array(
+            'id'      => $this->input->post('id'),
+            'is_read' => 1
+        );
+
+        $this->db->update('notif', $data);
     }
 
     public function get_tardy(){
@@ -568,6 +606,11 @@ class DateAndTime_model extends CI_Model{
     }
 
     public function approve_leave(){
+        $user_id    = $this->getLeaves()['emp_id'];
+        $leave_type = $this->getLeaves()['nature'];
+
+        $this->leaveNotif($user_id, $leave_type, 'approved');
+
         $this->db->set('status', 'approved');
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('leaves');

@@ -117,4 +117,21 @@ class DateAndTime extends CI_Controller{
             redirect('login');
         }
     }
+
+    public function readNotif(){
+        if($this->session->id){
+            if ($this->session->id != 'admin'){
+                $this->DateAndTime_model->readNotif();
+                redirect('leaves');
+            } else {
+                $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+                redirect('login');
+            }
+
+        } else {
+            $this->session->set_flashdata('error', 'You are not allowed to visit this page');
+            redirect('login');
+        }
+        
+    }
 }

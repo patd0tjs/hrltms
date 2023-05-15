@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2023 at 01:27 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: May 15, 2023 at 04:46 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -200,7 +200,7 @@ CREATE TABLE `employee_details` (
 --
 
 INSERT INTO `employee_details` (`id`, `id_pic`, `department_id`, `designation_id`, `status`, `sex`, `bday`, `birth_place`, `purok`, `brgy`, `municipality`, `province`, `zip`, `date_hired`, `plantilla`, `education`, `school`, `prc`, `prc_reg`, `prc_exp`, `philhealth`, `phone`, `marital_status`, `gsis`, `sss`, `pag_ibig`, `tin`, `atm`, `blood_type`, `email`, `remarks`, `region`) VALUES
-('delacruz', 'http://localhost/hrmis/assets/img/id/null_pic.jpg', 16, 16, 'JO', 'Male', '1996-07-01', 'Sampaloc, Manila', 'Sdfg', 'Sfghdfsg', 'Sdfgsdfg', 'Sdfgsd', 67374, '2023-04-01', '0', 'Bachelor\'s Degree', 'Ust', '2147483647', '2023-04-03', '2023-04-27', '2147483647', 2147483647, 'Married', '2147483647', '2147483647', '23452345', 2147483647, 2147483647, 'B-', 'entertainment.pgbalanza@gmail.com', 'srtghsdfgetyjsrythsrghsw', NULL),
+('delacruz', 'http://localhost/hrltms/assets/img/id/daniel-leone-g30P1zcOzXo-unsplash.jpg', 16, 16, 'JO', 'Male', '1996-07-01', 'Sampaloc, Manila', 'Sdfg', 'Sfghdfsg', 'Sdfgsdfg', 'Sdfgsd', 67374, '2023-04-01', '0', 'Bachelor\'s Degree', 'Ust', '2147483647', '2023-04-03', '2023-04-27', '2147483647', 2147483647, 'Married', '2147483647', '2147483647', '23452345', 2147483647, 2147483647, 'B-', 'entertainment.pgbalanza@gmail.com', 'srtghsdfgetyjsrythsrghsw', NULL),
 ('dfgshb', 'http://localhost/hrltms/assets/img/id/339011341_1217352725579719_1353004476805906824_n.jpg', 16, 1, 'JO', 'Male', '2023-04-02', 'Gdhjddfszghjknd', 'Dfsghhfds', 'Hfdsgh', 'New Washington', 'Aklan', 67345634, '2023-04-04', '', 'JHS', 'Fgdhjdfdsg', '2147483647', '2023-04-05', '2023-04-03', '', 2, 'Married', '3', '4', '5', 6, 7, 'O+', 'gsdfg@maghsa.com', 'dfhghghs', NULL);
 
 -- --------------------------------------------------------
@@ -227,6 +227,26 @@ CREATE TABLE `leaves` (
 INSERT INTO `leaves` (`id`, `emp_id`, `status`, `s_date`, `e_date`, `nature`, `date_filed`, `reason`) VALUES
 (14, 'dfgshb', 'approved', '2023-04-03', '2023-04-07', 'Vacation Leave', '2023-04-01 15:08:19', ''),
 (15, 'delacruz', 'approved', '2023-04-01', '2023-05-04', 'Others', '2023-04-01 15:11:19', 'test');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notif`
+--
+
+CREATE TABLE `notif` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `message` char(255) NOT NULL,
+  `is_read` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notif`
+--
+
+INSERT INTO `notif` (`id`, `user_id`, `message`, `is_read`) VALUES
+(1, 'delacruz', 'Your Social Privilege Leave has been declined', 1);
 
 -- --------------------------------------------------------
 
@@ -370,6 +390,13 @@ ALTER TABLE `leaves`
   ADD KEY `emp_id` (`emp_id`);
 
 --
+-- Indexes for table `notif`
+--
+ALTER TABLE `notif`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `recovery_code`
 --
 ALTER TABLE `recovery_code`
@@ -428,7 +455,13 @@ ALTER TABLE `dtr`
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `notif`
+--
+ALTER TABLE `notif`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `recovery_code`
@@ -483,6 +516,12 @@ ALTER TABLE `employee_details`
 --
 ALTER TABLE `leaves`
   ADD CONSTRAINT `leaves_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`id`);
+
+--
+-- Constraints for table `notif`
+--
+ALTER TABLE `notif`
+  ADD CONSTRAINT `notif_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`username`);
 
 --
 -- Constraints for table `schedule`

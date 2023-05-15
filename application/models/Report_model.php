@@ -1142,7 +1142,7 @@ class Report_model extends CI_Model{
                 </table>
             EOD;
 
-        $this->generate_pdf($title, $table, $footer, 'schedules_report.pdf');
+        $this->generate_pdf($title, $table, $footer, 'employee profile.pdf');
     }
 
     private function generate_pdf($title, $table, $footer, $filename){
