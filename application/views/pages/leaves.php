@@ -52,11 +52,11 @@
               
               <div class="mb-3">
               <label class="form-label" for="s_date">Start Date: </label>
-              <input class="form-control" type="date" name="s_date" min="<?= date('Y-m-d', strtotime(date('Y-m-d'). '+ 4 days'))?>" id="s_date" required></div>
+              <input class="form-control" type="date" name="s_date" min="<?= date('Y-m-d', strtotime(date('Y-m-d'). '+ 6 days'))?>" id="s_date" required></div>
 
               <div class="mb-3">
               <label class="form-label" for="e_date">End Date: </label>
-              <input class="form-control" type="date" name="e_date" id="e_date" required></div>
+              <input class="form-control" type="date" name="e_date" min="<?= date('Y-m-d', strtotime(date('Y-m-d'). '+ 6 days'))?>" id="e_date" required></div>
               
           </div>
           <div class="modal-footer">

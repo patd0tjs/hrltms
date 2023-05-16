@@ -951,13 +951,19 @@ class Report_model extends CI_Model{
         $table = <<<EOD
             <br>
             <br>
-            <table id="main" style="font-size: 13px; text-align: left;">
+            <table id="main" style="font-size: 12.8px; text-align: left;">
                 <tbody>
                 <tr>
                     <td colspan="2">
                         <center>
                             <img src="$employee[id_pic]" style="height: 100px">
                         </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
                     </td>
                 </tr>
                 <tr>

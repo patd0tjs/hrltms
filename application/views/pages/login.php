@@ -5,14 +5,13 @@ body{
     background-size: auto;
 }
 .login{
-    opacity: 0.8;
     width: 70%;
     /* margin-top: 5%; */
     border-style: 1px solid black;
     padding: 5%;
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.6);
 }
 .alert{
     width: 25%;
@@ -33,7 +32,7 @@ a{
 }
 
 #login-logo{
-    width: 70%;
+    width: 50%;
     margin-top: 8%
 }
 
@@ -67,18 +66,27 @@ a{
         <div class="col">
           <br>
           <br>
-            <div align="right">
-                <img src="<?= base_url()?>assets/img/logo-2.png" id="login-logo"> 
+            <div align="center">
+                <img src="<?= base_url()?>assets/img/logo-2.png" id="login-logo">
+
+                <div class="div">
+                  <label style="font-size: 25px; font-weight: bold;color:white; text-align:center">BUKIDNON PROVINCIAL HOSPITAL OF KIBAWE <br/>  HUMAN RESOURCE LEAVE AND TARDY MANAGEMENT SYSTEM</label>
+                </div>
             </div>
              
         </div>
-         <div class="col-8">
+         <div class="col-7">
           <br>
-         <label style="font-size: 25px; font-weight: bold">BUKIDNON PROVINCIAL HOSPITAL OF KIBAWE <br/>  HUMAN RESOURCE LEAVE AND TARDY MANAGEMENT SYSTEM</label>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
             <div class="login">
                 <form action="<?= base_url()?>users/login" method="post">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username" style="background: white" required>
+                        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username"  required>
                         <label for="floatingInput">Username ID</label>
                     </div>
                     <div class="form-floating">
@@ -97,7 +105,7 @@ a{
 
 </center>
 
-<div class="footer">
+<div class="footer" style="font-size: 24px">
     <center>
         <table>
             <tr>

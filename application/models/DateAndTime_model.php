@@ -132,10 +132,9 @@ class DateAndTime_model extends CI_Model{
 
     public function readNotif(){
         $data = array(
-            'id'      => $this->input->post('id'),
             'is_read' => 1
         );
-
+        $this->db->where('id', $this->input->post('id'));
         $this->db->update('notif', $data);
     }
 
