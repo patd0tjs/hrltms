@@ -149,7 +149,7 @@
       <div class="modal-content">
         <form action="<?= base_url()?>dateandtime/readNotif" method="post">
           <div class="modal-body">
-            <h3 style="text-align: center"><?=$notif['message']?></h3>
+            <h3 style="text-align: center"><?= ucwords($notif['message'])?></h3>
             
           <div class="modal-footer">
               <input type="hidden" name="id" value="<?= $notif['id']?>">

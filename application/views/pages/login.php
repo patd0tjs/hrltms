@@ -105,7 +105,7 @@ a{
 
 </center>
 
-<div class="footer" style="font-size: 24px">
+<div class="footer" style="font-size: 21px">
     <center>
         <table>
             <tr>
